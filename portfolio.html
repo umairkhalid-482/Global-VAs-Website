@@ -51,7 +51,7 @@ body {
 }
 .page-bg-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(10, 10, 15, 0.75); z-index: -1;
+  background: rgba(10, 10, 15, 0.65); z-index: -1;
 }
 
 .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
@@ -74,7 +74,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 }
 .btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
 
-/* Navigation Bar (STRICT 80PX LOGO & DROPDOWN POP FIX) */
+/* Navigation Bar */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
   padding: 6px 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px);
@@ -103,7 +103,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 }
 .nav-links a.active { color: var(--accent-light); }
 
-/* DROPDOWN POPUP FIXES */
 .nav-item { position: relative; display: inline-block; padding: 10px 0; }
 .nav-item::after {
   content: ''; position: absolute; top: 100%; left: 0;
@@ -164,8 +163,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 }
 .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-/* Portfolio Card Grid & Image Frame Fixes */
-.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+/* Portfolio Card Grid */
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; scroll-margin-top: 110px; }
 .portfolio-card {
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
   overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -263,12 +262,29 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
 .footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+
 .social-icons { display: flex; gap: 14px; }
-.social-icons a {
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
-  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.25s ease;
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default; user-select: none;
 }
-.social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item i { font-size: 1rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item .social-tooltip {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-6px);
+  background: #1f1f2b; color: #ffffff; font-size: 0.75rem; font-weight: 600;
+  font-family: var(--font-body); padding: 5px 10px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); z-index: 10;
+}
+.social-icon-item .social-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-width: 5px 5px 0 5px; border-style: solid; border-color: #1f1f2b transparent transparent transparent;
+}
+.social-icon-item:hover .social-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px); }
+
 .footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
 .footer-hours-title { margin-top: 24px; }
 .footer-closed { color: #ff7675 !important; }
@@ -347,7 +363,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
         <span class="logo-text">Global VA's</span>
       </a>
 
@@ -400,7 +416,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
       <button class="filter-btn" onclick="filterProjects('branding', this)">Branding</button>
     </div>
 
-    <div class="portfolio-grid">
+    <div class="portfolio-grid" id="portfolioGrid">
       
       <!-- ================= 1. SEO & GEO CASE STUDIES (5 ITEMS) ================= -->
       <article class="portfolio-card fade-up" data-category="seo">
@@ -485,7 +501,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 
       <!-- ================= 2. PERFORMANCE MARKETING CASE STUDIES (12 ITEMS) ================= -->
       
-      <!-- Group A: Google Ads (1-4) -->
       <article class="portfolio-card fade-up" data-category="marketing">
         <div class="portfolio-card-img">
           <img src="images/perf-dubai-restaurants.jpg" alt="Google Ads | High-Intent Lead Acquisition" class="portfolio-img-file" onerror="this.style.display='none';">
@@ -550,7 +565,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
         </div>
       </article>
 
-      <!-- Group B: Meta Ads (5-8) -->
       <article class="portfolio-card fade-up" data-category="marketing">
         <div class="portfolio-card-img">
           <img src="images/perf-meta-dubai-hospitality.jpg" alt="Meta Ads | Direct Conversion Funnels" class="portfolio-img-file" onerror="this.style.display='none';">
@@ -615,7 +629,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
         </div>
       </article>
 
-      <!-- Group C: TikTok Ads (9-12) -->
       <article class="portfolio-card fade-up" data-category="marketing">
         <div class="portfolio-card-img">
           <img src="images/perf-tiktok-growth-engine.jpg" alt="TikTok Ads | Full-Funnel Growth Engine" class="portfolio-img-file" onerror="this.style.display='none';">
@@ -952,17 +965,36 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo footer-logo">
-          <img src="images/logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
           <span class="logo-text">Global VA's</span>
         </a>
         <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        
         <div class="social-icons">
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Meta"><i class="fa-brands fa-meta"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-meta"></i>
+            <span class="social-tooltip">Meta</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-google"></i>
+            <span class="social-tooltip">Google</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span class="social-tooltip">LinkedIn</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span class="social-tooltip">X / Twitter</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span class="social-tooltip">TikTok</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-youtube"></i>
+            <span class="social-tooltip">YouTube</span>
+          </div>
         </div>
       </div>
 
@@ -1042,7 +1074,7 @@ menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Dynamic Filter Functionality
+// Dynamic Filter Functionality + Auto-Scroll Pop Down Effect
 function filterProjects(category, btnElement) {
   document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
@@ -1056,6 +1088,19 @@ function filterProjects(category, btnElement) {
       card.style.display = 'none';
     }
   });
+
+  // Smooth pop-down / auto-scroll down to the portfolio grid
+  const gridTarget = document.getElementById('portfolioGrid');
+  if (gridTarget) {
+    const headerOffset = 90; // Navbar height offset
+    const elementPosition = gridTarget.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
 }
 
 // Complete Modal Data Map (All 32 Case Studies)
@@ -1142,7 +1187,7 @@ const modalData = {
     </div>
   `,
 
-  /* ================= 2. PERFORMANCE MARKETING MODALS (12 ITEMS) ================= */
+  /* ================= 2. PERFORMANCE MARKETING MODALS ================= */
   'modal-perf-1': `
     <span class="modal-header-tag">Google Ads · Local Search · Lead Generation</span>
     <h2 class="modal-title">Google Ads | High-Intent Lead Acquisition</h2>
@@ -1551,18 +1596,14 @@ function openModal(modalId) {
   
   if (modalData[modalId]) {
     content.innerHTML = modalData[modalId];
-    
-    // 1. Capture exact current scroll Y position
     scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     
-    // 2. Lock body absolutely to prevent background scrolling/jumping
     document.body.style.position = 'fixed';
     document.body.style.top = `-${scrollPosition}px`;
     document.body.style.width = '100%';
     
     overlay.classList.add('active');
     
-    // 3. Reset popup inner scroll to top title & picture
     if (modalCard) {
       modalCard.scrollTop = 0;
     }
@@ -1573,7 +1614,6 @@ function closeModal() {
   const overlay = document.getElementById('modalOverlay');
   overlay.classList.remove('active');
   
-  // 4. Release background body lock and restore exact scroll position
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
