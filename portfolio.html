@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Portfolio & Case Studies | Global VA's</title>
+  <meta name="description" content="Proven digital case studies, search telemetry, performance marketing results, and web engineering showcases from Global VA's." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.65;
+  width: 100%;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 8px;
+  background: var(--accent); color: #fff; padding: 10px 16px;
+  z-index: 2000; border-radius: 6px;
+}
+.skip-link:focus { left: 16px; }
+
+.page-bg-video {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.page-bg-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 10, 15, 0.75); z-index: -1;
+}
+
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.3s ease;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+.btn-whatsapp {
+  background: #25D366; color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
+
+/* Navigation Bar (STRICT 80PX LOGO & DROPDOWN POP FIX) */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 6px 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  padding: 4px 0;
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
+.logo:hover { transform: translateY(-2px); }
+.logo-img { height: 80px; width: auto; object-fit: contain; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
+  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+}
+.nav-links a:hover {
+  background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  transform: translateY(-2px);
+}
+.nav-links a.active { color: var(--accent-light); }
+
+/* DROPDOWN POPUP FIXES */
+.nav-item { position: relative; display: inline-block; padding: 10px 0; }
+.nav-item::after {
+  content: ''; position: absolute; top: 100%; left: 0;
+  width: 100%; height: 20px; z-index: 101;
+}
+.services-toggle { cursor: pointer; display: inline-flex; align-items: center; }
+.dropdown-arrow { font-size: 0.7rem; margin-left: 6px; transition: transform 0.3s ease; }
+.nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+
+.dropdown-menu {
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%) translateY(12px); min-width: 270px;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+  padding: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; z-index: 1000;
+}
+.nav-item:hover .dropdown-menu { 
+  opacity: 1; visibility: visible; pointer-events: auto; 
+  transform: translateX(-50%) translateY(0); 
+}
+.dropdown-menu a {
+  display: flex !important; align-items: center; gap: 12px; padding: 11px 14px;
+  border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.dropdown-menu a i { width: 18px; text-align: center; color: var(--accent-light); font-size: 0.9rem; }
+.dropdown-menu a:hover { 
+  background: rgba(108, 92, 231, 0.18); color: #fff; 
+  transform: translateX(4px); -webkit-background-clip: initial; background-clip: initial;
+}
+
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* Breadcrumb & Hero */
+.breadcrumb { padding: 130px 0 10px; font-size: 0.85rem; color: var(--text-gray); }
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+
+.portfolio-hero { padding: 30px 0 40px; text-align: center; max-width: 840px; margin: 0 auto; }
+.tag-label {
+  display: inline-block; padding: 6px 16px; border: 1px solid var(--accent);
+  border-radius: 30px; font-size: 0.85rem; color: var(--accent-light); margin-bottom: 20px;
+}
+.portfolio-hero h1 { font-size: clamp(2.2rem, 4vw, 3.3rem); font-weight: 800; margin-bottom: 18px; letter-spacing: -0.02em; }
+.portfolio-hero h1 .hero-white { color: #ffffff; }
+.portfolio-hero h1 .hero-accent { color: var(--accent-light); }
+.portfolio-hero p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; }
+
+/* Dashboard Filter Tabs */
+.filter-wrapper { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 50px; }
+.filter-btn {
+  background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-gray);
+  padding: 10px 22px; border-radius: 30px; font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Portfolio Card Grid & Image Frame Fixes */
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+.portfolio-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.portfolio-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(108, 92, 231, 0.2); }
+
+.portfolio-card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-dark);
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+}
+.portfolio-img-file {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s ease;
+}
+.portfolio-card:hover .portfolio-img-file { transform: scale(1.04); }
+
+.portfolio-card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.meta-tag {
+  display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--accent-light);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;
+}
+.platform-badge {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+  background: rgba(108, 92, 231, 0.2); color: #fff; border-radius: 6px;
+  font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; width: fit-content;
+  border: 1px solid rgba(108, 92, 231, 0.4);
+}
+.portfolio-card-body h3 { font-size: 1.15rem; margin: 4px 0 10px; color: #fff; line-height: 1.4; font-weight: 700; }
+.portfolio-card-body p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+
+.post-meta-footer { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--text-gray); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-color); }
+.read-more-link { color: var(--accent-light); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: color 0.2s; }
+.read-more-link:hover { color: #fff; text-decoration: underline; }
+
+/* Modal Overlay & Container */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 10, 15, 0.88); backdrop-filter: blur(12px);
+  display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px;
+  overscroll-behavior: contain;
+}
+.modal-overlay.active { display: flex; }
+.modal-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;
+  max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 36px;
+  position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+  overscroll-behavior: contain;
+}
+.modal-close {
+  position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);
+  color: var(--text-gray); width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+.modal-close:hover { color: #fff; background: var(--accent); border-color: var(--accent); }
+.modal-header-tag { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-light); font-weight: 600; margin-bottom: 8px; display: block; }
+.modal-title { font-size: 1.8rem; color: #fff; margin-bottom: 16px; }
+
+/* Modal Image Rules */
+.modal-body-img {
+  width: 100%;
+  max-height: 440px;
+  object-fit: contain;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.modal-section-title { font-size: 1.15rem; color: #fff; margin: 24px 0 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
+.modal-text { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; }
+.modal-metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+.metric-box { background: var(--bg-dark-2); border: 1px solid var(--border-color); padding: 16px; border-radius: 10px; text-align: center; }
+.metric-box-number { font-size: 1.3rem; font-weight: 700; color: var(--accent-light); display: block; }
+.metric-box-label { font-size: 0.78rem; color: var(--text-gray); }
+
+/* CTA Banner & Footer */
+.cta-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+  text-align: center; border-radius: 20px; padding: 50px 32px; margin-bottom: 80px;
+}
+.cta-content h2 { font-size: 2.1rem; margin-bottom: 14px; color: #fff; }
+.cta-content p { color: rgba(255,255,255,0.85); margin-bottom: 28px; font-size: 1rem; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-content .btn-primary { background: #fff; color: var(--accent); }
+.cta-content .btn-primary:hover { background: #f0f0f0; }
+
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons a {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.25s ease;
+}
+.social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-hours-title { margin-top: 24px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+
+/* Sticky Widgets */
+.back-to-top {
+  position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 999;
+  transition: background 0.3s, opacity 0.3s, transform 0.25s ease;
+}
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top.show { display: flex; }
+
+.floating-whatsapp {
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease; animation: whatsappPulse 2.5s infinite;
+}
+.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); box-shadow: 0 10px 26px rgba(37, 211, 102, 0.65); }
+
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-tooltip {
+  position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px);
+  background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;
+  font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0;
+  visibility: hidden; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.whatsapp-tooltip::after {
+  content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+  border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent #1f1f2b;
+}
+.floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 992px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .modal-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links.active {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0;
+    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color);
+  }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .social-icons { justify-content: center; }
+  .modal-metrics-grid { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Background Video -->
+  <video class="page-bg-video" autoplay muted loop playsinline>
+    <source src="theme1.mp4" type="video/mp4">
+  </video>
+  <div class="page-bg-overlay"></div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-dropdown">
+          <a href="javascript:void(0);" class="services-toggle">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <div class="dropdown-menu">
+            <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
+            <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
+            <a href="social-media-management.html"><i class="fa-solid fa-share-nodes"></i> Social Media Management</a>
+            <a href="web-designing-and-development.html"><i class="fa-solid fa-code"></i> Web Designing and Development</a>
+            <a href="branding-and-identity.html"><i class="fa-solid fa-palette"></i> Branding & Identity</a>
+          </div>
+        </div>
+        <a href="portfolio.html" class="active">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Portfolio</span>
+    </div>
+
+    <section class="portfolio-hero fade-up">
+      <span class="tag-label">Client Work Showcase</span>
+      <h1>
+        <span class="hero-white">Proven results that drive</span><br>
+        <span class="hero-accent">enterprise scaling.</span>
+      </h1>
+      <p>Explore real-world technical execution, organic search dominance, multi-channel performance advertising, and scalable digital campaigns.</p>
+    </section>
+
+    <div class="filter-wrapper fade-up">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All Articles</button>
+      <button class="filter-btn" onclick="filterProjects('seo', this)">SEO & GEO</button>
+      <button class="filter-btn" onclick="filterProjects('marketing', this)">Performance Marketing</button>
+      <button class="filter-btn" onclick="filterProjects('social', this)">Social Media</button>
+      <button class="filter-btn" onclick="filterProjects('webdev', this)">Web Tech</button>
+      <button class="filter-btn" onclick="filterProjects('branding', this)">Branding</button>
+    </div>
+
+    <div class="portfolio-grid">
+      
+      <!-- ================= 1. SEO & GEO CASE STUDIES (5 ITEMS) ================= -->
+      <article class="portfolio-card fade-up" data-category="seo">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-seo-geo-saas.jpg" alt="SEO + GEO | Enterprise SaaS Search Dominance" class="portfolio-img-file" onerror="this.src='https://placehold.co/600x400/17171f/a29bfe?text=SEO+GEO+SaaS';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">SEO & GEO · Enterprise SaaS</span>
+          <span class="platform-badge"><i class="fa-solid fa-magnifying-glass"></i> Google & AI Search • #1 Rank</span>
+          <h3>SEO + GEO | Enterprise SaaS Search Dominance</h3>
+          <p>Securing #1 Google rankings for high-intent SaaS keywords and primary citations across Perplexity Pro and ChatGPT Search.</p>
+          <div class="post-meta-footer">
+            <span>+318% Organic ARR</span>
+            <span class="read-more-link" onclick="openModal('modal-seo-1')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="seo">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-seo-geo-ecommerce.jpg" alt="SEO + GEO | E-Commerce Product Ranking Expansion" class="portfolio-img-file" onerror="this.src='https://placehold.co/600x400/17171f/a29bfe?text=SEO+GEO+Ecommerce';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">SEO & GEO · E-Commerce Growth</span>
+          <span class="platform-badge"><i class="fa-solid fa-cart-shopping"></i> Product Search • Top 3 Rank</span>
+          <h3>SEO + GEO | E-Commerce Product Ranking Expansion</h3>
+          <p>Capturing Top-3 Google rankings for competitive product categories and direct AI shopping recommendations.</p>
+          <div class="post-meta-footer">
+            <span>+242% Organic Rev.</span>
+            <span class="read-more-link" onclick="openModal('modal-seo-2')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="seo">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-seo-geo-finance.jpg" alt="SEO + GEO | Dubai Financial Search Takeover" class="portfolio-img-file" onerror="this.src='https://placehold.co/600x400/17171f/a29bfe?text=SEO+GEO+Dubai+Finance';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">SEO & GEO · Financial Services</span>
+          <span class="platform-badge"><i class="fa-solid fa-location-dot"></i> Dubai Maps & SERP • #1 Pack</span>
+          <h3>SEO + GEO | Dubai Financial Search Takeover</h3>
+          <p>Dominating Google Local 3-Pack and organic search rankings for high-ticket Dubai corporate finance terms.</p>
+          <div class="post-meta-footer">
+            <span>+290% Inquiries</span>
+            <span class="read-more-link" onclick="openModal('modal-seo-3')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="seo">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-seo-geo-healthcare.jpg" alt="SEO + GEO | Healthcare Multi-Location Ranking Engine" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">SEO & GEO · Healthcare Growth</span>
+          <span class="platform-badge"><i class="fa-solid fa-hospital"></i> 14 Locations • Local 3-Pack</span>
+          <h3>SEO + GEO | Healthcare Multi-Location Engine</h3>
+          <p>Securing #1 Google Map Pack and organic rankings across 14 medical center locations.</p>
+          <div class="post-meta-footer">
+            <span>+380% Bookings</span>
+            <span class="read-more-link" onclick="openModal('modal-seo-4')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="seo">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-seo-geo-global-tech.jpg" alt="SEO + GEO | Global International Search Ranking" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">SEO & GEO · International Tech</span>
+          <span class="platform-badge"><i class="fa-solid fa-globe"></i> 12 Countries • Hreflang SEO</span>
+          <h3>SEO + GEO | Global International Search Ranking</h3>
+          <p>Scaling international search rankings and domain authority across 12 target countries.</p>
+          <div class="post-meta-footer">
+            <span>+310% Global Traffic</span>
+            <span class="read-more-link" onclick="openModal('modal-seo-5')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= 2. PERFORMANCE MARKETING CASE STUDIES (12 ITEMS) ================= -->
+      
+      <!-- Group A: Google Ads (1-4) -->
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-dubai-restaurants.jpg" alt="Google Ads | High-Intent Lead Acquisition" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-google"></i> Google Ads • 214 Conversions</span>
+          <h3>Google Ads | High-Intent Lead Acquisition</h3>
+          <p>Capturing active commercial intent across high-value regional markets through automated bidding and keyword clustering.</p>
+          <div class="post-meta-footer">
+            <span>$10.45 Cost / Conv.</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-1')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-uae-hospitality.jpg" alt="Google Ads | Multi-Channel Demand Scaling" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-google"></i> Google Ads • 186 Conversions</span>
+          <h3>Google Ads | Multi-Channel Demand Scaling</h3>
+          <p>Driving continuous user acquisition and brand visibility across targeted territorial segments using Search & Display networks.</p>
+          <div class="post-meta-footer">
+            <span>$0.38 Avg. CPC</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-2')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-dubai-restaurant-leads.jpg" alt="Google Ads | Direct-Response Lead Scaling" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-google"></i> Google Ads • 412 Conversions</span>
+          <h3>Google Ads | Direct-Response Lead Scaling</h3>
+          <p>Converting transactional traffic into direct business leads with conversion-optimized landing pages and negative keyword sculpting.</p>
+          <div class="post-meta-footer">
+            <span>4.19% Conv. Rate</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-3')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-dubai-hospitality-dining.jpg" alt="Google Ads | High-Value Lead Funnels" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-google"></i> Google Ads • 428 Conversions</span>
+          <h3>Google Ads | High-Value Lead Funnels</h3>
+          <p>Combining Performance Max and exact-match search campaigns to dominate top-of-search positions for competitive terms.</p>
+          <div class="post-meta-footer">
+            <span>$12.68 Cost / Conv.</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-8')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Group B: Meta Ads (5-8) -->
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-meta-dubai-hospitality.jpg" alt="Meta Ads | Direct Conversion Funnels" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-meta"></i> Meta Ads • 176 Bookings</span>
+          <h3>Meta Ads | Direct Conversion Funnels</h3>
+          <p>Omnichannel Facebook and Instagram campaigns structured around dynamic retargeting, custom lookalikes, and direct actions.</p>
+          <div class="post-meta-footer">
+            <span>5.2× ROAS</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-9')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-meta-restaurant-leadgen.jpg" alt="Meta Ads | Social Lead Generation" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-meta"></i> Meta Ads • 214 Bookings</span>
+          <h3>Meta Ads | Social Lead Generation</h3>
+          <p>Nurturing casual social media engagers into verified high-value client signups using instant lead forms and custom audiences.</p>
+          <div class="post-meta-footer">
+            <span>37 Direct Leads</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-10')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-meta-dubai-cafe.jpg" alt="Meta Ads | Hyper-Local Brand Penetration" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-meta"></i> Meta Ads • 52 Bookings</span>
+          <h3>Meta Ads | Hyper-Local Brand Penetration</h3>
+          <p>Geofenced ad positioning and promo distribution engineered to maximize foot-traffic and direct online reservations.</p>
+          <div class="post-meta-footer">
+            <span>4.8× ROAS</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-11')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-meta-restaurant-growth.jpg" alt="Meta Ads | Audience Reach & Scale Strategy" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-meta"></i> Meta Ads • 73 Reservations</span>
+          <h3>Meta Ads | Audience Reach & Scale Strategy</h3>
+          <p>Full-funnel brand amplification framework turning top-of-funnel impression traffic into high-converting customer actions.</p>
+          <div class="post-meta-footer">
+            <span>3.4× ROAS</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-12')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Group C: TikTok Ads (9-12) -->
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-tiktok-growth-engine.jpg" alt="TikTok Ads | Full-Funnel Growth Engine" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-tiktok"></i> TikTok Ads • 624 Conversions</span>
+          <h3>TikTok Ads | Full-Funnel Growth Engine</h3>
+          <p>Combining creative-led video ads, interest targeting, and retargeting pixel optimization to scale modern e-commerce brands.</p>
+          <div class="post-meta-footer">
+            <span>$2.06 CPA</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-4')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-tiktok-fashion-acquisition.jpg" alt="TikTok Ads | E-Commerce Sales Acceleration" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-tiktok"></i> TikTok Ads • 412 Purchases</span>
+          <h3>TikTok Ads | E-Commerce Sales Acceleration</h3>
+          <p>Broad audience prospecting paired with instant cart retargeting to maximize purchase volume while lowering overall CAC.</p>
+          <div class="post-meta-footer">
+            <span>$1.49 CPA (3.4× ROAS)</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-5')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-tiktok-spring-collection.jpg" alt="TikTok Ads | Product Launch Execution" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-tiktok"></i> TikTok Ads • 178 Purchases</span>
+          <h3>TikTok Ads | Product Launch Execution</h3>
+          <p>Accelerating product adoption through spark ads and high-converting video angles designed to capture impulse purchase intent.</p>
+          <div class="post-meta-footer">
+            <span>$1.58 CPA (4.8× ROAS)</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-6')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="marketing">
+        <div class="portfolio-card-img">
+          <img src="images/perf-tiktok-ecommerce-scaling.jpg" alt="TikTok Ads | Performance Traffic & Sales" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <span class="platform-badge"><i class="fa-brands fa-tiktok"></i> TikTok Ads • 386 Conversions</span>
+          <h3>TikTok Ads | Performance Traffic & Sales</h3>
+          <p>Multi-angle video campaign architecture built to educate cold prospects and drive immediate catalog checkout conversions.</p>
+          <div class="post-meta-footer">
+            <span>$3.33 CPA (3.15% CTR)</span>
+            <span class="read-more-link" onclick="openModal('modal-perf-7')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= 3. SOCIAL MEDIA MANAGEMENT (SMM) CASE STUDIES (5 ITEMS) ================= -->
+      <article class="portfolio-card fade-up" data-category="social">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-smm-visual-identity.jpg" alt="SMM | Visual Brand Architecture & Community Scaling" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Social Media Management · Visual Identity</span>
+          <span class="platform-badge"><i class="fa-brands fa-instagram"></i> Instagram & LinkedIn • +185K Growth</span>
+          <h3>SMM | Visual Brand Architecture & Scaling</h3>
+          <p>Building brand authority through consistent visual content, active audience engagement, and thoughtful brand communication.</p>
+          <div class="post-meta-footer">
+            <span>14.2% Engagement</span>
+            <span class="read-more-link" onclick="openModal('modal-smm-1')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="social">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-smm-b2b-authority.jpg" alt="SMM | B2B LinkedIn Authority & Corporate Communication" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Social Media Management · B2B Growth</span>
+          <span class="platform-badge"><i class="fa-brands fa-linkedin"></i> LinkedIn B2B • +340% Reach</span>
+          <h3>SMM | B2B LinkedIn Authority & Positioning</h3>
+          <p>Positioning corporate leaders and company pages through educational PDF carousels and active executive networking.</p>
+          <div class="post-meta-footer">
+            <span>58 Inbound DMs</span>
+            <span class="read-more-link" onclick="openModal('modal-smm-2')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="social">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-smm-d2c-curation.jpg" alt="SMM | D2C Brand Aesthetic & Audience Engagement" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Social Media Management · D2C Community</span>
+          <span class="platform-badge"><i class="fa-solid fa-share-nodes"></i> Visual Aesthetic • 4.8M Reach</span>
+          <h3>SMM | D2C Brand Aesthetic & Curation</h3>
+          <p>Scaling D2C brand loyalty through curated visual quote graphics, product showcase carousels, and customer UGC integration.</p>
+          <div class="post-meta-footer">
+            <span>+110K Growth</span>
+            <span class="read-more-link" onclick="openModal('modal-smm-3')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="social">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-smm-geotargeted-local.jpg" alt="SMM | Geotargeted Community Building & Local Outreach" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Social Media Management · Local Brand</span>
+          <span class="platform-badge"><i class="fa-solid fa-location-dot"></i> Local Outreach • +75K Local</span>
+          <h3>SMM | Geotargeted Community Operations</h3>
+          <p>Driving local brand affinity through targeted graphic promos, geo-tagged community outreach, and active review management.</p>
+          <div class="post-meta-footer">
+            <span>2.4M Geo Impressions</span>
+            <span class="read-more-link" onclick="openModal('modal-smm-4')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="social">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-smm-personal-branding.jpg" alt="SMM | Founder Personal Branding & Cross-Platform Curation" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Social Media Management · Personal Branding</span>
+          <span class="platform-badge"><i class="fa-brands fa-x-twitter"></i> X & LinkedIn • 4.8M Monthly</span>
+          <h3>SMM | Founder Personal Branding Suite</h3>
+          <p>Managing founder presence across X (Twitter) and LinkedIn to build industry authority and newsletter subscriber bases.</p>
+          <div class="post-meta-footer">
+            <span>1.8K Subscribers</span>
+            <span class="read-more-link" onclick="openModal('modal-smm-5')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= 4. WEB DESIGNING & DEVELOPMENT CASE STUDIES (5 ITEMS) ================= -->
+      <article class="portfolio-card fade-up" data-category="webdev">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-web-ecommerce-storefront.jpg" alt="Web Dev | High-Speed Headless E-Commerce Storefront" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Web Tech · E-Commerce</span>
+          <span class="platform-badge"><i class="fa-solid fa-shop"></i> Shopify Headless • 1.2s Speed</span>
+          <h3>Web Dev | High-Speed Headless Storefront</h3>
+          <p>Building a custom Shopify Headless storefront engineered for mobile-first shopping speed and elevated product presentation.</p>
+          <div class="post-meta-footer">
+            <span>+64% Conv. Rate</span>
+            <span class="read-more-link" onclick="openModal('modal-web-1')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="webdev">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-web-house-interior.jpg" alt="Web Dev | Premium Interior Design & Architecture Portfolio" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Web Tech · Visual Portfolio</span>
+          <span class="platform-badge"><i class="fa-solid fa-house"></i> Architecture UI • 99 PageSpeed</span>
+          <h3>Web Dev | Premium Architectural Portfolio</h3>
+          <p>Designing an immersive visual showcase for high-end residential interiors and architectural consultations.</p>
+          <div class="post-meta-footer">
+            <span>+210% Leads</span>
+            <span class="read-more-link" onclick="openModal('modal-web-2')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="webdev">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-web-gym-fitness.jpg" alt="Web Dev | High-Converting Gym & Fitness Membership Portal" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Web Tech · Fitness App</span>
+          <span class="platform-badge"><i class="fa-solid fa-dumbbell"></i> Dynamic Schedule • 0.7s Load</span>
+          <h3>Web Dev | Gym Membership Portal & Booking</h3>
+          <p>Building a modern gym platform with class schedule booking, trainer profiles, and instant membership signups.</p>
+          <div class="post-meta-footer">
+            <span>+195% Members</span>
+            <span class="read-more-link" onclick="openModal('modal-web-3')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="webdev">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-web-restaurant.jpg" alt="Web Dev | Restaurant Web Platform & Direct Booking System" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Web Tech · Hospitality</span>
+          <span class="platform-badge"><i class="fa-solid fa-utensils"></i> Direct Booking • 1.0s Speed</span>
+          <h3>Web Dev | Fine Dining Web & Reservation</h3>
+          <p>Developing a sensory web experience with interactive digital menus, venue galleries, and instant table reservations.</p>
+          <div class="post-meta-footer">
+            <span>+280% Bookings</span>
+            <span class="read-more-link" onclick="openModal('modal-web-4')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="webdev">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-web-saas-platform.jpg" alt="Web Dev | High-Converting SaaS & Corporate Web Platform" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Web Tech · Corporate UI/UX</span>
+          <span class="platform-badge"><i class="fa-solid fa-code"></i> Next.js & Tailwind • 99 Score</span>
+          <h3>Web Dev | Corporate SaaS Web Engineering</h3>
+          <p>Redesigning corporate web architecture for load speed, conversion optimization, and seamless modern UI/UX.</p>
+          <div class="post-meta-footer">
+            <span>+180% Demos</span>
+            <span class="read-more-link" onclick="openModal('modal-web-5')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ================= 5. BRANDING & IDENTITY CASE STUDIES (5 ITEMS) ================= -->
+      <article class="portfolio-card fade-up" data-category="branding">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-branding-ecommerce-web.jpg" alt="Branding | E-Commerce Visual Identity & Digital Style System" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Branding · E-Commerce Identity</span>
+          <span class="platform-badge"><i class="fa-solid fa-palette"></i> Web Design System • Tokens</span>
+          <h3>Branding | E-Commerce Style & Packaging System</h3>
+          <p>Crafting a digital-first visual identity, web design system, and product packaging for a high-speed e-commerce storefront.</p>
+          <div class="post-meta-footer">
+            <span>Full Component Tokens</span>
+            <span class="read-more-link" onclick="openModal('modal-brand-1')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="branding">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-branding-interior-web.jpg" alt="Branding | Luxury Interior Visual Identity & Web Design System" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Branding · Architecture Identity</span>
+          <span class="platform-badge"><i class="fa-solid fa-pen-nib"></i> Monogram Suite • Editorial Grid</span>
+          <h3>Branding | Architectural Visual Identity Suite</h3>
+          <p>Designing an architectural visual identity, luxury typography, and editorial portfolio guidelines for a web portal.</p>
+          <div class="post-meta-footer">
+            <span>Hardcover Print & Web</span>
+            <span class="read-more-link" onclick="openModal('modal-brand-2')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="branding">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-branding-gym-web.jpg" alt="Branding | Fitness & Gym Club Brand Identity & App Design System" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Branding · Athletic Brand System</span>
+          <span class="platform-badge"><i class="fa-solid fa-layer-group"></i> Athletic Mark • UI Kit</span>
+          <h3>Branding | Athletic Gym Brand & UI System</h3>
+          <p>Developing a high-energy brand mark, athletic UI assets, and merchandise guidelines for a gym web platform.</p>
+          <div class="post-meta-footer">
+            <span>100% Vector Scalable</span>
+            <span class="read-more-link" onclick="openModal('modal-brand-3')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="branding">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-branding-restaurant-web.jpg" alt="Branding | Restaurant Visual Identity & Digital Menu System" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Branding · Restaurant System</span>
+          <span class="platform-badge"><i class="fa-solid fa-wine-glass"></i> Logotype • Digital Menu</span>
+          <h3>Branding | Restaurant Logotype & Digital Menu</h3>
+          <p>Building a sensory visual identity, bespoke digital menu styling, and venue collateral for a restaurant web platform.</p>
+          <div class="post-meta-footer">
+            <span>Luxury Touchpoints</span>
+            <span class="read-more-link" onclick="openModal('modal-brand-4')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-card fade-up" data-category="branding">
+        <div class="portfolio-card-img">
+          <img src="images/portfolio-branding-saas-web.jpg" alt="Branding | Enterprise SaaS Visual Rebrand & Design Tokens" class="portfolio-img-file" onerror="this.style.display='none';">
+        </div>
+        <div class="portfolio-card-body">
+          <span class="meta-tag">Branding · Corporate Rebrand</span>
+          <span class="platform-badge"><i class="fa-solid fa-box-open"></i> Figma Design Tokens • Enterprise</span>
+          <h3>Branding | Enterprise Corporate SaaS Rebrand</h3>
+          <p>Executing a complete corporate rebrand to align website UI, pitch decks, and digital products for enterprise buyers.</p>
+          <div class="post-meta-footer">
+            <span>+240% Brand Trust</span>
+            <span class="read-more-link" onclick="openModal('modal-brand-5')">Read Case Study <i class="fa-solid fa-chevron-right"></i></span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="cta-banner fade-up">
+      <div class="cta-content">
+        <span class="section-label" style="color: rgba(255,255,255,0.85);">Ready to Grow?</span>
+        <h2>Ready to Scale Your Digital Yield?</h2>
+        <p>Book a strategy session with our technical leads and discover how our engineered approach scales your business.</p>
+        <div class="cta-buttons">
+          <a href="form.html" class="btn btn-primary">Book Free Strategy Call</a>
+          <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal View Overlay Container -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card" id="modalCard">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <img src="images/logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons">
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Meta"><i class="fa-brands fa-meta"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Google"><i class="fa-brands fa-google"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="seo-geo.html">SEO + GEO</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="social-media-management.html">Social Media Management</a>
+        <a href="web-designing-and-development.html">Web Designing and Development</a>
+        <a href="branding-and-identity.html">Branding & Identity</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="privacy-terms.html">Privacy & Terms</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
+        <h4 class="footer-hours-title">Hours</h4>
+        <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
+        <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Global VA's. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Widgets -->
+  <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Contact Us</span>
+  </a>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+// Navbar & Back-To-Top Scroll Effects
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  if (window.scrollY > 500) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Mobile Navbar Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Dynamic Filter Functionality
+function filterProjects(category, btnElement) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  btnElement.classList.add('active');
+
+  const cards = document.querySelectorAll('.portfolio-card');
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    if (category === 'all' || cardCat === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Complete Modal Data Map (All 32 Case Studies)
+const modalData = {
+  /* ================= 1. SEO & GEO MODALS ================= */
+  'modal-seo-1': `
+    <span class="modal-header-tag">SEO + GEO · Enterprise SaaS · SERP Dominance</span>
+    <h2 class="modal-title">SEO + GEO | Enterprise SaaS Search Dominance</h2>
+    <img src="images/portfolio-seo-geo-saas.jpg" alt="SaaS Search Dominance" class="modal-body-img" onerror="this.src='https://placehold.co/800x400/17171f/a29bfe?text=SEO+GEO+SaaS';">
+    <h4 class="modal-section-title">Keyword Ranking Performance</h4>
+    <p class="modal-text"><strong>#1 Ranking</strong> for primary commercial terms: <em>"Enterprise Workflow Automation Software"</em>, <em>"Cloud Compliance SaaS Platform"</em>.</p>
+    <p class="modal-text"><strong>Top 3 Positions</strong> for 140+ high-volume intent keywords across US & UK search markets. Dominated 84 Google Featured Snippets & People Also Ask (PAA) blocks simultaneously.</p>
+    <h4 class="modal-section-title">SEO & GEO Strategy</h4>
+    <p class="modal-text">Built programmatic comparison matrices (/vs/ pages) that secured #1 positions for high-converting competitor search queries. Deployed nested JSON-LD schema linking Wikidata entity nodes, securing primary citation status in ChatGPT Search & Perplexity Pro answers for target buyer queries.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+318%</span><span class="metric-box-label">Organic ARR Growth</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.6x</span><span class="metric-box-label">Demo Requests</span></div>
+      <div class="metric-box"><span class="metric-box-number">98/100</span><span class="metric-box-label">Core Web Vitals</span></div>
+      <div class="metric-box"><span class="metric-box-number">#1 Rank</span><span class="metric-box-label">42 Core Terms</span></div>
+      <div class="metric-box"><span class="metric-box-number">84</span><span class="metric-box-label">Featured Snippets</span></div>
+      <div class="metric-box"><span class="metric-box-number">2.4M</span><span class="metric-box-label">Organic Impressions</span></div>
+    </div>
+  `,
+  'modal-seo-2': `
+    <span class="modal-header-tag">SEO + GEO · E-Commerce Growth · Product Search</span>
+    <h2 class="modal-title">SEO + GEO | E-Commerce Product Ranking Expansion</h2>
+    <img src="images/portfolio-seo-geo-ecommerce.jpg" alt="E-Commerce Product Ranking" class="modal-body-img" onerror="this.src='https://placehold.co/800x400/17171f/a29bfe?text=SEO+GEO+Ecommerce';">
+    <h4 class="modal-section-title">Keyword Ranking Performance</h4>
+    <p class="modal-text"><strong>#1 Position</strong> for high-ticket generic keywords: <em>"Sustainable Running Shoes"</em>, <em>"Eco-Friendly Athletic Apparel"</em>. +184% increase in non-branded keywords ranking in Google Top 3.</p>
+    <h4 class="modal-section-title">SEO & GEO Strategy</h4>
+    <p class="modal-text">Resolved faceted navigation indexation issues, focusing page authority onto core collection pages. Synchronized programmatic Product and Offer schema into Google Merchant Graph, driving direct recommendations inside Google Gemini Shopping & ChatGPT.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+242%</span><span class="metric-box-label">Organic Revenue</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.8M</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.4s</span><span class="metric-box-label">LCP Speed</span></div>
+      <div class="metric-box"><span class="metric-box-number">+184%</span><span class="metric-box-label">Top-3 Keywords</span></div>
+      <div class="metric-box"><span class="metric-box-number">128</span><span class="metric-box-label">AI Product Citations</span></div>
+      <div class="metric-box"><span class="metric-box-number">850+</span><span class="metric-box-label">Indexed SKUs</span></div>
+    </div>
+  `,
+  'modal-seo-3': `
+    <span class="modal-header-tag">SEO + GEO · Financial Services · Local & Int.</span>
+    <h2 class="modal-title">SEO + GEO | Dubai Financial Search Takeover</h2>
+    <img src="images/portfolio-seo-geo-finance.jpg" alt="Dubai Financial Search" class="modal-body-img" onerror="this.src='https://placehold.co/800x400/17171f/a29bfe?text=Dubai+Finance+SEO';">
+    <h4 class="modal-section-title">Keyword Ranking Performance</h4>
+    <p class="modal-text"><strong>#1 Ranking</strong> for competitive regional queries: <em>"Corporate Tax Advisory Dubai"</em>, <em>"DIFC Company Setup Consultants"</em>. #1 Position in Google Local 3-Pack across Dubai, Abu Dhabi, and Business Bay nodes.</p>
+    <h4 class="modal-section-title">SEO & GEO Strategy</h4>
+    <p class="modal-text">Built localized geotargeted landing page silos with strict E-E-A-T author verification (Person schema linked to regulatory records). Structured corporate whitepapers into semantic data blocks to secure direct source attribution inside Perplexity Pro and Claude.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+290%</span><span class="metric-box-label">B2B Inquiries</span></div>
+      <div class="metric-box"><span class="metric-box-number">#1 Pack</span><span class="metric-box-label">Google Local Maps</span></div>
+      <div class="metric-box"><span class="metric-box-number">99/100</span><span class="metric-box-label">PageSpeed Score</span></div>
+      <div class="metric-box"><span class="metric-box-number">18 Keywords</span><span class="metric-box-label">#1 Rank Dubai</span></div>
+      <div class="metric-box"><span class="metric-box-number">56</span><span class="metric-box-label">AI Source Citations</span></div>
+      <div class="metric-box"><span class="metric-box-number">8.4k</span><span class="metric-box-label">DA 60+ Backlinks</span></div>
+    </div>
+  `,
+  'modal-seo-4': `
+    <span class="modal-header-tag">SEO + GEO · Multi-Location Healthcare</span>
+    <h2 class="modal-title">SEO + GEO | Healthcare Multi-Location Ranking Engine</h2>
+    <img src="images/portfolio-seo-geo-healthcare.jpg" alt="Healthcare Multi-Location SEO" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Execution Story</h4>
+    <p class="modal-text">Secured #1 Local Map Pack & Organic Rank across 14 clinic hubs for queries like <em>"Urgent Care Clinic Near Me"</em> and <em>"Top Pediatric Specialist"</em>. Deployed scalable /locations/[city]/[clinic] URL silos with specific MedicalClinic schema bindings for each location.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">14 Locations</span><span class="metric-box-label">Ranked #1</span></div>
+      <div class="metric-box"><span class="metric-box-number">+380%</span><span class="metric-box-label">Organic Bookings</span></div>
+      <div class="metric-box"><span class="metric-box-number">58%</span><span class="metric-box-label">Lower Ad Dependency</span></div>
+      <div class="metric-box"><span class="metric-box-number">86</span><span class="metric-box-label">Voice/AI Placements</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.9M</span><span class="metric-box-label">Local Impressions</span></div>
+    </div>
+  `,
+  'modal-seo-5': `
+    <span class="modal-header-tag">SEO + GEO · International Tech & Legal</span>
+    <h2 class="modal-title">SEO + GEO | Global International Search Ranking</h2>
+    <img src="images/portfolio-seo-geo-global-tech.jpg" alt="Global International Search" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Execution Story</h4>
+    <p class="modal-text">Top-3 Organic Rankings across US, UK, and UAE for high-level queries like <em>"Cross-Border Tech M&A Advisory"</em>. Implemented flawless multi-regional hreflang tagging (en-us, en-gb, ar-ae) across 18,000+ pages and verified brand entity node on Wikidata & Google Knowledge Graph API.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">12 Countries</span><span class="metric-box-label">Top-3 Rankings</span></div>
+      <div class="metric-box"><span class="metric-box-number">+310%</span><span class="metric-box-label">Global Traffic</span></div>
+      <div class="metric-box"><span class="metric-box-number">+195%</span><span class="metric-box-label">Enterprise RFPs</span></div>
+      <div class="metric-box"><span class="metric-box-number">104</span><span class="metric-box-label">AI Overview Places</span></div>
+      <div class="metric-box"><span class="metric-box-number">94 DR</span><span class="metric-box-label">Domain Rating</span></div>
+    </div>
+  `,
+
+  /* ================= 2. PERFORMANCE MARKETING MODALS (12 ITEMS) ================= */
+  'modal-perf-1': `
+    <span class="modal-header-tag">Google Ads · Local Search · Lead Generation</span>
+    <h2 class="modal-title">Google Ads | High-Intent Lead Acquisition</h2>
+    <img src="images/perf-dubai-restaurants.jpg" alt="Google Ads Dubai Lead Gen" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Turning High-Intent Search Traffic Into Qualified Leads</h4>
+    <p class="modal-text">A targeted search advertising strategy engineered to capture users actively seeking premier commercial and local services. Search, Display, and Performance Max campaigns worked together to reach potential customers throughout the decision-making journey while maintaining conversion efficiency.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">214</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4,900</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">186,258</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.37%</span><span class="metric-box-label">Conv. Rate</span></div>
+      <div class="metric-box"><span class="metric-box-number">$10.45</span><span class="metric-box-label">Cost per Conv.</span></div>
+      <div class="metric-box"><span class="metric-box-number">2.63%</span><span class="metric-box-label">CTR</span></div>
+    </div>
+  `,
+  'modal-perf-2': `
+    <span class="modal-header-tag">Google Ads · Search & Display · Demand Growth</span>
+    <h2 class="modal-title">Google Ads | Multi-Channel Demand Scaling</h2>
+    <img src="images/perf-uae-hospitality.jpg" alt="Google Ads Multi-Channel" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Building Consistent Demand Across Key Markets</h4>
+    <p class="modal-text">A multi-channel Google Ads campaign designed to generate qualified business intent across competitive regional sectors. Search campaigns captured direct buyer intent while Display expanded broad audience visibility.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">186</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">8,424</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">312,318</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">2.21%</span><span class="metric-box-label">Conv. Rate</span></div>
+      <div class="metric-box"><span class="metric-box-number">$0.38</span><span class="metric-box-label">Avg. CPC</span></div>
+      <div class="metric-box"><span class="metric-box-number">$3,193.64</span><span class="metric-box-label">Ad Spend</span></div>
+    </div>
+  `,
+  'modal-perf-3': `
+    <span class="modal-header-tag">Google Ads · Search Marketing · Direct Response</span>
+    <h2 class="modal-title">Google Ads | Direct-Response Lead Scaling</h2>
+    <img src="images/perf-dubai-restaurant-leads.jpg" alt="Google Ads Direct Response" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Driving High-Intent Leads for Commercial Brands</h4>
+    <p class="modal-text">A search-led Google Ads strategy built to capture target customers actively searching for premium services. Structured around high-intent keyword groupings and optimized around click-through rate and acquisition cost efficiency.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">412</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">9,844</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">352,011</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.19%</span><span class="metric-box-label">Conv. Rate</span></div>
+      <div class="metric-box"><span class="metric-box-number">$0.51</span><span class="metric-box-label">Avg. CPC</span></div>
+      <div class="metric-box"><span class="metric-box-number">$5,019.66</span><span class="metric-box-label">Ad Spend</span></div>
+    </div>
+  `,
+  'modal-perf-8': `
+    <span class="modal-header-tag">Google Ads · Commercial Services · Growth Engine</span>
+    <h2 class="modal-title">Google Ads | High-Value Lead Funnels</h2>
+    <img src="images/perf-dubai-hospitality-dining.jpg" alt="Google Ads Lead Scaling" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full-Funnel Performance Max Strategy</h4>
+    <p class="modal-text">Combining Search, Display, and Performance Max network placement to convert high-value prospects. Optimized bidding algorithms balanced lead quality with volume scaling across targeted regions.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">428</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">9,414</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">409,203</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.55%</span><span class="metric-box-label">Conv. Rate</span></div>
+      <div class="metric-box"><span class="metric-box-number">$12.68</span><span class="metric-box-label">Cost per Conv.</span></div>
+      <div class="metric-box"><span class="metric-box-number">$5,425.36</span><span class="metric-box-label">Ad Spend</span></div>
+    </div>
+  `,
+  'modal-perf-9': `
+    <span class="modal-header-tag">Meta Ads · Performance Marketing · Multi-Channel</span>
+    <h2 class="modal-title">Meta Ads | Direct Conversion Funnels</h2>
+    <img src="images/perf-meta-dubai-hospitality.jpg" alt="Meta Ads Conversion Strategy" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Omnichannel Customer Acquisition</h4>
+    <p class="modal-text">A paid Meta advertising ecosystem structured to build brand authority, drive high-intent website traffic, and convert qualified prospects across Facebook and Instagram networks.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">176</span><span class="metric-box-label">Direct Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">5.2×</span><span class="metric-box-label">Target ROAS</span></div>
+      <div class="metric-box"><span class="metric-box-number">291,408</span><span class="metric-box-label">People Reached</span></div>
+      <div class="metric-box"><span class="metric-box-number">677,540</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">12,458</span><span class="metric-box-label">Engagements</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1,460.54</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-10': `
+    <span class="modal-header-tag">Meta Ads · Lead Generation · Lead Nurturing</span>
+    <h2 class="modal-title">Meta Ads | Social Lead Generation</h2>
+    <img src="images/perf-meta-restaurant-leadgen.jpg" alt="Meta Ads Social Lead Generation" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Turn Social Engagement Into Direct Pipeline</h4>
+    <p class="modal-text">A multi-stage Meta marketing strategy connecting business brands with interested prospects. Traffic campaigns expanded funnel top while instant forms converted intent into booked appointments and qualified leads.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">214</span><span class="metric-box-label">Action Bookings</span></div>
+      <div class="metric-box"><span class="metric-box-number">37</span><span class="metric-box-label">Direct Leads</span></div>
+      <div class="metric-box"><span class="metric-box-number">146,630</span><span class="metric-box-label">People Reached</span></div>
+      <div class="metric-box"><span class="metric-box-number">388,741</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.56%</span><span class="metric-box-label">Max CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1,525.15</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-11': `
+    <span class="modal-header-tag">Meta Ads · Local Penetration · Customer Acquisition</span>
+    <h2 class="modal-title">Meta Ads | Hyper-Local Brand Penetration</h2>
+    <img src="images/perf-meta-dubai-cafe.jpg" alt="Meta Ads Regional Scaling" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Expanding Local Service Footprint</h4>
+    <p class="modal-text">Targeted ad positioning built to maximize geographical market reach, link clicks, and direct customer appointments through hyper-segmented local demographic audience filters.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">52</span><span class="metric-box-label">Customer Actions</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.8×</span><span class="metric-box-label">Campaign ROAS</span></div>
+      <div class="metric-box"><span class="metric-box-number">162,381</span><span class="metric-box-label">Accounts Reached</span></div>
+      <div class="metric-box"><span class="metric-box-number">348,603</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">1,286</span><span class="metric-box-label">Link Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">$508.00</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-12': `
+    <span class="modal-header-tag">Meta Ads · Brand Scaling · Commercial Growth</span>
+    <h2 class="modal-title">Meta Ads | Audience Reach & Scale Strategy</h2>
+    <img src="images/perf-meta-restaurant-growth.jpg" alt="Meta Ads Growth Strategy" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Creating Wide Market Demand</h4>
+    <p class="modal-text">Full-funnel Meta framework balancing audience reach, creative engagement, website traffic, and offer redemption to maintain constant pipeline visibility for growing enterprises.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">73</span><span class="metric-box-label">Booked Actions</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.4×</span><span class="metric-box-label">Peak ROAS</span></div>
+      <div class="metric-box"><span class="metric-box-number">132,604</span><span class="metric-box-label">People Reached</span></div>
+      <div class="metric-box"><span class="metric-box-number">256,533</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">8,942</span><span class="metric-box-label">Engagements</span></div>
+      <div class="metric-box"><span class="metric-box-number">$730.88</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-4': `
+    <span class="modal-header-tag">TikTok Ads · Performance Marketing · E-commerce</span>
+    <h2 class="modal-title">TikTok Ads | Full-Funnel Growth Engine</h2>
+    <img src="images/perf-tiktok-growth-engine.jpg" alt="Full-Funnel TikTok Growth Engine" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full-Funnel TikTok Advertising</h4>
+    <p class="modal-text">A full-funnel TikTok advertising approach combining sales campaigns, video-view campaigns, retargeting, and traffic acquisition to convert high-intent audiences.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">624</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">$2.06</span><span class="metric-box-label">CPA</span></div>
+      <div class="metric-box"><span class="metric-box-number">1,026,431</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">18,942</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.85%</span><span class="metric-box-label">CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1,284.52</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-5': `
+    <span class="modal-header-tag">TikTok Ads · Paid Social · E-Commerce Growth</span>
+    <h2 class="modal-title">TikTok Ads | E-Commerce Sales Acceleration</h2>
+    <img src="images/perf-tiktok-fashion-acquisition.jpg" alt="Multi-Campaign E-commerce Growth" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Multi-Campaign Customer Acquisition</h4>
+    <p class="modal-text">Combining broad prospecting and instant retargeting to maximize purchase volume while keeping overall CAC low.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">412</span><span class="metric-box-label">Purchases</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1.49</span><span class="metric-box-label">CPA</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.4×</span><span class="metric-box-label">ROAS</span></div>
+      <div class="metric-box"><span class="metric-box-number">521,430</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">8,932</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">$612.45</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-6': `
+    <span class="modal-header-tag">TikTok Ads · Product Launch · Commercial Growth</span>
+    <h2 class="modal-title">TikTok Ads | Product Launch Execution</h2>
+    <img src="images/perf-tiktok-spring-collection.jpg" alt="Product Launch Campaign" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">New Product Rollout Campaign</h4>
+    <p class="modal-text">Accelerating product adoption through spark ads and high-converting video angles designed to capture impulse purchase intent.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">178</span><span class="metric-box-label">Purchases</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1.58</span><span class="metric-box-label">CPA</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.8×</span><span class="metric-box-label">ROAS</span></div>
+      <div class="metric-box"><span class="metric-box-number">165,420</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.91%</span><span class="metric-box-label">CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">$684.27</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+  'modal-perf-7': `
+    <span class="modal-header-tag">TikTok Ads · Performance Marketing · Retargeting</span>
+    <h2 class="modal-title">TikTok Ads | Performance Traffic & Sales</h2>
+    <img src="images/perf-tiktok-ecommerce-scaling.jpg" alt="TikTok Performance Campaign" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">High-Efficiency Conversion Scaling</h4>
+    <p class="modal-text">Multi-angle video campaign architecture built to educate cold prospects and drive immediate catalog checkout conversions.</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">386</span><span class="metric-box-label">Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">$3.33</span><span class="metric-box-label">CPA</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.15%</span><span class="metric-box-label">CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">312,458</span><span class="metric-box-label">Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">9,842</span><span class="metric-box-label">Clicks</span></div>
+      <div class="metric-box"><span class="metric-box-number">$1,284.37</span><span class="metric-box-label">Total Spend</span></div>
+    </div>
+  `,
+
+  /* ================= 3. SOCIAL MEDIA MANAGEMENT (SMM) MODALS ================= */
+  'modal-smm-1': `
+    <span class="modal-header-tag">SMM · Visual Identity · Audience Growth</span>
+    <h2 class="modal-title">SMM | Visual Brand Architecture & Community Scaling</h2>
+    <img src="images/portfolio-smm-visual-identity.jpg" alt="SMM Visual Identity" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We transformed the brand's social presence by establishing a structured visual identity and a reliable publishing cadence. By combining high-converting graphic carousels, active DM and comment management, and interactive daily stories, we turned passive scrollers into an engaged online community while maintaining a consistent brand voice across all channels.</p>
+    <p class="modal-text"><strong>Services Managed:</strong> Content Planning · Graphic Carousel Design · Posting & Scheduling · Community Engagement · Brand Communication</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+185,000</span><span class="metric-box-label">Organic Growth</span></div>
+      <div class="metric-box"><span class="metric-box-number">14.2%</span><span class="metric-box-label">Carousel Engagement</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.8M</span><span class="metric-box-label">Feed Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">&lt;15 Min</span><span class="metric-box-label">Response SLA</span></div>
+    </div>
+  `,
+  'modal-smm-2': `
+    <span class="modal-header-tag">SMM · B2B Executive Branding · Authority</span>
+    <h2 class="modal-title">SMM | B2B LinkedIn Authority & Corporate Communication</h2>
+    <img src="images/portfolio-smm-b2b-authority.jpg" alt="B2B LinkedIn Authority" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We built B2B market authority by turning complex corporate insights into clear, digestible LinkedIn content. Through educational PDF document carousels, executive ghostwriting, and active outbound networking within industry conversations, we established authentic trust with decision-makers and generated steady inbound inquiries.</p>
+    <p class="modal-text"><strong>Services Managed:</strong> Content Planning · Executive Ghostwriting · Visual Document Design · Community Engagement · Audience Growth</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+340%</span><span class="metric-box-label">LinkedIn Reach</span></div>
+      <div class="metric-box"><span class="metric-box-number">58 Inquiries</span><span class="metric-box-label">Inbound DMs</span></div>
+      <div class="metric-box"><span class="metric-box-number">14.1%</span><span class="metric-box-label">PDF Carousel CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">3x</span><span class="metric-box-label">Content Frequency</span></div>
+    </div>
+  `,
+  'modal-smm-3': `
+    <span class="modal-header-tag">SMM · D2C Community · Visual Curation</span>
+    <h2 class="modal-title">SMM | D2C Brand Aesthetic & Audience Engagement</h2>
+    <img src="images/portfolio-smm-d2c-curation.jpg" alt="D2C Brand Aesthetic" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We established a cult-like social following for a D2C retail brand by focusing on visual aesthetic curation and active community management. By blending custom graphic design layouts with curated customer photos and dynamic bio links, we created an active brand ecosystem that drives daily traffic straight to new collection drops.</p>
+    <p class="modal-text"><strong>Services Managed:</strong> Content Creation · UGC Photo Curation · Posting & Scheduling · Bio Link Architecture · Community Building</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+110,000</span><span class="metric-box-label">Community Growth</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.8M</span><span class="metric-box-label">Organic Reach</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.8%</span><span class="metric-box-label">Bio Link CTR</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">Schedule Consistency</span></div>
+    </div>
+  `,
+  'modal-smm-4': `
+    <span class="modal-header-tag">SMM · Local Brand Building · Geo Outreach</span>
+    <h2 class="modal-title">SMM | Geotargeted Community Building & Local Outreach</h2>
+    <img src="images/portfolio-smm-geotargeted-local.jpg" alt="Local Geotargeted SMM" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We built deep local neighborhood affinity by combining targeted visual promos with daily geotargeted community engagement. Our team actively monitored customer tags, stories, and reviews, responding in real-time to foster genuine loyalty and keep the brand top-of-mind for local customers.</p>
+    <p class="modal-text"><strong>Services Managed:</strong> Content Planning · Local Brand Communication · Interactive Story Operations · Review & Tag Management · Audience Growth</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+75,000</span><span class="metric-box-label">Local Followers</span></div>
+      <div class="metric-box"><span class="metric-box-number">2.4M</span><span class="metric-box-label">Geo Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">16.4%</span><span class="metric-box-label">Story Retention</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">Review Coverage</span></div>
+    </div>
+  `,
+  'modal-smm-5': `
+    <span class="modal-header-tag">SMM · Personal Branding · Audience Monetization</span>
+    <h2 class="modal-title">SMM | Founder Personal Branding & Cross-Platform Curation</h2>
+    <img src="images/portfolio-smm-personal-branding.jpg" alt="Founder Personal Branding" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We managed an executive's multi-platform presence to build personal authority and turn casual readers into a loyal audience. By turning raw business insights into structured written posts, visual carousels, and engaging threads, we created an authentic communication channel that consistently converts social visitors into newsletter subscribers.</p>
+    <p class="modal-text"><strong>Services Managed:</strong> Content Strategy · Thought Leadership Copywriting · Visual Carousel Design · Profile Funnel Architecture · Community Engagement</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+60,000</span><span class="metric-box-label">Pro Followers</span></div>
+      <div class="metric-box"><span class="metric-box-number">4.8M</span><span class="metric-box-label">Monthly Impressions</span></div>
+      <div class="metric-box"><span class="metric-box-number">6.4%</span><span class="metric-box-label">Engagement Rate</span></div>
+      <div class="metric-box"><span class="metric-box-number">1,800+</span><span class="metric-box-label">Newsletter Subs</span></div>
+    </div>
+  `,
+
+  /* ================= 4. WEB DESIGNING & DEVELOPMENT MODALS ================= */
+  'modal-web-1': `
+    <span class="modal-header-tag">Web Dev · E-Commerce · Headless Architecture</span>
+    <h2 class="modal-title">Web Dev | High-Speed Headless E-Commerce Storefront</h2>
+    <img src="images/portfolio-web-ecommerce-storefront.jpg" alt="Shopify Headless Storefront" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">An online retail brand was losing mobile shoppers due to slow, plugin-heavy pages. We designed and engineered a custom headless storefront on Shopify, focusing heavily on mobile usability. We implemented instant page transitions, a smooth slide-out cart drawer, and clean variant selection to eliminate buy friction, resulting in a noticeably faster shopping experience and higher completed orders.</p>
+    <p class="modal-text"><strong>What We Built:</strong> Custom E-Commerce UI/UX · Shopify Headless Development (Storefront API) · Custom Cart Drawer & Dynamic Filters · Speed Optimization · Payment Gateway Integration</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+64%</span><span class="metric-box-label">Checkout Conv.</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.2s</span><span class="metric-box-label">Page Load Time</span></div>
+      <div class="metric-box"><span class="metric-box-number">3.4x</span><span class="metric-box-label">Mobile Engagement</span></div>
+      <div class="metric-box"><span class="metric-box-number">Zero</span><span class="metric-box-label">Plugin Bloat</span></div>
+    </div>
+  `,
+  'modal-web-2': `
+    <span class="modal-header-tag">Web Dev · Interior Design · Visual Portfolio</span>
+    <h2 class="modal-title">Web Dev | Premium Interior Design & Architecture Portfolio</h2>
+    <img src="images/portfolio-web-house-interior.jpg" alt="Architectural Web Portfolio" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A boutique luxury interior design studio needed a web platform that reflected their high-end aesthetic. We built a custom visual portfolio featuring smooth image transition galleries, interactive before-and-after project sliders, and quiet visual hierarchy. The site naturally guides high-net-worth homeowners from browsing completed residential transformations to booking private design consultations.</p>
+    <p class="modal-text"><strong>What We Built:</strong> Interior Design UI/UX · Gallery & Slider Engineering · Interactive Portfolio Architecture · Fast Image Optimization · Consultation Funnel Setup</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+210%</span><span class="metric-box-label">Consultation Leads</span></div>
+      <div class="metric-box"><span class="metric-box-number">0.9s</span><span class="metric-box-label">Image FCP Load</span></div>
+      <div class="metric-box"><span class="metric-box-number">99/100</span><span class="metric-box-label">Google Vitals Score</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">Retina Display</span></div>
+    </div>
+  `,
+  'modal-web-3': `
+    <span class="modal-header-tag">Web Dev · Health & Fitness · Membership Web App</span>
+    <h2 class="modal-title">Web Dev | High-Converting Gym & Fitness Membership Portal</h2>
+    <img src="images/portfolio-web-gym-fitness.jpg" alt="Gym Membership Web Portal" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A premium fitness center needed to digitize member onboarding and class scheduling. We designed an energetic, mobile-first website featuring dynamic daily class timetables, personal trainer showcases, and a streamlined 3-step membership checkout. We integrated the frontend directly with their gym management software, letting new members join and reserve workout slots in seconds.</p>
+    <p class="modal-text"><strong>What We Built:</strong> Fitness Web UI/UX Design · Dynamic Class Booking System · Member Signup Funnels · Payment Gateway Integration · Gym Software API Sync</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+195%</span><span class="metric-box-label">Online Signups</span></div>
+      <div class="metric-box"><span class="metric-box-number">Live Sync</span><span class="metric-box-label">Class Timetable</span></div>
+      <div class="metric-box"><span class="metric-box-number">0.7s</span><span class="metric-box-label">Mobile Speed</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">CRM API Sync</span></div>
+    </div>
+  `,
+  'modal-web-4': `
+    <span class="modal-header-tag">Web Dev · Hospitality · Direct Booking Engine</span>
+    <h2 class="modal-title">Web Dev | Restaurant Web Platform & Direct Booking System</h2>
+    <img src="images/portfolio-web-restaurant.jpg" alt="Fine Dining Web Platform" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A high-end restaurant wanted to reduce reliance on third-party booking apps and drive direct reservations through their own site. We built a visual web experience featuring interactive digital food and beverage menus, full-screen venue photography, and an embedded reservation engine. Customers can now inspect private dining options and reserve tables instantly without leaving the site.</p>
+    <p class="modal-text"><strong>What We Built:</strong> Restaurant UI/UX Design · Digital Interactive Menu Setup · Table Reservation Engine Integration · Mobile UX Optimization · Local Map & Directions Setup</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">+280%</span><span class="metric-box-label">Direct Table Bookings</span></div>
+      <div class="metric-box"><span class="metric-box-number">Zero</span><span class="metric-box-label">App Commission Fees</span></div>
+      <div class="metric-box"><span class="metric-box-number">1.0s</span><span class="metric-box-label">Photo Load Speed</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">Mobile Menu UX</span></div>
+    </div>
+  `,
+  'modal-web-5': `
+    <span class="modal-header-tag">Web Dev · UI/UX Design · Custom Next.js Architecture</span>
+    <h2 class="modal-title">Web Dev | High-Converting SaaS & Corporate Web Platform</h2>
+    <img src="images/portfolio-web-saas-platform.jpg" alt="Corporate SaaS Web Platform" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">We rebuilt the web platform for a growing B2B software company that was struggling with heavy bounce rates on their old template. Our team simplified the page layout, streamlined the navigation, and built a custom frontend using Next.js and Tailwind CSS. By cleaning up the visual hierarchy and adding clear interactive entry points, we made it effortless for visitors to evaluate the product and book a live demo.</p>
+    <p class="modal-text"><strong>What We Built:</strong> UI/UX Design & Figma Wireframing · Next.js / Tailwind CSS Frontend Development · Core Web Vitals Optimization · Custom CMS Setup · Interactive Visuals</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">99/100</span><span class="metric-box-label">Google PageSpeed</span></div>
+      <div class="metric-box"><span class="metric-box-number">0.8s</span><span class="metric-box-label">FCP Load Speed</span></div>
+      <div class="metric-box"><span class="metric-box-number">+180%</span><span class="metric-box-label">Demo Conversions</span></div>
+      <div class="metric-box"><span class="metric-box-number">100%</span><span class="metric-box-label">WCAG 2.1 Pass</span></div>
+    </div>
+  `,
+
+  /* ================= 5. BRANDING & IDENTITY MODALS ================= */
+  'modal-brand-1': `
+    <span class="modal-header-tag">Branding · E-Commerce Identity · Web Style Tokens</span>
+    <h2 class="modal-title">Branding | E-Commerce Visual Identity & Digital Style System</h2>
+    <img src="images/portfolio-branding-ecommerce-web.jpg" alt="E-Commerce Visual Identity" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">When building a custom online store, a strong visual identity is what makes the website convert. We developed a digital-first brand identity tailored specifically for modern e-commerce web design. This included crafting a scalable logo mark that stays sharp on mobile screens, a high-contrast web color palette, and a complete UI component style guide (buttons, badges, typography hierarchy). We extended the brand into physical unboxing packaging, creating a seamless experience from screen to doorstep.</p>
+    <p class="modal-text"><strong>What We Delivered:</strong> Brand Strategy & Identity · Web UI Style System · Digital Product Guidelines · E-Commerce Packaging Design · Typography Hierarchy</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">100% Custom</span><span class="metric-box-label">UI Design Tokens</span></div>
+      <div class="metric-box"><span class="metric-box-number">Unified</span><span class="metric-box-label">Web & Unboxing</span></div>
+      <div class="metric-box"><span class="metric-box-number">Zero</span><span class="metric-box-label">Retina Distortion</span></div>
+      <div class="metric-box"><span class="metric-box-number">Instant</span><span class="metric-box-label">Brand Perception</span></div>
+    </div>
+  `,
+  'modal-brand-2': `
+    <span class="modal-header-tag">Branding · Architecture & Interior · Portfolio Identity</span>
+    <h2 class="modal-title">Branding | Luxury Interior Visual Identity & Web Design System</h2>
+    <img src="images/portfolio-branding-interior-web.jpg" alt="Architectural Visual Identity" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A boutique luxury interior design studio needed a brand identity that felt as refined as their physical home transformations. We created a quiet visual identity built around minimalist typography, custom monogram marks, and a warm dark-and-gold color system. The brand system was crafted specifically to power their online visual portfolio website, ensuring high-res project photography and interactive sliders looked effortless and premium.</p>
+    <p class="modal-text"><strong>What We Delivered:</strong> Monogram & Logo Design · Web & Print Typography Rules · Color System Architecture · Hardcover Portfolio Design · Digital Presentation Kits</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">Architectural</span><span class="metric-box-label">Monogram Suite</span></div>
+      <div class="metric-box"><span class="metric-box-number">Editorial</span><span class="metric-box-label">Grid Guidelines</span></div>
+      <div class="metric-box"><span class="metric-box-number">Complete</span><span class="metric-box-label">Hardcover Suite</span></div>
+      <div class="metric-box"><span class="metric-box-number">High-Net-Worth</span><span class="metric-box-label">Positioning</span></div>
+    </div>
+  `,
+  'modal-brand-3': `
+    <span class="modal-header-tag">Branding · Health & Fitness · Athletic Brand System</span>
+    <h2 class="modal-title">Branding | Fitness & Gym Club Brand Identity & App Design System</h2>
+    <img src="images/portfolio-branding-gym-web.jpg" alt="Athletic Brand Identity System" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A modern fitness club needed a bold identity that worked everywhere—from high-energy website membership portals to gym floor murals and workout apparel. We designed a dynamic, athletic brand mark engineered for digital clarity. The identity included custom vector iconography for live class schedules, UI app components, and detailed merchandise specs for apparel tags and gym signage.</p>
+    <p class="modal-text"><strong>What We Delivered:</strong> Athletic Brand Mark Design · Web & Mobile UI Iconography · Merchandise & Apparel Guidelines · Environmental Gym Murals · Brand Style Manual</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">Versatile</span><span class="metric-box-label">Athletic Mark</span></div>
+      <div class="metric-box"><span class="metric-box-number">Custom UI</span><span class="metric-box-label">Iconography Suite</span></div>
+      <div class="metric-box"><span class="metric-box-number">Apparel Specs</span><span class="metric-box-label">Tech Packs</span></div>
+      <div class="metric-box"><span class="metric-box-number">100% Vector</span><span class="metric-box-label">Scalability</span></div>
+    </div>
+  `,
+  'modal-brand-4': `
+    <span class="modal-header-tag">Branding · Hospitality & Restaurant · Sensory System</span>
+    <h2 class="modal-title">Branding | Restaurant Visual Identity & Digital Menu System</h2>
+    <img src="images/portfolio-branding-restaurant-web.jpg" alt="Restaurant Sensory System" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">A high-end restaurant wanted to drive direct table reservations through their own web platform. To support the digital experience, we created a sensory brand identity—featuring a custom logotype, warm ambient color palettes, and elegant menu typography. The visual assets were optimized for both physical leather-bound dining menus and interactive mobile web menus.</p>
+    <p class="modal-text"><strong>What We Delivered:</strong> Custom Logotype & Typography · Digital & Print Menu Design · Brand Color Guidelines · Tableware & Packaging Design · Website Visual Assets</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">Sensory</span><span class="metric-box-label">Visual System</span></div>
+      <div class="metric-box"><span class="metric-box-number">Optimized</span><span class="metric-box-label">Mobile Menu UX</span></div>
+      <div class="metric-box"><span class="metric-box-number">Complete</span><span class="metric-box-label">Venue Print Suite</span></div>
+      <div class="metric-box"><span class="metric-box-number">Consistent</span><span class="metric-box-label">Luxury Feel</span></div>
+    </div>
+  `,
+  'modal-brand-5': `
+    <span class="modal-header-tag">Branding · Corporate Rebrand · Figma Design Tokens</span>
+    <h2 class="modal-title">Branding | Enterprise SaaS Visual Rebrand & Design Tokens</h2>
+    <img src="images/portfolio-branding-saas-web.jpg" alt="Enterprise Corporate Rebrand" class="modal-body-img" onerror="this.style.display='none';">
+    <h4 class="modal-section-title">Full Description</h4>
+    <p class="modal-text">An enterprise B2B software company had outgrown its original startup look and needed a brand identity that projected corporate authority. We executed a complete rebrand, designing a modern geometric logo mark, an expanded color system, and UI design tokens for Figma. We applied the new identity directly across their enterprise SaaS website, corporate pitch decks, and product dashboards.</p>
+    <p class="modal-text"><strong>What We Delivered:</strong> Corporate Rebrand Strategy · Geometric Logo Architecture · Web UI Design Tokens · Executive Pitch Deck Templates · Brand Governance Manual</p>
+    <div class="modal-metrics-grid">
+      <div class="metric-box"><span class="metric-box-number">Full Rebrand</span><span class="metric-box-label">Web & App Suite</span></div>
+      <div class="metric-box"><span class="metric-box-number">Figma</span><span class="metric-box-label">Design Tokens</span></div>
+      <div class="metric-box"><span class="metric-box-number">+240%</span><span class="metric-box-label">Pitch Deck Trust</span></div>
+      <div class="metric-box"><span class="metric-box-number">Zero</span><span class="metric-box-label">UI Inconsistencies</span></div>
+    </div>
+  `
+};
+
+// Rock-Solid Scroll Lock Logic
+let scrollPosition = 0;
+
+function openModal(modalId) {
+  const overlay = document.getElementById('modalOverlay');
+  const modalCard = document.getElementById('modalCard');
+  const content = document.getElementById('modalContent');
+  
+  if (modalData[modalId]) {
+    content.innerHTML = modalData[modalId];
+    
+    // 1. Capture exact current scroll Y position
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 2. Lock body absolutely to prevent background scrolling/jumping
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = '100%';
+    
+    overlay.classList.add('active');
+    
+    // 3. Reset popup inner scroll to top title & picture
+    if (modalCard) {
+      modalCard.scrollTop = 0;
+    }
+  }
+}
+
+function closeModal() {
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('active');
+  
+  // 4. Release background body lock and restore exact scroll position
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, scrollPosition);
+}
+
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'modalOverlay') closeModal();
+});
+
+// Intersection Observer for Smooth Fade-In Animations
+const animatedElements = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+animatedElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Us | Global VA's - Digital Growth Partner</title>
+  <meta name="description" content="Discover why ambitious brands trust Global VA's for search engine domination, performance marketing, and high-converting web engineering." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+/* ============================================
+   GLOBAL VA'S - WHY US PAGE STYLES
+   ============================================ */
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --accent-cyan: #4fd1e8;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 8px;
+  background: var(--accent); color: #fff; padding: 10px 16px;
+  z-index: 2000; border-radius: 6px;
+}
+.skip-link:focus { left: 16px; }
+
+/* Background Video & Overlay */
+.page-bg-video {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.page-bg-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background:
+    radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
+    radial-gradient(700px 460px at 90% 60%, rgba(79, 209, 232, 0.09), transparent 50%),
+    rgba(10, 10, 15, 0.88);
+  z-index: -1;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.3s ease;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4); }
+
+.btn-whatsapp {
+  background: #25D366; color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
+
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 8px 0; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px);
+  padding: 4px 0; border-bottom: 1px solid var(--border-color);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; transition: transform 0.25s ease; }
+.logo:hover { transform: translateY(-2px); }
+.logo-img { height: 80px; width: auto; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links > a, .services-toggle {
+  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
+  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+}
+.nav-links > a:hover, .services-toggle:hover {
+  background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  transform: translateY(-2px);
+}
+.nav-links > a.active { color: var(--accent-light); }
+
+.nav-item { position: relative; }
+.nav-item::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  width: 100%; min-width: 260px; height: 20px; z-index: 99;
+}
+.services-toggle { cursor: pointer; }
+.dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
+.nav-item:hover .dropdown-arrow, .nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute; top: calc(100% + 18px); left: 50%;
+  transform: translateX(-50%) translateY(10px); min-width: 280px;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
+}
+.nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu a {
+  display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
+  border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
+.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); }
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding: 130px 0 10px; font-size: 0.85rem; color: var(--text-gray);
+}
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+
+/* HERO SECTION */
+.why-hero {
+  padding: 30px 0 50px; text-align: center; max-width: 840px; margin: 0 auto;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border: 1px solid rgba(108, 92, 231, 0.45); border-radius: 30px;
+  font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: 20px;
+}
+.eyebrow .live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan);
+  animation: livePulse 1.8s ease-out infinite;
+}
+.why-hero h1 {
+  font-size: clamp(2.3rem, 4.5vw, 3.4rem); font-weight: 800;
+  letter-spacing: -0.03em; margin-bottom: 18px;
+}
+.why-hero h1 .accent-word { color: var(--accent-light); }
+.why-hero p {
+  color: var(--text-gray); font-size: 1.08rem; line-height: 1.75;
+}
+
+/* STATS STRIP */
+.stats-strip {
+  padding: 36px 0; background: rgba(18, 18, 26, 0.55);
+  border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+  margin-bottom: 70px;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center;
+}
+.stat-item h3 {
+  font-size: 2.6rem; font-weight: 800; color: #fff; margin-bottom: 4px;
+  background: linear-gradient(90deg, #fff 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stat-item p {
+  color: var(--text-gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;
+}
+
+/* SECTION COMMONS */
+.section-header { text-align: center; max-width: 680px; margin: 0 auto 50px; }
+.section-label {
+  display: inline-block; color: var(--accent-light); font-weight: 600; font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px;
+}
+.section-title { font-size: 2.1rem; font-weight: 700; margin-bottom: 12px; }
+.section-subtitle { color: var(--text-gray); font-size: 1rem; }
+
+/* VALUE PILLARS GRID */
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px;
+}
+.pillar-card {
+  position: relative; background: rgba(23, 23, 31, 0.75);
+  border: 1px solid var(--border-color); border-radius: 18px; padding: 32px 26px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.pillar-card:hover {
+  transform: translateY(-6px); border-color: rgba(108, 92, 231, 0.4);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.pillar-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.pillar-card:hover::before { opacity: 1; }
+.pillar-icon {
+  width: 54px; height: 54px; border-radius: 12px;
+  background: rgba(108, 92, 231, 0.15); color: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 20px;
+}
+.pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+.pillar-card p { color: var(--text-gray); font-size: 0.92rem; line-height: 1.6; }
+
+/* TESTIMONIALS GRID (why-us.html) */
+.testimonials-grid-section {
+  margin-bottom: 80px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.grid-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 28px;
+  border-radius: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.grid-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+.stars {
+  color: #FFB800;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+.grid-card p {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-style: italic;
+}
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.client-avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+}
+.client-avatar-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.client-details h4 {
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+.client-details span {
+  color: var(--text-gray);
+  font-size: 0.8rem;
+}
+
+/* COMPARISON MATRIX TABLE */
+.matrix-section {
+  background: rgba(18, 18, 26, 0.5); padding: 70px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); margin-bottom: 80px;
+}
+.matrix-card {
+  background: rgba(20, 20, 28, 0.85); border: 1px solid var(--border-color);
+  border-radius: 18px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.matrix-table { width: 100%; border-collapse: collapse; text-align: left; }
+.matrix-table th, .matrix-table td { padding: 18px 22px; border-bottom: 1px solid var(--border-color); }
+.matrix-table th {
+  font-family: var(--font-heading); font-size: 0.92rem; font-weight: 600;
+  background: rgba(10, 10, 15, 0.8); color: var(--text-gray);
+}
+.matrix-table th.highlight-col { color: var(--accent-light); background: rgba(108, 92, 231, 0.12); width: 38%; }
+.matrix-table td { font-size: 0.9rem; color: var(--text-gray); }
+.matrix-table td.feature-title { font-weight: 600; color: #fff; width: 30%; }
+.matrix-table td.highlight-col {
+  color: #fff; background: rgba(108, 92, 231, 0.05); font-weight: 500;
+}
+.matrix-table tr:last-child td { border-bottom: none; }
+.check-icon { color: #55efc4; margin-right: 8px; }
+.cross-icon { color: #ff7675; margin-right: 8px; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+  border-radius: 20px; padding: 50px 32px; text-align: center;
+  margin-bottom: 80px; box-shadow: 0 20px 50px rgba(108, 92, 231, 0.35);
+}
+.cta-banner h2 { font-size: clamp(1.8rem, 3vw, 2.3rem); margin-bottom: 14px; color: #fff; }
+.cta-banner p { color: rgba(255,255,255,0.88); font-size: 1rem; max-width: 580px; margin: 0 auto 28px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons span {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center;
+  cursor: default; transition: background 0.3s, transform 0.25s ease;
+}
+.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-hours-title { margin-top: 24px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+
+/* BACK TO TOP BUTTON (Identical to index) */
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: background 0.3s, transform 0.25s ease;
+}
+.back-to-top:hover {
+  background: var(--accent-light);
+  transform: translateY(-4px);
+}
+.back-to-top.show { display: flex; }
+
+/* FLOATING WHATSAPP BUTTON (Identical to index) */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  z-index: 1000;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: whatsappPulse 2.5s infinite;
+}
+.floating-whatsapp:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.65);
+}
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-tooltip {
+  position: absolute;
+  right: 74px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: #1f1f2b;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #1f1f2b;
+}
+.floating-whatsapp:hover .whatsapp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+@keyframes livePulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.55); }
+  100% { box-shadow: 0 0 0 8px rgba(79, 209, 232, 0); }
+}
+
+@media (max-width: 992px) {
+  .pillars-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links.active {
+    display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
+    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color);
+  }
+  .pillars-grid, .stats-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .matrix-card { overflow-x: auto; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .social-icons { justify-content: center; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Dynamic Background Video -->
+  <video class="page-bg-video" autoplay muted loop playsinline>
+    <source src="theme1.mp4" type="video/mp4">
+  </video>
+  <div class="page-bg-overlay"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-dropdown" id="servicesNav">
+          <a href="javascript:void(0);" class="services-toggle" id="servicesToggle" aria-expanded="false" aria-haspopup="true">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <div class="dropdown-menu">
+            <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
+            <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
+            <a href="social-media-management.html"><i class="fa-solid fa-share-nodes"></i> Social Media Management</a>
+            <a href="web-designing-and-development.html"><i class="fa-solid fa-code"></i> Web Designing and Development</a>
+            <a href="branding-and-identity.html"><i class="fa-solid fa-palette"></i> Branding & Identity</a>
+          </div>
+        </div>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="why-us.html" class="active">Why Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Why Us</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="why-hero fade-up">
+      <span class="eyebrow"><span class="live-dot"></span> The Growth Advantage</span>
+      <h1>From Vision to Victory.<br><span class="accent-word">We Build What Lasts.</span></h1>
+      <p>We unite search engine mastery, high-ROI performance ads, custom web development, and strategic branding into one cohesive execution unit. No junior hand-offs. No bloated retainers.</p>
+    </section>
+
+    <!-- STATS STRIP -->
+    <section class="stats-strip fade-up">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>99.4%</h3>
+          <p>Client Retention Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3>3.8x</h3>
+          <p>Average Organic Growth</p>
+        </div>
+        <div class="stat-item">
+          <h3>140+</h3>
+          <p>Global Brand Launches</p>
+        </div>
+        <div class="stat-item">
+          <h3>24/7</h3>
+          <p>Dedicated Team Support</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE PILLARS -->
+    <section class="fade-up">
+      <div class="section-header">
+        <span class="section-label">Core Differentiators</span>
+        <h2 class="section-title">Why Scaling Brands Choose Us</h2>
+        <p class="section-subtitle">Discover the strategic principles that turn casual website visitors into loyal brand advocates.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Data Driven Strategy</h3>
+          <p>We replace unproven guesses with real-time conversion telemetry and market search metrics to guarantee measurable growth.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-cubes"></i></div>
+          <h3>Unified All-in-One Team</h3>
+          <p>Forget managing multiple isolated freelancers. Our in-house specialists align your search rankings, paid ads, site code, and design under one umbrella.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <h3>Direct Senior Access</h3>
+          <p>Work directly with lead engineers and veteran growth strategists without getting passed down to junior account handlers.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Ultra High Performance Code</h3>
+          <p>We build lightweight web applications engineered for lightning speed, mobile responsiveness, and zero conversion friction.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-handshake-simple"></i></div>
+          <h3>Complete Transparency</h3>
+          <p>Track real revenue performance and campaign health with clear live metrics. No confusing jargon or hidden costs.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-earth-americas"></i></div>
+          <h3>Global Market Reach</h3>
+          <p>Scale seamlessly across international boundaries with campaigns tailored to specific regional demographics and search behaviors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS GRID SECTION -->
+    <section class="testimonials-grid-section fade-up">
+      <div class="section-header">
+        <span class="section-label">Proven Track Record</span>
+        <h2 class="section-title">Validated By Industry Leaders</h2>
+        <p class="section-subtitle">Discover why global brands partner with us for search, media, and digital engineering.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Card 1 -->
+        <div class="grid-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"When scaling our paid spend past $30k/month, our Facebook CPA spiked unexpectedly. Global VA's audited our account, fixed Meta CAPI, and reduced our CAC by 38%."</p>
+          <div class="client-info">
+            <img src="images/client1.jpg" alt="David Miller" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="client-avatar-badge" style="display: none;">DM</div>
+            <div class="client-details">
+              <h4>David Miller</h4>
+              <span>COO, Apex Apparel (UK)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="grid-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Global VA's re-engineered our frontend architecture with clean HTML5. Page load speed dropped to under 1.2s with a 100/100 Core Web Vitals score."</p>
+          <div class="client-info">
+            <img src="images/client2.jpg" alt="Marcus Vance" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="client-avatar-badge" style="display: none;">MV</div>
+            <div class="client-details">
+              <h4>Marcus Vance</h4>
+              <span>CTO, CloudScale Solutions (USA)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="grid-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"They overhauled our site taxonomy and JSON-LD Schema. Our brand secured consistent citations across Google AI Overviews within 2 months."</p>
+          <div class="client-info">
+            <img src="images/client3.jpg" alt="Sarah Jenkins" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="client-avatar-badge" style="display: none;">SJ</div>
+            <div class="client-details">
+              <h4>Sarah Jenkins</h4>
+              <span>VP of Growth, Lumina Digital (AU)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON MATRIX TABLE -->
+    <section class="matrix-section fade-up">
+      <div class="section-header">
+        <span class="section-label">Institutional Standard</span>
+        <h2 class="section-title">Traditional Agencies vs Global VA's</h2>
+        <p class="section-subtitle">A clear breakdown of our modern execution model versus outdated traditional agencies.</p>
+      </div>
+
+      <div class="matrix-card">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Performance Feature</th>
+              <th>Typical Digital Agencies</th>
+              <th class="highlight-col">Global VA's Execution Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-title">Project Management</td>
+              <td><i class="fa-solid fa-xmark cross-icon"></i> Delegated to Junior Coordinators</td>
+              <td class="highlight-col"><i class="fa-solid fa-check check-icon"></i> Direct Senior Lead Strategist Assignment</td>
+            </tr>
+            <tr>
+              <td class="feature-title">Reporting & Insights</td>
+              <td><i class="fa-solid fa-xmark cross-icon"></i> Static Monthly PDF Reports</td>
+              <td class="highlight-col"><i class="fa-solid fa-check check-icon"></i> Real-Time Live Performance Metrics</td>
+            </tr>
+            <tr>
+              <td class="feature-title">Growth Focus</td>
+              <td><i class="fa-solid fa-xmark cross-icon"></i> Vanity Clicks & Unqualified Views</td>
+              <td class="highlight-col"><i class="fa-solid fa-check check-icon"></i> Qualified Revenue & Lead Conversion</td>
+            </tr>
+            <tr>
+              <td class="feature-title">Engineering Quality</td>
+              <td><i class="fa-solid fa-xmark cross-icon"></i> Slow Outdated Website Templates</td>
+              <td class="highlight-col"><i class="fa-solid fa-check check-icon"></i> Custom High-Speed Scalable Web Platforms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner fade-up">
+      <h2>Ready to Outperform Your Industry Benchmarks?</h2>
+      <p>Connect with our senior specialists today and discover how our engineered approach can accelerate your revenue.</p>
+      <div class="cta-buttons">
+        <a href="form.html" class="btn btn-primary" style="background:#fff; color:var(--accent);">Book Free Strategy Call</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Now</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons" aria-label="Platforms we work with">
+          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
+          <span title="Google"><i class="fa-brands fa-google"></i></span>
+          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
+          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
+          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="seo-geo.html">SEO + GEO</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="social-media-management.html">Social Media Management</a>
+        <a href="web-designing-and-development.html">Web Designing and Development</a>
+        <a href="branding-and-identity.html">Branding & Identity</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="privacy-terms.html">Privacy & Terms</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
+        <h4 class="footer-hours-title">Hours</h4>
+        <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
+        <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Global VA's. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON (Identical to index) -->
+  <a href="https://wa.me/923298232502" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Contact Us</span>
+  </a>
+
+  <!-- BACK TO TOP BUTTON (Identical to index) -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+/* Navbar & Back-to-top Scroll Handlers */
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  backToTop.classList.toggle('show', window.scrollY > 500);
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Mobile Nav Toggle */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
+
+/* Services Dropdown Toggle */
+const servicesNav = document.getElementById('servicesNav');
+const servicesToggle = document.getElementById('servicesToggle');
+servicesToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  const open = servicesNav.classList.toggle('open');
+  servicesToggle.setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', (e) => {
+  if (!servicesNav.contains(e.target)) {
+    servicesNav.classList.remove('open');
+    servicesToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+/* Scroll Reveal Observer */
+const revealEls = document.querySelectorAll('.fade-up');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

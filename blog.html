@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog & Digital Growth Insights | Global VA's</title>
+  <meta name="description" content="Actionable strategies, search engine telemetry, performance marketing blueprints, and web engineering insights from Global VA's." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+/* ============================================
+   GLOBAL VA'S - BLOG PAGE STYLES
+   ============================================ */
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+/* Background Video & Overlay */
+.page-bg-video {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.page-bg-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 10, 15, 0.65); z-index: -1;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.3s ease;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+.btn-whatsapp {
+  background: #25D366; color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
+
+/* NAVBAR (STRICT 80PX LOGO FIX) */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 6px 0; background: transparent;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.9); backdrop-filter: blur(10px);
+  padding: 4px 0; border-bottom: 1px solid var(--border-color);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
+.logo:hover { transform: translateY(-2px); }
+
+/* Fixed Strictly to 80px */
+.logo-img { height: 80px; width: auto; object-fit: contain; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
+  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+}
+.nav-links a:hover {
+  background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  transform: translateY(-2px);
+}
+.nav-links a.active { color: var(--accent-light); }
+
+.nav-item { position: relative; }
+.nav-item::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  width: 100%; min-width: 260px; height: 20px; z-index: 99;
+}
+.services-toggle { cursor: default; }
+.dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
+.nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute; top: calc(100% + 18px); left: 50%;
+  transform: translateX(-50%) translateY(10px); min-width: 260px;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
+}
+.nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.dropdown-menu a {
+  display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
+  border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
+.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); }
+
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 120px 0 10px; font-size: 0.85rem; color: var(--text-gray); }
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+
+/* BLOG HERO */
+.blog-hero { padding: 30px 0 40px; text-align: center; max-width: 840px; margin: 0 auto; }
+.tag-label {
+  display: inline-block; padding: 6px 16px; border: 1px solid var(--accent);
+  border-radius: 30px; font-size: 0.85rem; color: var(--accent-light); margin-bottom: 20px;
+}
+.blog-hero h1 { font-size: clamp(2.2rem, 4vw, 3.3rem); font-weight: 800; margin-bottom: 18px; letter-spacing: -0.02em; }
+.blog-hero h1 .hero-white { color: #ffffff; }
+.blog-hero h1 .hero-accent { color: var(--accent-light); }
+.blog-hero p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.7; }
+
+/* CATEGORY FILTER TABS */
+.filter-wrapper { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 50px; }
+.filter-btn {
+  background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-gray);
+  padding: 10px 22px; border-radius: 30px; font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; transition: all 0.3s ease;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* FEATURED ARTICLE CARD */
+.featured-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;
+  overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; margin-bottom: 60px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.featured-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.featured-img {
+  background: #12121a; min-height: 340px; overflow: hidden; position: relative;
+}
+.blog-img-file {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.featured-card:hover .blog-img-file,
+.blog-card:hover .blog-img-file {
+  transform: scale(1.06);
+}
+
+.featured-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.meta-tag {
+  display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--accent-light);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
+}
+.featured-content h2 { font-size: 1.6rem; margin-bottom: 14px; color: #fff; line-height: 1.35; }
+.featured-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 22px; line-height: 1.6; }
+.post-meta-footer { display: flex; align-items: center; gap: 16px; font-size: 0.82rem; color: var(--text-gray); }
+.read-more-link { color: var(--accent-light); font-weight: 600; font-size: 0.9rem; margin-top: auto; display: inline-flex; align-items: center; gap: 6px; }
+.read-more-link:hover { text-decoration: underline; }
+
+/* BLOG GRID */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+.blog-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.blog-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.blog-card-img {
+  height: 210px; width: 100%; overflow: hidden; background: #12121a;
+}
+.blog-card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.blog-card-body h3 { font-size: 1.15rem; margin: 10px 0 10px; color: #fff; line-height: 1.4; }
+.blog-card-body p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+  text-align: center; border-radius: 20px; padding: 50px 32px; margin-bottom: 80px;
+}
+.cta-content h2 { font-size: 2.1rem; margin-bottom: 14px; color: #fff; }
+.cta-content p { color: rgba(255,255,255,0.85); margin-bottom: 28px; font-size: 1rem; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-content .btn-primary { background: #fff; color: var(--accent); }
+.cta-content .btn-primary:hover { background: #f0f0f0; }
+
+/* FOOTER */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons a {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.25s ease;
+}
+.social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-hours-title { margin-top: 24px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+
+/* FLOATING WIDGETS */
+.back-to-top {
+  position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 999;
+  transition: background 0.3s, opacity 0.3s, transform 0.25s ease;
+}
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top.show { display: flex; }
+
+.floating-whatsapp {
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease; animation: whatsappPulse 2.5s infinite;
+}
+.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); box-shadow: 0 10px 26px rgba(37, 211, 102, 0.65); }
+
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-tooltip {
+  position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px);
+  background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;
+  font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0;
+  visibility: hidden; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+.whatsapp-tooltip::after {
+  content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+  border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent #1f1f2b;
+}
+.floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+
+/* SCROLL REVEAL ANIMATION */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 992px) {
+  .featured-card { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links.active {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0;
+    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color);
+  }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .social-icons { justify-content: center; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Full-Page Background Video -->
+  <video class="page-bg-video" autoplay muted loop playsinline>
+    <source src="theme1.mp4" type="video/mp4">
+  </video>
+  <div class="page-bg-overlay"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-dropdown">
+          <a href="javascript:void(0);" class="services-toggle">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <div class="dropdown-menu">
+            <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
+            <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
+            <a href="social-media-management.html"><i class="fa-solid fa-share-nodes"></i> Social Media Management</a>
+            <a href="web-designing-and-development.html"><i class="fa-solid fa-code"></i> Web Designing and Development</a>
+            <a href="branding-and-identity.html"><i class="fa-solid fa-palette"></i> Branding & Identity</a>
+          </div>
+        </div>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Blog</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="blog-hero fade-up">
+      <span class="tag-label">Growth Knowledge Hub</span>
+      <h1>
+        <span class="hero-white">Insights that drive</span><br>
+        <span class="hero-accent">digital success.</span>
+      </h1>
+      <p>Data-driven breakdowns on search engine optimization, paid ad acquisition, web technology, and modern digital strategy.</p>
+    </section>
+
+    <!-- CATEGORY FILTER TABS -->
+    <div class="filter-wrapper fade-up">
+      <button class="filter-btn active" onclick="filterPosts('all', this)">All Articles</button>
+      <button class="filter-btn" onclick="filterPosts('seo', this)">SEO & GEO</button>
+      <button class="filter-btn" onclick="filterPosts('marketing', this)">Performance Marketing</button>
+      <button class="filter-btn" onclick="filterPosts('social', this)">Social Media</button>
+      <button class="filter-btn" onclick="filterPosts('webdev', this)">Web Tech</button>
+      <button class="filter-btn" onclick="filterPosts('branding', this)">Branding</button>
+    </div>
+
+    <!-- FEATURED ARTICLE -->
+    <article class="featured-card fade-up">
+      <div class="featured-img">
+        <img src="images/blog-featured.jpg" alt="Generative Engine Optimization (GEO)" class="blog-img-file" onerror="this.src='blog-featured.jpg';">
+      </div>
+      <div class="featured-content">
+        <span class="meta-tag">Featured Insight • SEO & GEO</span>
+        <h2>Why Generative Engine Optimization (GEO) is Replacing Traditional Keyword Tactics in 2026.</h2>
+        <p>AI search engines no longer rely on simple link matching. Learn how entity profiling, conversational indexing, and semantic data structure dictate organic visibility.</p>
+        <div class="post-meta-footer">
+          <span><i class="fa-solid fa-clock"></i> 6 min read</span>
+          <span>•</span>
+          <span><i class="fa-solid fa-calendar"></i> May 2026</span>
+        </div>
+        <a href="blog-detail-geo.html" class="read-more-link">Read Full Insight <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </article>
+
+    <!-- BLOG GRID (EXACTLY 1 ARTICLE PER SERVICE) -->
+    <div class="blog-grid">
+      <!-- 1. SEO & GEO -->
+      <article class="blog-card fade-up" data-category="seo">
+        <div class="blog-card-img">
+          <img src="images/blog-seo-audit.jpg" alt="SEO & GEO Audit" class="blog-img-file" onerror="this.src='blog-seo-audit.jpg';">
+        </div>
+        <div class="blog-card-body">
+          <span class="meta-tag">SEO & GEO</span>
+          <h3>Technical Audit Strategies to Uncover Invisible Site Bottlenecks.</h3>
+          <p>A step-by-step breakdown of crawl budget optimization, canonical structures, and Core Web Vitals refinement.</p>
+          <div class="post-meta-footer">
+            <span>5 min read</span>
+            <a href="blog-detail-seo.html" class="read-more-link">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Performance Marketing -->
+      <article class="blog-card fade-up" data-category="marketing">
+        <div class="blog-card-img">
+          <img src="images/blog-performance-roas.jpg" alt="Performance Marketing & ROAS" class="blog-img-file" onerror="this.src='blog-performance-roas.jpg';">
+        </div>
+        <div class="blog-card-body">
+          <span class="meta-tag">Performance Marketing</span>
+          <h3>Scaling Ad ROAS Without Increasing Customer Acquisition Cost.</h3>
+          <p>How predictive audience targeting and programmatic retargeting protect margin performance across Meta & Google Ads.</p>
+          <div class="post-meta-footer">
+            <span>7 min read</span>
+            <a href="blog-detail-marketing.html" class="read-more-link">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Social Media Management -->
+      <article class="blog-card fade-up" data-category="social">
+        <div class="blog-card-img">
+          <img src="images/blog-social-media.jpg" alt="Social Media Management" class="blog-img-file" onerror="this.src='blog-social-media.jpg';">
+        </div>
+        <div class="blog-card-body">
+          <span class="meta-tag">Social Media Management</span>
+          <h3>Organic Social Strategy: Building Brand Equity & Audience Retention.</h3>
+          <p>How structured visual storytelling and community engagement scale organic reach without relying entirely on paid spend.</p>
+          <div class="post-meta-footer">
+            <span>5 min read</span>
+            <a href="blog-detail-social.html" class="read-more-link">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Web Designing & Development -->
+      <article class="blog-card fade-up" data-category="webdev">
+        <div class="blog-card-img">
+          <img src="images/blog-custom-code.jpg" alt="Custom Code vs Page Builders" class="blog-img-file" onerror="this.src='blog-custom-code.jpg';">
+        </div>
+        <div class="blog-card-body">
+          <span class="meta-tag">Web Tech</span>
+          <h3>Custom Web Code vs Off-the-Shelf Page Builders: Performance Compared.</h3>
+          <p>An objective technical comparison showing why enterprise brands outgrow restrictive visual site builders.</p>
+          <div class="post-meta-footer">
+            <span>8 min read</span>
+            <a href="blog-detail-webdev.html" class="read-more-link">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Branding & Identity -->
+      <article class="blog-card fade-up" data-category="branding">
+        <div class="blog-card-img">
+          <img src="images/blog-branding-systems.jpg" alt="Branding & Visual Identity" class="blog-img-file" onerror="this.src='blog-branding-systems.jpg';">
+        </div>
+        <div class="blog-card-body">
+          <span class="meta-tag">Branding</span>
+          <h3>Building Visual Identity Systems That Command Premium Market Authority.</h3>
+          <p>Moving beyond basic logos: how unified color theory, custom UI components, and brand voice drive trust.</p>
+          <div class="post-meta-footer">
+            <span>6 min read</span>
+            <a href="blog-detail-branding.html" class="read-more-link">Read Article <i class="fa-solid fa-chevron-right"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner fade-up">
+      <div class="cta-content">
+        <span class="section-label" style="color: rgba(255,255,255,0.85);">Ready to Grow?</span>
+        <h2>Ready to Transform Your Digital Yield?</h2>
+        <p>Book a strategy session with our technical leads and discover how our engineered approach scales your business.</p>
+        <div class="cta-buttons">
+          <a href="form.html" class="btn btn-primary">Book Free Strategy Call</a>
+          <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons">
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Meta"><i class="fa-brands fa-meta"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Google"><i class="fa-brands fa-google"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="seo-geo.html">SEO + GEO</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="social-media-management.html">Social Media Management</a>
+        <a href="web-designing-and-development.html">Web Designing and Development</a>
+        <a href="branding-and-identity.html">Branding & Identity</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="privacy-terms.html">Privacy & Terms</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
+        <h4 class="footer-hours-title">Hours</h4>
+        <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
+        <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Global VA's. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Contact Us</span>
+  </a>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+/* 1. NAVBAR & BACK TO TOP LISTENERS */
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  if (window.scrollY > 500) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* 2. MOBILE MENU TOGGLE */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+/* 3. CATEGORY FILTER LOGIC */
+function filterPosts(category, btnElement) {
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  btnElement.classList.add('active');
+
+  const cards = document.querySelectorAll('.blog-card');
+  cards.forEach(card => {
+    if (category === 'all' || card.getAttribute('data-category') === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+/* 4. SCROLL REVEAL ANIMATIONS */
+const animatedElements = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+animatedElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

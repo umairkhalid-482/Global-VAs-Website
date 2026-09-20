@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organic Social Strategy: Building Brand Equity & Audience Retention | Global VA's</title>
+  <meta name="description" content="A comprehensive social media strategy blueprint on leveraging structured visual storytelling and community engagement to scale organic reach." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+/* ============================================
+   GLOBAL VA'S - SINGLE BLOG ARTICLE STYLES
+   ============================================ */
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* Background Video & Overlay */
+.page-bg-video {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.page-bg-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10, 10, 15, 0.68); z-index: -1;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.article-container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; display: block; border-radius: 12px; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; color: #fff; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: 8px; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.3s ease; cursor: pointer; border: none;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+.btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35); }
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); }
+
+/* NAVBAR (STRICT 80PX LOGO FIX) */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 6px 0; background: transparent; transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.92); backdrop-filter: blur(10px);
+  padding: 4px 0; border-bottom: 1px solid var(--border-color);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
+.logo:hover { transform: translateY(-2px); }
+
+/* Fixed Strictly to 80px */
+.logo-img { height: 80px; width: auto; object-fit: contain; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
+  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+}
+.nav-links a:hover { color: var(--accent-light); transform: translateY(-2px); }
+.nav-links a.active { color: var(--accent-light); }
+
+.nav-item { position: relative; }
+.nav-item::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  width: 100%; min-width: 260px; height: 20px; z-index: 99;
+}
+.services-toggle { cursor: default; }
+.dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
+.nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+.dropdown-menu {
+  position: absolute; top: calc(100% + 18px); left: 50%;
+  transform: translateX(-50%) translateY(10px); min-width: 260px;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
+}
+.nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.dropdown-menu a {
+  display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
+  border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap;
+}
+.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
+.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); }
+
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 120px 0 10px; font-size: 0.85rem; color: var(--text-gray); }
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+
+/* ARTICLE HEADER */
+.article-header { padding: 20px 0 30px; text-align: left; }
+.meta-tag {
+  display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--accent-light);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;
+}
+.article-header h1 {
+  font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.author-meta-bar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: 16px 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+  margin-bottom: 30px; font-size: 0.88rem; color: var(--text-gray); gap: 16px;
+}
+.author-info { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff;
+}
+.author-details h4 { font-size: 0.95rem; margin-bottom: 2px; }
+
+/* ARTICLE HERO IMAGE */
+.article-featured-img {
+  width: 100%; height: 420px; object-fit: cover; margin-bottom: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid var(--border-color);
+}
+
+/* ARTICLE BODY CONTENT */
+.article-body { font-size: 1.05rem; color: var(--text-gray); margin-bottom: 60px; }
+.article-body p { margin-bottom: 24px; }
+.article-body h2 { font-size: 1.75rem; margin: 40px 0 18px; color: #fff; }
+.article-body h3 { font-size: 1.3rem; margin: 30px 0 14px; color: var(--accent-light); }
+.article-body ul, .article-body ol { margin: 0 0 24px 24px; }
+.article-body li { margin-bottom: 10px; }
+
+/* CALLOUT HIGHLIGHT BOX */
+.callout-box {
+  background: rgba(23, 23, 31, 0.9); border-left: 4px solid var(--accent);
+  padding: 24px 28px; border-radius: 0 12px 12px 0; margin: 32px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.callout-box p { margin-bottom: 0; font-size: 1.02rem; color: #fff; font-weight: 500; }
+
+/* COMPARISON TABLE */
+.tech-table-wrapper { overflow-x: auto; margin: 30px 0; }
+.tech-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+.tech-table th, .tech-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-color); }
+.tech-table th { background: rgba(108, 92, 231, 0.15); color: var(--accent-light); font-family: var(--font-heading); }
+.tech-table td { background: var(--bg-card); }
+
+/* INLINE IMAGE STYLING */
+.inline-img-container { margin: 36px 0; }
+.inline-img-container caption { margin-top: 10px; font-size: 0.82rem; color: var(--text-gray); text-align: center; display: block; }
+
+/* AUTHOR BIO BOX */
+.author-bio-card {
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+  padding: 30px; display: flex; gap: 20px; align-items: center; margin-bottom: 60px;
+}
+.bio-avatar {
+  width: 70px; height: 70px; border-radius: 50%; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; flex-shrink: 0;
+}
+.bio-text h4 { font-size: 1.1rem; margin-bottom: 6px; }
+.bio-text p { font-size: 0.88rem; color: var(--text-gray); margin-bottom: 0; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+  text-align: center; border-radius: 20px; padding: 50px 32px; margin-bottom: 80px;
+}
+.cta-content h2 { font-size: 2.1rem; margin-bottom: 14px; color: #fff; }
+.cta-content p { color: rgba(255,255,255,0.85); margin-bottom: 28px; font-size: 1rem; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-content .btn-primary { background: #fff; color: var(--accent); }
+.cta-content .btn-primary:hover { background: #f0f0f0; }
+
+/* FOOTER */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons a {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.25s ease;
+}
+.social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-hours-title { margin-top: 24px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+
+/* FLOATING WIDGETS */
+.back-to-top {
+  position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 999; transition: all 0.3s ease;
+}
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top.show { display: flex; }
+
+.floating-whatsapp {
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%;
+  background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  transition: transform 0.25s ease; animation: whatsappPulse 2.5s infinite;
+}
+.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); }
+
+@keyframes whatsappPulse {
+  0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-tooltip {
+  position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px);
+  background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;
+  font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.25s ease;
+}
+.floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links.active {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0;
+    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color);
+  }
+  .article-featured-img { height: 260px; }
+  .author-bio-card { flex-direction: column; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .social-icons { justify-content: center; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Full-Page Background Video -->
+  <video class="page-bg-video" autoplay muted loop playsinline>
+    <source src="theme1.mp4" type="video/mp4">
+  </video>
+  <div class="page-bg-overlay"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-dropdown">
+          <a href="javascript:void(0);" class="services-toggle">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <div class="dropdown-menu">
+            <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
+            <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
+            <a href="social-media-management.html"><i class="fa-solid fa-share-nodes"></i> Social Media Management</a>
+            <a href="web-designing-and-development.html"><i class="fa-solid fa-code"></i> Web Designing and Development</a>
+            <a href="branding-and-identity.html"><i class="fa-solid fa-palette"></i> Branding & Identity</a>
+          </div>
+        </div>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="article-container" id="main">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="blog.html">Blog</a>
+      <span class="sep">/</span>
+      <span class="current">Organic Social Strategy</span>
+    </div>
+
+    <!-- ARTICLE HEADER -->
+    <header class="article-header">
+      <span class="meta-tag">Social Media Management • Brand Growth Blueprint</span>
+      <h1>Organic Social Strategy: Building Brand Equity & Audience Retention.</h1>
+      
+      <div class="author-meta-bar">
+        <div class="author-info">
+          <div class="author-avatar">GV</div>
+          <div class="author-details">
+            <h4>Global VA's Social Strategy Team</h4>
+            <span>Published May 2026 • 5 min read</span>
+          </div>
+        </div>
+        <div class="share-tags">
+          <i class="fa-solid fa-share-nodes" style="color: var(--accent-light);"></i> Organic Retention Blueprint
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN FEATURED IMAGE -->
+    <img src="images/blog-social-media.jpg" alt="Organic Social Media Management Dashboard" class="article-featured-img" onerror="this.src='blog-social-media.jpg';">
+
+    <!-- ARTICLE BODY -->
+    <article class="article-body">
+      <p>In an era dominated by rising ad costs and platform algorithm shifts, relying exclusively on paid acquisition exposes enterprise brands to sudden traffic drops. Paid media rents attention; a structured organic social media presence builds enduring brand equity and community loyalty.</p>
+
+      <p>High-yield organic social management goes far beyond posting generic promotional banners. It requires an engineered content ecosystem centered around visual storytelling, authority positioning, and active audience retention systems across LinkedIn, Meta, TikTok, and YouTube.</p>
+
+      <div class="callout-box">
+        <p>"Paid acquisition buys immediate visibility; organic social strategy builds permanent brand equity, trust, and long-term customer retention."</p>
+      </div>
+
+      <h2>Random Social Posting vs. Engineered Organic Retention</h2>
+      <p>The table below contrasts standard superficial posting tactics against Global VA's organic brand building framework:</p>
+
+      <div class="tech-table-wrapper">
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Strategy Pillar</th>
+              <th>Standard Social Posting</th>
+              <th>Engineered Organic Retention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Content Focus</strong></td>
+              <td>Direct sales pitches & static flyers</td>
+              <td>High-value storytelling & authority positioning</td>
+            </tr>
+            <tr>
+              <td><strong>KPI Metric</strong></td>
+              <td>Vanity likes & follower counts</td>
+              <td>Save rates, shares & community retention rate</td>
+            </tr>
+            <tr>
+              <td><strong>Visual Standards</strong></td>
+              <td>Inconsistent templates & stock graphics</td>
+              <td>Unified visual design system & motion identity</td>
+            </tr>
+            <tr>
+              <td><strong>PCC Synergy</strong></td>
+              <td>Operates in isolation from paid ads</td>
+              <td>Seeds retargeting pools to lower overall CAC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Pillar 1: Structured Visual Storytelling & Native Formats</h2>
+      <p>Algorithms across modern social platforms prioritize watch time and swipe-stop rates. To capture audience attention within the first 1.5 seconds, content must leverage platform-native formatting: hook-driven short-form video, structured multi-slide carousels, and visual data breakdowns.</p>
+
+      <p>Maintaining a cohesive visual identity system—matching brand typography, color palettes, and motion graphics—instantly signals executive-level quality and market authority.</p>
+
+      <!-- INLINE DIAGRAM IMAGE -->
+      <div class="inline-img-container">
+        <img src="images/social-strategy-diagram.jpg" alt="Social Media Community Retention Diagram" onerror="this.src='social-strategy-diagram.jpg';">
+        <caption>Figure 1.1: Multi-tier content distribution flow turning casual viewers into active brand advocates.</caption>
+      </div>
+
+      <h2>Pillar 2: Community Retention Architectures & Engagement Loops</h2>
+      <p>Social algorithms reward two-way interaction. Brands that proactively engage in comment sections, facilitate direct messaging conversations, and publish interactive polls create strong retention loops that keep followers engaged long-term.</p>
+
+      <h2>Pillar 3: Ecosystem Synergy with Performance Marketing</h2>
+      <p>Organic social content acts as the ultimate testing ground for paid media campaigns. High-performing organic posts serve as proven creative assets for paid retargeting ads, significantly reducing creative production costs while boosting ad conversion rates.</p>
+
+      <h2>4-Step Engineering Action Plan for Organic Dominance</h2>
+      <ol>
+        <li><strong>Brand Design System Integration:</strong> Establish strict color, font, and layout guidelines across all social channels.</li>
+        <li><strong>Hook-First Video Production:</strong> Script short-form video content specifically around high-curiosity 2-second visual hooks.</li>
+        <li><strong>Structured Publishing Cadence:</strong> Maintain a consistent posting schedule tailored to peak target audience activity.</li>
+        <li><strong>Cross-Funnel Data Injection:</strong> Feed high-engagement organic viewer segments into custom retargeting ad pools.</li>
+      </ol>
+
+      <h2>Conclusion: Building Unshakeable Market Authority</h2>
+      <p>Organic social strategy is not a side effort—it is the bedrock of customer trust and brand longevity. By combining visual excellence with community retention architectures, your brand builds organic momentum that compounds over time.</p>
+    </article>
+
+    <!-- AUTHOR BIO -->
+    <div class="author-bio-card">
+      <div class="bio-avatar">GV</div>
+      <div class="bio-text">
+        <h4>About Global VA's Strategy Team</h4>
+        <p>Global VA's engineers high-performance web solutions, advanced SEO/GEO architectures, and data-driven performance marketing funnels for ambitious enterprise brands.</p>
+      </div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+      <div class="cta-content">
+        <h2>Turn social media into a growth engine.</h2>
+        <p>Book a social media strategy session with our creative leads to scale your brand equity and audience reach.</p>
+        <div class="cta-buttons">
+          <a href="form.html" class="btn btn-primary">Book a Free Strategy Call</a>
+          <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons">
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Meta"><i class="fa-brands fa-meta"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Google"><i class="fa-brands fa-google"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="javascript:void(0);" onclick="return false;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="seo-geo.html">SEO + GEO</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="social-media-management.html">Social Media Management</a>
+        <a href="web-designing-and-development.html">Web Designing and Development</a>
+        <a href="branding-and-identity.html">Branding & Identity</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="privacy-terms.html">Privacy & Terms</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
+        <h4 class="footer-hours-title">Hours</h4>
+        <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
+        <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Global VA's. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Contact Us</span>
+  </a>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+/* NAVBAR & BACK TO TOP LISTENERS */
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  if (window.scrollY > 500) {
+    backToTop.classList.add('show');
+  } else {
+    backToTop.classList.remove('show');
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* MOBILE MENU TOGGLE */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+  </script>
+</body>
+</html>

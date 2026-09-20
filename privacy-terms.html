@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy & Terms of Service | Global VA's</title>
+  <meta name="description" content="Comprehensive Legal Framework, Data Protection Directives, and Terms of Service governing the utilization of Global VA's enterprise digital services." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 8px;
+  background: var(--accent); color: #fff; padding: 10px 16px;
+  z-index: 2000; border-radius: 6px;
+}
+.skip-link:focus { left: 16px; }
+
+/* Dynamic Video & Radial Overlay */
+.page-bg-video {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: -2;
+}
+.page-bg-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background:
+    radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
+    radial-gradient(700px 460px at 90% 60%, rgba(162, 155, 254, 0.08), transparent 50%),
+    rgba(10, 10, 15, 0.88);
+  z-index: -1;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
+
+/* ============ NAVBAR ============ */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 8px 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+.navbar.scrolled { background: rgba(10, 10, 15, 0.95); padding: 4px 0; }
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; transition: transform 0.25s ease; }
+.logo:hover { transform: translateY(-2px); }
+.logo-img { height: 80px; width: auto; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links > a {
+  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
+  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+}
+.nav-links > a:hover {
+  color: var(--accent-light);
+  transform: translateY(-2px);
+}
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+
+/* Breadcrumb */
+.breadcrumb {
+  padding: 130px 0 10px;
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+
+/* ============ HERO SECTION ============ */
+.legal-hero {
+  padding: 30px 0 30px;
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.legal-hero h1 {
+  font-size: clamp(2.2rem, 4.2vw, 3.3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+
+.legal-hero h1 .hero-white {
+  color: #ffffff;
+}
+.legal-hero h1 .hero-accent {
+  color: var(--accent-light);
+}
+
+/* ============ TABS NAVIGATION ============ */
+.tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+  scroll-margin-top: 100px;
+}
+.tabs-container {
+  display: inline-flex;
+  background: rgba(23, 23, 31, 0.85);
+  border: 1px solid var(--border-color);
+  padding: 6px;
+  border-radius: 40px;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-gray);
+  padding: 12px 30px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tab-btn:hover { color: #fff; }
+.tab-btn.active {
+  background: linear-gradient(90deg, var(--accent), #4834d4);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(108, 92, 231, 0.45);
+}
+
+/* ============ LEGAL CONTENT CARD ============ */
+.legal-card {
+  position: relative;
+  background: rgba(20, 20, 28, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 45px 50px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  margin-bottom: 100px;
+  overflow: visible;
+}
+.legal-card::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(108,92,231,0.22), transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+.legal-card::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -60px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(162,155,254,0.12), transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeUpIn 0.45s ease; }
+
+.legal-section { margin-bottom: 40px; }
+.legal-section:last-child { margin-bottom: 0; }
+.legal-section h2 {
+  font-size: 1.35rem;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.4;
+}
+.legal-section h2 i { color: var(--accent-light); font-size: 1.1rem; flex-shrink: 0; }
+.legal-section p {
+  color: var(--text-gray);
+  font-size: 0.98rem;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+.legal-section ul {
+  list-style: none;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.legal-section ul li {
+  position: relative;
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+.legal-section ul li::before {
+  content: "•";
+  color: var(--accent-light);
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: absolute;
+  left: -16px;
+  top: -2px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px 0;
+  font-size: 0.9rem;
+}
+.data-table th, .data-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+.data-table th {
+  background: rgba(108, 92, 231, 0.12);
+  color: var(--accent-light);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+.data-table td { color: var(--text-gray); }
+
+.highlight-box {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(23, 23, 31, 0.6));
+  border-left: 4px solid var(--accent);
+  padding: 22px;
+  border-radius: 0 12px 12px 0;
+  margin: 24px 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.highlight-box p { margin-bottom: 0; color: #fff; font-size: 0.95rem; }
+
+/* ============ FOOTER ============ */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 60px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons span {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
+  display: flex; align-items: center; justify-content: center;
+  cursor: default; transition: background 0.3s, transform 0.25s ease;
+}
+.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+
+.back-to-top {
+  position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 999;
+  transition: background 0.3s, transform 0.25s ease;
+}
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top.show { display: flex; }
+
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links.active {
+    display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
+    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .legal-card { padding: 28px 20px; }
+  .tab-btn { padding: 10px 18px; font-size: 0.85rem; }
+  .data-table { display: block; overflow-x: auto; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .social-icons { justify-content: center; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <video class="page-bg-video" autoplay muted loop playsinline>
+    <source src="theme1.mp4" type="video/mp4">
+  </video>
+  <div class="page-bg-overlay"></div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Privacy Policy & Terms</span>
+    </div>
+
+    <section class="legal-hero fade-up">
+      <h1>
+        <span class="hero-white">Transparent Policies.</span><br>
+        <span class="hero-accent">Secure Practices. Trusted Partnerships.</span>
+      </h1>
+    </section>
+
+    <div class="tabs-wrapper fade-up" id="tabsHeader">
+      <div class="tabs-container">
+        <button class="tab-btn active" id="tabBtn-privacy" onclick="switchTab('privacy', event, false)">Privacy Policy</button>
+        <button class="tab-btn" id="tabBtn-terms" onclick="switchTab('terms', event, false)">Terms of Service</button>
+      </div>
+    </div>
+
+    <div class="legal-card fade-up">
+      <!-- PRIVACY POLICY CONTENT -->
+      <article id="privacy" class="tab-content active">
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-shield-halved"></i> 1. Executive Summary & Regulatory Directives</h2>
+          <p>Global VA's ("Agency," "We," "Us," or "Our") enforces stringent protocols regarding data privacy, structural integrity, and telemetry governance. This Privacy Directives Document outlines our institutional commitments toward information stewardship under applicable global statutes, including the California Consumer Privacy Act (CCPA) and the General Data Protection Regulation (GDPR).</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-database"></i> 2. Information Ingestion & Telemetry Processing</h2>
+          <p>During client interactions, electronic inquiries, and programmatic consultations, we systematically collect specific parameters necessary for operational execution:</p>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Data Category</th>
+                <th>Collected Variables</th>
+                <th>Operational Intent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Identity Telemetry</strong></td>
+                <td>Legal Name, Corporate Email, Entity Name</td>
+                <td>Client Onboarding & Enterprise Verification</td>
+              </tr>
+              <tr>
+                <td><strong>Communication Telemetry</strong></td>
+                <td>WhatsApp Identifier, Phone Dial Codes, Project Scope</td>
+                <td>Direct Project Consultations & Contract Execution</td>
+              </tr>
+              <tr>
+                <td><strong>Technical Metrics</strong></td>
+                <td>IP Hash, Browser User-Agent, Session Duration</td>
+                <td>Automated Spam Mitigation & Bot Detection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-lock"></i> 3. Security Architecture & Automated Submissions</h2>
+          <p>To defend client communications against malevolent automated scripts and bot-driven exploits, our digital contact infrastructures leverage client-side verification engines and mathematical hashing algorithms. Telemetry gathered during verification is restricted exclusively to malicious traffic evaluation and is never commodified or monetized.</p>
+          <div class="highlight-box">
+            <p><strong>Strict Non-Commercialization Guarantee:</strong> Global VA's strictly prohibits the commercial exploitation, leasing, or unapproved transfer of any client information to third-party data broker networks.</p>
+          </div>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-envelope-open-text"></i> 4. Data Subject Rights & Formal Correspondence</h2>
+          <p>Under governing international laws, data subjects maintain the right to request comprehensive audit logs, data deletion, or correction of personal records stored in our systems. Formal privacy requests should be directed to our compliance personnel via legal channels.</p>
+        </div>
+      </article>
+
+      <!-- TERMS OF SERVICE CONTENT -->
+      <article id="terms" class="tab-content">
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-gavel"></i> 1. Terms of Engagement & Binding Agreement</h2>
+          <p>By interacting with Global VA's digital platforms, initiating service requisitions, or submitting formal project briefs, you unequivocally agree to adhere to these binding Terms of Service. These stipulations govern all digital engagements, strategic deliverables, and agency consultations.</p>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-lightbulb"></i> 2. Intellectual Property Rights & Asset Ownership</h2>
+          <p>All structural frameworks, proprietary code implementations, custom visual compositions, and strategic documentation developed by Global VA's remain agency property until complete contractual remuneration is finalized. Upon full financial settlement, customized client deliverables transfer according to individual Master Services Agreements (MSA).</p>
+          <ul>
+            <li>Client retains exclusive rights to proprietary corporate assets, trademarks, and raw assets provided to the Agency.</li>
+            <li>Agency retains perpetual rights to underlying reusable frameworks, development libraries, and modular software routines.</li>
+          </ul>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-triangle-exclamation"></i> 3. Liability Cap & Warranty Disclaimers</h2>
+          <p>All services are rendered on an "As-Is" and "As-Available" foundation without implied guarantees of specific commercial conversion percentages or search ranking placements unless explicitly contractualized via a signed performance SLA.</p>
+          <div class="highlight-box">
+            <p><strong>Limitation of Financial Liability:</strong> In no circumstance shall Global VA's be held liable for indirect, incidental, consequential, or punitive damages exceeding the total compensation remitted by the client for the specific service module in dispute.</p>
+          </div>
+        </div>
+
+        <div class="legal-section">
+          <h2><i class="fa-solid fa-building-columns"></i> 4. Jurisdictional Authority & Dispute Resolution</h2>
+          <p>These terms are constructed under and governed by standard international commercial litigation standards. Any conflict arising from service execution shall first be submitted to binding arbitration before initiating formal court proceedings.</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons" aria-label="Platforms we work with">
+          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
+          <span title="Google"><i class="fa-brands fa-google"></i></span>
+          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
+          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
+          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="index.html">Home</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal & Policy</h4>
+        <a href="javascript:void(0);" onclick="switchTab('privacy', event, true)">Privacy Policy</a>
+        <a href="javascript:void(0);" onclick="switchTab('terms', event, true)">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Global VA's. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+/* Navbar & Back-to-Top Dynamic Scroll */
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  backToTop.classList.toggle('show', window.scrollY > 500);
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Mobile Menu Toggle */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
+
+/* Scroll Reveal IntersectionObserver */
+const revealEls = document.querySelectorAll('.fade-up');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+/* Interactive Tab Switching Logic with Auto-Scroll to Top */
+function switchTab(tabId, e, shouldScroll = false) {
+  if (e) e.preventDefault();
+
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  const selectedContent = document.getElementById(tabId);
+  const selectedBtn = document.getElementById('tabBtn-' + tabId);
+
+  if (selectedContent) selectedContent.classList.add('active');
+  if (selectedBtn) selectedBtn.classList.add('active');
+
+  if (window.location.hash !== '#' + tabId) {
+    history.replaceState(null, null, '#' + tabId);
+  }
+
+  // Smoothly scroll to the top of the tab section if clicked from footer/external
+  if (shouldScroll) {
+    const tabsHeader = document.getElementById('tabsHeader');
+    if (tabsHeader) {
+      tabsHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+/* Auto-Switch Tab & Scroll on Load Based on URL Hash (#privacy or #terms) */
+function checkHashAndSwitchTab() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'terms') {
+    switchTab('terms', null, true);
+  } else if (hash === 'privacy') {
+    switchTab('privacy', null, true);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', checkHashAndSwitchTab);
+window.addEventListener('hashchange', checkHashAndSwitchTab);
+  </script>
+</body>
+</html>

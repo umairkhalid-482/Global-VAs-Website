@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branding & Identity | Global VA's</title>
+  <meta name="description" content="Global VA's branding and identity work: clear positioning, consistent visual systems, and brand guidelines that keep every touchpoint aligned." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+:root {
+  --bg-dark: #0A0A0F;
+  --bg-dark-2: #12121a;
+  --bg-card: #17171f;
+  --accent: #6C5CE7;
+  --accent-light: #a29bfe;
+  --accent-cyan: #4fd1e8;
+  --text-white: #F5F5F7;
+  --text-gray: #A0A0AC;
+  --border-color: rgba(255,255,255,0.08);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+body { font-family: var(--font-body); background: var(--bg-dark); color: var(--text-white); overflow-x: hidden; }
+.skip-link { position: absolute; left: -999px; top: 8px; background: var(--accent); color: #fff; padding: 10px 16px; z-index: 2000; border-radius: 6px; }
+.skip-link:focus { left: 16px; }
+.page-bg-video { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.page-bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%), radial-gradient(700px 420px at 88% 18%, rgba(79, 209, 232, 0.08), transparent 50%), rgba(10, 10, 15, 0.82); z-index: -1; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; cursor: pointer; border: none; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+.btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35); }
+.btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
+.btn-whatsapp i { font-size: 1.2rem; }
+
+/* ============ NAVBAR (STRICT 80PX LOGO FIX) ============ */
+.navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 6px 0; background: rgba(10,10,15,0.75); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: background 0.3s ease, padding 0.3s ease; }
+.navbar.scrolled { background: rgba(10, 10, 15, 0.92); padding: 4px 0; }
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
+.logo:hover { transform: translateY(-2px); }
+.footer-logo { cursor: default; }
+.footer-logo:hover { transform: none; }
+
+/* Fixed Strictly to 80px */
+.logo-img { height: 80px; width: auto; object-fit: contain; }
+.logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links > a, .services-toggle { font-size: 0.95rem; font-weight: 500; color: var(--text-gray); transition: color 0.3s, transform 0.25s ease; display: inline-block; }
+.nav-links > a:hover, .services-toggle:hover { background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; transform: translateY(-2px); }
+.nav-item { position: relative; }
+.nav-item::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); width: 100%; min-width: 280px; height: 20px; z-index: 99; }
+.services-toggle { cursor: pointer; }
+.services-toggle.is-current { background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
+.nav-item:hover .dropdown-arrow, .nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+.dropdown-menu { position: absolute; top: calc(100% + 18px); left: 50%; transform: translateX(-50%) translateY(10px); min-width: 280px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100; }
+.nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.dropdown-menu a { display: flex !important; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap; transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
+.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); -webkit-background-clip: initial; background-clip: initial; }
+.dropdown-menu a.current { background: rgba(108, 92, 231, 0.12); color: #fff; }
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.breadcrumb { padding: 110px 0 10px; font-size: 0.82rem; color: var(--text-gray); letter-spacing: 0.01em; }
+.breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent-light); }
+.breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
+.breadcrumb .current { color: var(--accent-light); }
+.service-hero { padding: 28px 0 72px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid rgba(108, 92, 231, 0.45); border-radius: 30px; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 20px; }
+.eyebrow .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.7); animation: livePulse 1.8s ease-out infinite; }
+.service-hero-text h1 { font-size: clamp(2.15rem, 4.2vw, 3.35rem); font-weight: 800; margin-bottom: 18px; letter-spacing: -0.03em; }
+.service-hero-text h1 .accent-word { color: var(--accent-light); }
+.lede { color: var(--text-gray); font-size: 1.08rem; line-height: 1.75; margin-bottom: 28px; max-width: 540px; }
+.service-hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-note { margin-top: 22px; font-size: 0.82rem; color: var(--text-gray); max-width: 480px; }
+.hero-stage { position: relative; min-height: 430px; }
+.hero-stage svg { width: 100%; height: auto; display: block; }
+.rank-fill { transform-origin: left center; animation: fillBar 1.2s cubic-bezier(.2,.8,.2,1) 0.4s both; }
+.rank-fill.mid { animation-delay: 0.55s; }
+.rank-fill.late { animation-delay: 0.7s; }
+.ai-panel { animation: cardIn 0.8s ease 1s both; }
+.split-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.split-card { background: rgba(23, 23, 31, 0.72); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px 26px 26px; position: relative; overflow: hidden; }
+.split-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-cyan)); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+.split-card.visible::before, .split-card:hover::before { transform: scaleX(1); }
+.split-kicker { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px; }
+.split-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+.split-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; }
+.split-list { margin-top: 18px; list-style: none; }
+.split-list li { color: var(--text-gray); font-size: 0.9rem; line-height: 1.55; padding: 8px 0 8px 18px; position: relative; border-top: 1px solid var(--border-color); }
+.split-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-light); position: absolute; left: 0; top: 16px; }
+section { padding: 88px 0; }
+.section-heading { max-width: 720px; margin-bottom: 44px; }
+.section-kicker { display: block; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 12px; }
+.section-heading h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; }
+.section-heading p { color: var(--text-gray); font-size: 1.02rem; line-height: 1.75; }
+.why-matters { background: rgba(18, 18, 26, 0.58); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.why-copy { max-width: 760px; }
+.why-copy p { color: var(--text-gray); font-size: 1.04rem; line-height: 1.8; margin-bottom: 18px; }
+.fact-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.fact { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px 20px; }
+.fact strong { display: block; font-family: var(--font-heading); font-size: 1.05rem; margin-bottom: 8px; }
+.fact span { color: var(--text-gray); font-size: 0.88rem; line-height: 1.6; }
+.include-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+.include-aside { position: sticky; top: 110px; }
+.include-aside p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; margin-top: 12px; }
+.work-list { border-top: 1px solid var(--border-color); }
+.work-item { display: grid; grid-template-columns: 52px 1fr; gap: 18px; padding: 26px 0; border-bottom: 1px solid var(--border-color); }
+.work-index { font-family: var(--font-heading); font-weight: 700; color: var(--accent-light); font-size: 0.9rem; padding-top: 3px; }
+.work-item h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.work-item p { color: var(--text-gray); font-size: 0.93rem; line-height: 1.7; }
+.process { background: rgba(18, 18, 26, 0.58); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.month-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 26px 24px 22px; min-height: 280px; }
+.month-card header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.month-card header span { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); }
+.month-card h3 { font-size: 1.15rem; }
+.month-card ul { list-style: none; margin-top: 8px; }
+.month-card li { color: var(--text-gray); font-size: 0.9rem; line-height: 1.65; padding: 9px 0; border-bottom: 1px solid var(--border-color); }
+.month-card li:last-child { border-bottom: none; }
+.honest { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.honest-box { border-radius: 16px; padding: 28px 26px; border: 1px solid var(--border-color); }
+.honest-box.yes { background: rgba(108, 92, 231, 0.08); }
+.honest-box.no { background: rgba(255, 118, 117, 0.05); }
+.honest-box h3 { font-size: 1.15rem; margin-bottom: 14px; }
+.honest-box ul { list-style: none; }
+.honest-box li { color: var(--text-gray); font-size: 0.92rem; line-height: 1.65; padding: 8px 0 8px 22px; position: relative; }
+.honest-box.yes li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-light); }
+.honest-box.no li::before { content: '×'; position: absolute; left: 0; color: #ff7675; }
+.report-visual { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+.fake-report { background: #14141c; border: 1px solid var(--border-color); border-radius: 16px; padding: 22px; box-shadow: 0 24px 50px rgba(0,0,0,0.35); }
+.report-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; font-size: 0.78rem; color: var(--text-gray); }
+.bars { display: flex; align-items: flex-end; gap: 10px; height: 120px; margin: 12px 0 20px; }
+.bars span { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--accent-light), var(--accent)); animation: growUp 1s ease both; transform-origin: bottom; }
+.bars span:nth-child(1) { height: 38%; animation-delay: 0.1s; }
+.bars span:nth-child(2) { height: 52%; animation-delay: 0.18s; }
+.bars span:nth-child(3) { height: 46%; animation-delay: 0.26s; }
+.bars span:nth-child(4) { height: 64%; animation-delay: 0.34s; }
+.bars span:nth-child(5) { height: 80%; animation-delay: 0.42s; }
+.bars span:nth-child(6) { height: 71%; animation-delay: 0.5s; }
+.report-line { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-gray); padding: 9px 0; border-top: 1px solid var(--border-color); }
+.report-line b { color: #fff; font-weight: 600; }
+.faq-list { max-width: 760px; }
+.faq-item { border-bottom: 1px solid var(--border-color); }
+.faq-question { width: 100%; background: none; border: none; color: #fff; padding: 22px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--font-body); font-size: 1.02rem; font-weight: 500; cursor: pointer; text-align: left; transition: color 0.25s ease; }
+.faq-question:hover { color: var(--accent-light); }
+.faq-question i { transition: transform 0.3s ease; color: var(--accent-light); flex-shrink: 0; }
+.faq-item.active .faq-question i { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-answer p { color: var(--text-gray); padding-bottom: 20px; line-height: 1.7; }
+.cta-banner { background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%); text-align: center; }
+.cta-content { max-width: 680px; margin: 0 auto; }
+.cta-content h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 14px; }
+.cta-content p { color: rgba(255,255,255,0.88); margin-bottom: 28px; font-size: 1.02rem; line-height: 1.7; }
+.cta-content .btn-primary { background: #fff; color: var(--accent); }
+.cta-content .btn-primary:hover { background: #f0f0f0; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
+.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+.social-icons { display: flex; gap: 14px; }
+.social-icons span { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card); display: flex; align-items: center; justify-content: center; cursor: default; transition: background 0.3s, transform 0.25s ease; }
+.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
+.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
+.footer-hours-title { margin-top: 24px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+.back-to-top { position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 999; transition: background 0.3s, transform 0.25s ease; }
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top.show { display: flex; }
+.floating-whatsapp { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transition: transform 0.25s ease, box-shadow 0.25s ease; animation: whatsappPulse 2.5s infinite; }
+.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); }
+.whatsapp-tooltip { position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px); background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0; visibility: hidden; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; }
+.whatsapp-tooltip::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent #1f1f2b; }
+.floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.55); } 100% { box-shadow: 0 0 0 8px rgba(79, 209, 232, 0); } }
+@keyframes fillBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes cardIn { from { opacity: 0; transform: translate(12px, 16px); } to { opacity: 1; transform: none; } }
+@keyframes growUp { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes whatsappPulse { 0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .fade-up { opacity: 1; transform: none; } }
+@media (max-width: 992px) { .service-hero, .include-wrap, .report-visual, .split-panel, .honest, .month-grid, .fact-row { grid-template-columns: 1fr; } .include-aside { position: static; } .service-hero-text p, .lede { max-width: none; } .hero-stage { min-height: 0; } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .nav-links { display: none; } .menu-toggle { display: block; } .nav-links.active { display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color); } .nav-item { width: 100%; } .nav-item::after { display: none; } .dropdown-menu { position: static; transform: none; min-width: 0; width: 100%; opacity: 1; visibility: visible; pointer-events: auto; display: none; box-shadow: none; margin-top: 8px; } .nav-item.open .dropdown-menu { display: block; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .social-icons { justify-content: center; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <video class="page-bg-video" autoplay muted loop playsinline><source src="theme1.mp4" type="video/mp4"></video>
+  <div class="page-bg-overlay"></div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <span class="logo-text">Global VA's</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <div class="nav-item has-dropdown" id="servicesNav">
+          <a href="javascript:void(0);" class="services-toggle is-current" id="servicesToggle" aria-expanded="false" aria-haspopup="true">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <div class="dropdown-menu">
+            <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
+            <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
+            <a href="social-media-management.html"><i class="fa-solid fa-share-nodes"></i> Social Media Management</a>
+            <a href="web-designing-and-development.html"><i class="fa-solid fa-code"></i> Web Designing and Development</a>
+            <a href="branding-and-identity.html" class="current" aria-current="page"><i class="fa-solid fa-palette"></i> Branding & Identity</a>
+          </div>
+        </div>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="about-us.html">About Us</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Services</span>
+      <span class="sep">/</span>
+      <span class="current">Branding & Identity</span>
+    </div>
+
+    <section class="service-hero container">
+      <div class="service-hero-text">
+        <span class="eyebrow"><span class="live-dot"></span> Engagement · Interaction · Journey</span>
+        <h1>
+          A brand is a complete 
+  <span class="accent-word">identity</span>,
+  not just a <span class="accent-word">Logo</span>.</h1>
+        <p class="lede">
+          We build brand systems that prioritize engagement, foster meaningful interactions, and shape a seamless customer journey. Every element is designed to deliver consistency, clarity, and trust across all touchpoints. Our objective is enduring recognition and credibility - never superficial decoration.
+        </p>
+        <div class="service-hero-buttons">
+          <a href="form.html" class="btn btn-primary">Secure Consultation</a>
+          <a href="https://wa.me/923298232502" target="_blank" class="btn btn-whatsapp" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <p class="hero-note">Positioning first. Visual system second. Guidelines last.
+We create identity systems that can be applied consistently across website, social, packaging, and everyday communications.</p>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <svg viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#6C5CE7"/>
+              <stop offset="100%" stop-color="#4fd1e8"/>
+            </linearGradient>
+          </defs>
+          <rect x="8" y="18" width="332" height="318" rx="14" fill="#17171f" stroke="rgba(255,255,255,0.09)"/>
+          <circle cx="32" cy="40" r="4" fill="#ff7675"/>
+          <circle cx="46" cy="40" r="4" fill="#ffeaa7"/>
+          <circle cx="60" cy="40" r="4" fill="#55efc4"/>
+          <text x="78" y="44" font-family="Inter, sans-serif" font-size="11" fill="#A0A0AC">brand system · overview</text>
+
+          <!-- Color swatches -->
+          <rect x="28" y="70" width="48" height="48" rx="8" fill="#6C5CE7"/>
+          <rect x="86" y="70" width="48" height="48" rx="8" fill="#a29bfe"/>
+          <rect x="144" y="70" width="48" height="48" rx="8" fill="#4fd1e8"/>
+          <rect x="202" y="70" width="48" height="48" rx="8" fill="#F5F5F7"/>
+          <rect x="260" y="70" width="48" height="48" rx="8" fill="#17171f" stroke="rgba(255,255,255,0.15)"/>
+
+          <!-- Typography preview -->
+          <text x="28" y="150" font-family="Poppins, sans-serif" font-size="22" font-weight="700" fill="#F5F5F7">Brand Name</text>
+          <text x="28" y="175" font-family="Inter, sans-serif" font-size="13" fill="#A0A0AC">Primary typeface · Clean and confident</text>
+
+          <!-- Logo mark placeholder -->
+          <rect x="28" y="200" width="90" height="90" rx="12" fill="#1c1c28" stroke="rgba(108,92,231,0.4)"/>
+          <circle cx="73" cy="245" r="22" fill="none" stroke="#a29bfe" stroke-width="3"/>
+          <text x="130" y="230" font-family="Inter, sans-serif" font-size="12" fill="#F5F5F7">Primary mark</text>
+          <text x="130" y="250" font-family="Inter, sans-serif" font-size="11" fill="#A0A0AC">Wordmark + symbol</text>
+          <text x="130" y="270" font-family="Inter, sans-serif" font-size="11" fill="#A0A0AC">Clear space defined</text>
+
+          <!-- Side panel -->
+          <g class="ai-panel">
+            <rect x="268" y="268" width="236" height="154" rx="14" fill="#1c1c28" stroke="#6C5CE7" stroke-width="1.4"/>
+            <text x="286" y="294" font-family="Inter, sans-serif" font-size="11" fill="#A0A0AC">Identity system · deliverables</text>
+            <text x="286" y="320" font-family="Inter, sans-serif" font-size="10" fill="#F5F5F7">Logo system</text>
+            <rect x="286" y="326" width="198" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
+            <rect class="rank-fill" x="286" y="326" width="180" height="7" rx="3.5" fill="url(#barGrad)"/>
+            <text x="286" y="348" font-family="Inter, sans-serif" font-size="10" fill="#F5F5F7">Colour & type</text>
+            <rect x="286" y="354" width="198" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
+            <rect class="rank-fill mid" x="286" y="354" width="160" height="7" rx="3.5" fill="url(#barGrad)"/>
+            <text x="286" y="376" font-family="Inter, sans-serif" font-size="10" fill="#F5F5F7">Guidelines</text>
+            <rect x="286" y="382" width="198" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
+            <rect class="rank-fill late" x="286" y="382" width="145" height="7" rx="3.5" fill="url(#barGrad)"/>
+            <text x="286" y="406" font-family="Inter, sans-serif" font-size="11" fill="#4fd1e8">Ready for application</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="why-matters">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">The difference</span>
+          <h2>A logo is not a brand. A system is.</h2>
+        </div>
+        <div class="why-copy">
+          <p>Many businesses treat branding as a single visual asset. The result is inconsistent application, mixed messages, and a presence that never settles into something recognisable.</p>
+          <p>We treat identity as a practical system: clear positioning, a coherent visual language, and simple rules that make consistent application possible across website, social media, and everyday materials.</p>
+          <p>The work is useful only if it can be followed. Guidelines are written to be used, not filed away.</p>
+        </div>
+        <div class="fact-row">
+          <article class="fact fade-up">
+            <strong>Positioning before visuals</strong>
+            <span>We clarify what the brand stands for and who it speaks to before designing marks, colours, or type. Visual decisions follow direction, not the reverse.</span>
+          </article>
+          <article class="fact fade-up">
+            <strong>Systems over single assets</strong>
+            <span>A logo alone is rarely enough. We build a workable set of elements -  mark, colour, type, and usage rules -  that can be applied consistently.</span>
+          </article>
+          <article class="fact fade-up">
+            <strong>Guidelines that get used</strong>
+            <span>Documentation is kept practical. The aim is clarity for anyone applying the brand, not a thick book that never leaves a folder.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Two layers</span>
+          <h2>Strategy and visual system work together</h2>
+          <p>One without the other leaves gaps. Positioning without a clear visual language remains abstract. A visual system without direction becomes decoration.</p>
+        </div>
+        <div class="split-panel">
+          <article class="split-card fade-up">
+            <div class="split-kicker">Positioning</div>
+            <h3>What the brand stands for and who it serves</h3>
+            <p>Clear statements of purpose, audience, and tone. This becomes the reference for every visual and verbal decision that follows.</p>
+            <ul class="split-list">
+              <li>Audience and competitive context</li>
+              <li>Core positioning and personality</li>
+              <li>Tone of voice direction</li>
+            </ul>
+          </article>
+          <article class="split-card fade-up">
+            <div class="split-kicker">Visual identity</div>
+            <h3>The system that makes the brand recognisable</h3>
+            <p>Logo, colour, typography, and supporting elements organised so they can be applied consistently across different media and formats.</p>
+            <ul class="split-list">
+              <li>Primary and secondary marks</li>
+              <li>Colour palette and type hierarchy</li>
+              <li>Usage rules and basic applications</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container include-wrap">
+        <aside class="include-aside">
+          <span class="section-kicker">Scope</span>
+          <h2>What a branding project typically includes</h2>
+          <p>The exact deliverables depend on whether you are starting from zero or refining an existing presence. Scope is defined clearly at the outset.</p>
+        </aside>
+        <div class="work-list">
+          <div class="work-item fade-up">
+            <div class="work-index">01</div>
+            <div>
+              <h3>Discovery and positioning</h3>
+              <p>We review the current state of the brand, clarify audience and goals, and establish a clear direction before any visual work begins.</p>
+            </div>
+          </div>
+          <div class="work-item fade-up">
+            <div class="work-index">02</div>
+            <div>
+              <h3>Logo and mark development</h3>
+              <p>Exploration of primary marks and supporting lockups. Concepts are refined until a clear, usable direction is selected.</p>
+            </div>
+          </div>
+          <div class="work-item fade-up">
+            <div class="work-index">03</div>
+            <div>
+              <h3>Colour and typography</h3>
+              <p>A practical palette and type system that supports hierarchy and remains readable across digital and print applications.</p>
+            </div>
+          </div>
+          <div class="work-item fade-up">
+            <div class="work-index">04</div>
+            <div>
+              <h3>Supporting elements</h3>
+              <p>Additional components such as patterns, icon style, or photography direction where they strengthen consistency.</p>
+            </div>
+          </div>
+          <div class="work-item fade-up">
+            <div class="work-index">05</div>
+            <div>
+              <h3>Brand guidelines</h3>
+              <p>Clear rules for logo use, colour, type, and spacing. Written so the brand can be applied correctly by designers, developers, or internal teams.</p>
+            </div>
+          </div>
+          <div class="work-item fade-up">
+            <div class="work-index">06</div>
+            <div>
+              <h3>Basic applications</h3>
+              <p>Key examples -  website header, social profile, business card, or presentation cover -  so the system is demonstrated in real contexts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Process</span>
+          <h2>How a branding project typically progresses</h2>
+          <p>Clear stages and decision points. Progress depends on timely feedback and a willingness to lock direction once a strong option is identified.</p>
+        </div>
+        <div class="month-grid">
+          <article class="month-card fade-up">
+            <header><span>Stage 1</span><h3>Discover and define</h3></header>
+            <ul>
+              <li>Current brand review</li>
+              <li>Audience and positioning work</li>
+              <li>Direction and mood defined</li>
+              <li>Scope and deliverables confirmed</li>
+            </ul>
+          </article>
+          <article class="month-card fade-up">
+            <header><span>Stage 2</span><h3>Design and refine</h3></header>
+            <ul>
+              <li>Logo and mark concepts</li>
+              <li>Colour and type exploration</li>
+              <li>System development</li>
+              <li>Revisions based on feedback</li>
+            </ul>
+          </article>
+          <article class="month-card fade-up">
+            <header><span>Stage 3</span><h3>Finalise and deliver</h3></header>
+            <ul>
+              <li>Final logo system</li>
+              <li>Guidelines completed</li>
+              <li>Key applications prepared</li>
+              <li>Files and assets handed over</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Fit</span>
+          <h2>Who this is for and who should wait</h2>
+        </div>
+        <div class="honest">
+          <article class="honest-box yes fade-up">
+            <h3>This works if you</h3>
+            <ul>
+              <li>Need a clear and consistent visual identity</li>
+              <li>Are ready to make decisions on direction without endless options</li>
+              <li>Want guidelines that can actually be followed</li>
+              <li>Value coherence across website, social, and everyday materials</li>
+            </ul>
+          </article>
+          <article class="honest-box no fade-up">
+            <h3>Skip this if you</h3>
+            <ul>
+              <li>Only need a single logo file with no system around it</li>
+              <li>Cannot decide on brand direction or personality</li>
+              <li>Want unlimited concepts without locking a direction</li>
+              <li>Expect branding alone to fix an unclear offer or weak product</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container report-visual">
+        <div>
+          <div class="section-heading" style="margin-bottom: 18px;">
+            <span class="section-kicker">Delivery</span>
+            <h2>What you receive at the end</h2>
+            <p>Final logo files in practical formats, colour and type specifications, usage guidelines, and a small set of applied examples so the system is ready to use immediately.</p>
+          </div>
+        </div>
+        <div class="fake-report fade-up" aria-hidden="true">
+          <div class="report-top">
+            <span>Delivery package · sample</span>
+            <span>Identity System</span>
+          </div>
+          <div class="bars"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="report-line"><span>Logo files</span><b>Included</b></div>
+          <div class="report-line"><span>Guidelines</span><b>Included</b></div>
+          <div class="report-line"><span>Key applications</span><b>Included</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-kicker">Questions</span>
+          <h2>Straight answers</h2>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Do you only create logos or full brand systems?<i class="fa-solid fa-plus"></i></button>
+            <div class="faq-answer"><p>We create practical identity systems. This usually includes the logo, colour, typography, basic guidelines, and key applications. A single logo file without supporting rules is rarely useful on its own.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">How many logo concepts do you present?<i class="fa-solid fa-plus"></i></button>
+            <div class="faq-answer"><p>We explore multiple directions internally and present a focused set of strong options rather than a large volume of weak ones. The aim is clarity and quality of decision, not quantity of concepts.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">Can you work with an existing logo?<i class="fa-solid fa-plus"></i></button>
+            <div class="faq-answer"><p>Yes. If the existing mark has potential, we can refine it and build a proper system around it. If it is fundamentally limited, we will say so and recommend a stronger direction.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">What file formats do you deliver?<i class="fa-solid fa-plus"></i></button>
+            <div class="faq-answer"><p>Practical formats for both digital and print use -  typically vector files, high-resolution rasters, and clear usage guidelines. The exact package is confirmed at the start of the project.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">How long does a branding project usually take?<i class="fa-solid fa-plus"></i></button>
+            <div class="faq-answer"><p>Timelines depend on scope and feedback speed. A focused identity system can often be completed in a few weeks when decisions are made promptly. Larger or more complex projects take longer. We set realistic expectations at the beginning.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-content">
+        <h2>Ready for a brand that is clear and consistent?</h2>
+        <p>Share your current brand materials or project goals. We will review what exists, identify gaps, and outline a practical path to a coherent identity system.</p>
+        <div class="cta-buttons">
+          <a href="form.html" class="btn btn-primary">Book a Free Brand Call</a>
+          <a href="https://wa.me/923298232502" target="_blank" class="btn btn-whatsapp" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <span class="logo-text">Global VA's</span>
+        </a>
+        <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        <div class="social-icons" aria-label="Platforms we work with">
+          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
+          <span title="Google"><i class="fa-brands fa-google"></i></span>
+          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
+          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
+          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="seo-geo.html">SEO + GEO</a>
+        <a href="performance-marketing.html">Performance Marketing</a>
+        <a href="social-media-management.html">Social Media Management</a>
+        <a href="web-designing-and-development.html">Web Designing and Development</a>
+        <a href="branding-and-identity.html">Branding & Identity</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="why-us.html">Why Us</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+        <a href="privacy-terms.html">Privacy & Terms</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
+        <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
+        <h4 class="footer-hours-title">Hours</h4>
+        <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
+        <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>&copy; 2026 Global VA's. All rights reserved.</p></div></div>
+  </footer>
+
+  <a href="https://wa.me/923298232502" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Contact Us</span>
+  </a>
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  backToTop.classList.toggle('show', window.scrollY > 500);
+});
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const servicesNav = document.getElementById('servicesNav');
+const servicesToggle = document.getElementById('servicesToggle');
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
+servicesToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  const open = servicesNav.classList.toggle('open');
+  servicesToggle.setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', (e) => {
+  if (!servicesNav.contains(e.target)) {
+    servicesNav.classList.remove('open');
+    servicesToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+  const answer = item.querySelector('.faq-answer');
+  question.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    faqItems.forEach(other => {
+      other.classList.remove('active');
+      other.querySelector('.faq-answer').style.maxHeight = null;
+      other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    if (!isActive) {
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      question.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+const revealEls = document.querySelectorAll('.fade-up, .split-card, .section-heading, .work-item, .month-card, .honest-box, .fact');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => { el.classList.add('fade-up'); io.observe(el); });
+  </script>
+</body>
+</html>
