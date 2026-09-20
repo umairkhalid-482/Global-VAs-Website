@@ -170,6 +170,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
   box-shadow: 0 30px 80px rgba(0,0,0,0.45);
   margin-bottom: 100px;
   overflow: visible;
+  scroll-margin-top: 110px;
 }
 .legal-card::before {
   content: '';
@@ -354,12 +355,12 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
 
     <div class="tabs-wrapper fade-up" id="tabsHeader">
       <div class="tabs-container">
-        <button class="tab-btn active" id="tabBtn-privacy" onclick="switchTab('privacy', event, false)">Privacy Policy</button>
-        <button class="tab-btn" id="tabBtn-terms" onclick="switchTab('terms', event, false)">Terms of Service</button>
+        <button class="tab-btn active" id="tabBtn-privacy" onclick="switchTab('privacy', event, true)">Privacy Policy</button>
+        <button class="tab-btn" id="tabBtn-terms" onclick="switchTab('terms', event, true)">Terms of Service</button>
       </div>
     </div>
 
-    <div class="legal-card fade-up">
+    <div class="legal-card fade-up" id="legalCard">
       <!-- PRIVACY POLICY CONTENT -->
       <article id="privacy" class="tab-content active">
         <div class="legal-section">
@@ -519,7 +520,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => io.observe(el));
 
-/* Interactive Tab Switching Logic with Auto-Scroll to Top */
+/* Interactive Tab Switching Logic with Auto-Scroll / Pop-down to Card */
 function switchTab(tabId, e, shouldScroll = false) {
   if (e) e.preventDefault();
 
@@ -540,11 +541,18 @@ function switchTab(tabId, e, shouldScroll = false) {
     history.replaceState(null, null, '#' + tabId);
   }
 
-  // Smoothly scroll to the top of the tab section if clicked from footer/external
+  // Smooth pop-down / auto-scroll down to the legal card
   if (shouldScroll) {
-    const tabsHeader = document.getElementById('tabsHeader');
-    if (tabsHeader) {
-      tabsHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const cardTarget = document.getElementById('legalCard');
+    if (cardTarget) {
+      const headerOffset = 100;
+      const elementPosition = cardTarget.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   }
 }
