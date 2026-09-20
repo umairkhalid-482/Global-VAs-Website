@@ -71,7 +71,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 }
 .btn-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5); }
 
-/* NAVBAR (STRICT 80PX LOGO FIX) */
+/* NAVBAR */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
   padding: 6px 0; background: transparent;
@@ -85,7 +85,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
 .logo:hover { transform: translateY(-2px); }
 
-/* Fixed Strictly to 80px */
 .logo-img { height: 80px; width: auto; object-fit: contain; }
 .logo-text { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: #fff; white-space: nowrap; }
 
@@ -159,7 +158,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .featured-card {
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;
   overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; margin-bottom: 60px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease; scroll-margin-top: 110px;
 }
 .featured-card:hover { transform: translateY(-4px); border-color: var(--accent); }
 .featured-img {
@@ -186,7 +185,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .read-more-link:hover { text-decoration: underline; }
 
 /* BLOG GRID */
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 80px; scroll-margin-top: 110px; }
 .blog-card {
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
   overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease;
@@ -214,12 +213,29 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
 .footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+
 .social-icons { display: flex; gap: 14px; }
-.social-icons a {
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
-  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.25s ease;
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default; user-select: none;
 }
-.social-icons a:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item i { font-size: 1rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item .social-tooltip {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-6px);
+  background: #1f1f2b; color: #ffffff; font-size: 0.75rem; font-weight: 600;
+  font-family: var(--font-body); padding: 5px 10px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); z-index: 10;
+}
+.social-icon-item .social-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-width: 5px 5px 0 5px; border-style: solid; border-color: #1f1f2b transparent transparent transparent;
+}
+.social-icon-item:hover .social-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px); }
+
 .footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
 .footer-hours-title { margin-top: 24px; }
 .footer-closed { color: #ff7675 !important; }
@@ -298,7 +314,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
         <span class="logo-text">Global VA's</span>
       </a>
 
@@ -354,7 +370,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
     </div>
 
     <!-- FEATURED ARTICLE -->
-    <article class="featured-card fade-up">
+    <article class="featured-card fade-up" id="featuredArticle">
       <div class="featured-img">
         <img src="images/blog-featured.jpg" alt="Generative Engine Optimization (GEO)" class="blog-img-file" onerror="this.src='blog-featured.jpg';">
       </div>
@@ -371,8 +387,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
       </div>
     </article>
 
-    <!-- BLOG GRID (EXACTLY 1 ARTICLE PER SERVICE) -->
-    <div class="blog-grid">
+    <!-- BLOG GRID -->
+    <div class="blog-grid" id="blogGrid">
       <!-- 1. SEO & GEO -->
       <article class="blog-card fade-up" data-category="seo">
         <div class="blog-card-img">
@@ -475,17 +491,36 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo footer-logo">
-          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
           <span class="logo-text">Global VA's</span>
         </a>
         <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
+        
         <div class="social-icons">
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Meta"><i class="fa-brands fa-meta"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Google"><i class="fa-brands fa-google"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="javascript:void(0);" onclick="return false;" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-meta"></i>
+            <span class="social-tooltip">Meta</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-google"></i>
+            <span class="social-tooltip">Google</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span class="social-tooltip">LinkedIn</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span class="social-tooltip">X / Twitter</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span class="social-tooltip">TikTok</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-youtube"></i>
+            <span class="social-tooltip">YouTube</span>
+          </div>
         </div>
       </div>
 
@@ -566,7 +601,7 @@ menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-/* 3. CATEGORY FILTER LOGIC */
+/* 3. CATEGORY FILTER LOGIC + DYNAMIC POP DOWN TARGET */
 function filterPosts(category, btnElement) {
   document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
@@ -579,6 +614,25 @@ function filterPosts(category, btnElement) {
       card.style.display = 'none';
     }
   });
+
+  // Target selection based on category click
+  let targetElement;
+  if (category === 'all') {
+    targetElement = document.getElementById('featuredArticle'); // Featured Card par scroll karega
+  } else {
+    targetElement = document.getElementById('blogGrid'); // Baaqi services par grid par scroll karega
+  }
+
+  if (targetElement) {
+    const headerOffset = 90; // Navbar height offset
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
 }
 
 /* 4. SCROLL REVEAL ANIMATIONS */
