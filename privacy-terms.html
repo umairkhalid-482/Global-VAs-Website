@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0A0F" />
   <title>Privacy Policy & Terms of Service | Global VA's</title>
   <meta name="description" content="Comprehensive Legal Framework, Data Protection Directives, and Terms of Service governing the utilization of Global VA's enterprise digital services." />
 
+  <!-- Google Fonts -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
+/* ============================================
+   GLOBAL VA'S - PRIVACY & TERMS STYLES
+   ============================================ */
 :root {
   --bg-dark: #0A0A0F;
   --bg-dark-2: #12121a;
@@ -25,7 +35,13 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   font-family: var(--font-body);
   background: var(--bg-dark);
@@ -41,17 +57,41 @@ body {
 }
 .skip-link:focus { left: 16px; }
 
-/* Dynamic Video & Radial Overlay */
+/* Background Video & Overlay System */
 .page-bg-video {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: -2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -2;
+  pointer-events: none;
 }
+#bgVideoB {
+  opacity: 0;
+  z-index: -3;
+  will-change: opacity;
+}
+@media (max-aspect-ratio: 1/1) {
+  .page-bg-video {
+    top: 50vh;
+    top: 50lvh;
+    left: 50%;
+    width: 150%;
+    height: auto;
+    aspect-ratio: 748 / 418;
+    transform: translate(-50%, -50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  }
+}
+
 .page-bg-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background:
-    radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
-    radial-gradient(700px 460px at 90% 60%, rgba(162, 155, 254, 0.08), transparent 50%),
-    rgba(10, 10, 15, 0.65);
+  background: rgba(10, 10, 15, 0.65);
   z-index: -1;
 }
 
@@ -59,42 +99,76 @@ body {
 a { text-decoration: none; color: inherit; }
 h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
 
-/* ============ NAVBAR ============ */
+/* ============ NAVBAR & PROFESSIONAL RETURN HOME BUTTON ============ */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-  padding: 8px 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  transition: background 0.3s ease, padding 0.3s ease;
+  padding: 12px 0; background: transparent; transition: background 0.3s ease, padding 0.3s ease;
 }
-.navbar.scrolled { background: rgba(10, 10, 15, 0.95); padding: 4px 0; }
-.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo { display: flex; align-items: center; gap: 10px; transition: transform 0.25s ease; }
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  padding: 8px 0; border-bottom: 1px solid var(--border-color);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; transition: transform 0.25s ease; text-decoration: none; flex-shrink: 0; }
 .logo:hover { transform: translateY(-2px); }
-.logo-img { height: 80px; width: auto; }
-.logo-text { font-family: var(--font-heading);
-  font-size: 1.35rem;
+.logo-img { height: 60px; width: auto; object-fit: contain; }
+.logo-text {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: clamp(0.85rem, 4vw, 1.25rem);
   font-weight: 700;
-  /* Pure white se clean light-gray gradient */
   background: linear-gradient(180deg, #FFFFFF 0%, #A0A0AC 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-  white-space: nowrap; }
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
 
-.nav-links { display: flex; align-items: center; gap: 32px; }
-.nav-links > a {
-  font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
-  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+/* HIGHLY PROFESSIONAL RETURN TO HOME BUTTON */
+.btn-return-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: rgba(23, 23, 31, 0.75);
+  border: 1px solid rgba(108, 92, 231, 0.4);
+  color: var(--text-white);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
 }
-.nav-links > a:hover {
+.btn-return-home i {
+  font-size: 0.95rem;
   color: var(--accent-light);
-  transform: translateY(-2px);
+  transition: transform 0.3s ease;
 }
-.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.btn-return-home:hover {
+  background: var(--accent);
+  border-color: var(--accent-light);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.45);
+}
+.btn-return-home:hover i {
+  color: #ffffff;
+  transform: translateX(-2px);
+}
 
 /* Breadcrumb */
 .breadcrumb {
-  padding: 130px 0 10px;
+  padding: 120px 0 10px;
   font-size: 0.85rem;
   color: var(--text-gray);
 }
@@ -105,25 +179,21 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
 
 /* ============ HERO SECTION ============ */
 .legal-hero {
-  padding: 30px 0 30px;
+  padding: 25px 0 25px;
   text-align: center;
   max-width: 920px;
   margin: 0 auto;
 }
 .legal-hero h1 {
-  font-size: clamp(2.2rem, 4.2vw, 3.3rem);
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
   line-height: 1.35;
 }
 
-.legal-hero h1 .hero-white {
-  color: #ffffff;
-}
-.legal-hero h1 .hero-accent {
-  color: var(--accent-light);
-}
+.legal-hero h1 .hero-white { color: #ffffff; }
+.legal-hero h1 .hero-accent { color: var(--accent-light); }
 
 /* ============ TABS NAVIGATION ============ */
 .tabs-wrapper {
@@ -145,19 +215,23 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
   background: transparent;
   border: none;
   color: var(--text-gray);
-  padding: 12px 30px;
+  padding: 12px 28px;
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 .tab-btn:hover { color: #fff; }
+
 .tab-btn.active {
   background: linear-gradient(90deg, var(--accent), #4834d4);
   color: #fff;
   box-shadow: 0 6px 24px rgba(108, 92, 231, 0.45);
+  cursor: default !important;
+  pointer-events: none !important;
 }
 
 /* ============ LEGAL CONTENT CARD ============ */
@@ -261,27 +335,47 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
 }
 .highlight-box p { margin-bottom: 0; color: #fff; font-size: 0.95rem; }
 
-/* ============ FOOTER ============ */
+/* ============ FOOTER & SOCIAL TOOLTIPS ============ */
 .footer { background: rgba(18, 18, 26, 0.7); padding-top: 60px; border-top: 1px solid var(--border-color); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; }
 .footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+
 .social-icons { display: flex; gap: 14px; }
-.social-icons span {
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
-  display: flex; align-items: center; justify-content: center;
-  cursor: default; transition: background 0.3s, transform 0.25s ease;
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default;
+  -webkit-user-select: none; user-select: none;
 }
-.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
+.social-icon-item i { font-size: 1rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item .social-tooltip {
+  position: absolute; bottom: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px); background: #1f1f2b;
+  color: #ffffff; font-size: 0.75rem; font-weight: 600; font-family: var(--font-body);
+  padding: 5px 10px; border-radius: 6px; white-space: nowrap; opacity: 0;
+  visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); z-index: 10;
+}
+.social-icon-item .social-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-width: 5px 5px 0 5px; border-style: solid;
+  border-color: #1f1f2b transparent transparent transparent;
+}
+.social-icon-item:hover .social-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px); }
+
 .footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
 .footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
 .footer-col a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
 
+/* BACK TO TOP BUTTON */
 .back-to-top {
   position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
   background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
   display: none; align-items: center; justify-content: center; z-index: 999;
-  transition: background 0.3s, transform 0.25s ease;
+  transition: background 0.3s, opacity 0.3s, transform 0.25s ease;
 }
 .back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
 .back-to-top.show { display: flex; }
@@ -294,48 +388,52 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
   to { opacity: 1; transform: none; }
 }
 
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .menu-toggle { display: block; }
-  .nav-links.active {
-    display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
-    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px;
-    border-bottom: 1px solid var(--border-color);
+/* ============ MOBILE SPECIFIC OPTIMIZATIONS ============ */
+@media (max-width: 600px) {
+  .btn-return-home span {
+    display: none; /* Hide text on small screens */
   }
-  .legal-card { padding: 28px 20px; }
-  .tab-btn { padding: 10px 18px; font-size: 0.85rem; }
+  .btn-return-home {
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  .logo-img { height: 48px; }
+  .legal-card { padding: 24px 16px; }
+  .tab-btn { padding: 10px 16px; font-size: 0.82rem; }
+}
+
+@media (max-width: 768px) {
   .data-table { display: block; overflow-x: auto; }
-  .footer-grid { grid-template-columns: 1fr; text-align: center; }
-  .social-icons { justify-content: center; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); text-align: center; }
+  .social-icons { justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
 }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <video class="page-bg-video" autoplay muted loop playsinline>
+  <!-- Background Dynamic Dual-Video Preload -->
+  <video class="page-bg-video" id="bgVideoA" autoplay muted loop playsinline preload="auto" poster="theme1-poster.jpg" aria-hidden="true">
     <source src="theme1.mp4" type="video/mp4">
   </video>
+  <video class="page-bg-video" id="bgVideoB" muted playsinline preload="none" aria-hidden="true"></video>
   <div class="page-bg-overlay"></div>
 
+  <!-- CLEAN TOP HEADER WITH RESPONSIVE RETURN HOME BUTTON -->
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="index.html" class="logo">
         <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
-        <span class="logo-text">Global VA's</span>
+        <span class="logo-text">GLOBAL VA's</span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="why-us.html">Why Us</a>
-        <a href="about-us.html">About Us</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="blog.html">Blog</a>
-      </nav>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <!-- RESPONSIVE RETURN TO HOME BUTTON -->
+      <a href="index.html" class="btn-return-home" title="Return to Home">
+        <i class="fa-solid fa-house"></i>
+        <span>Return to Home</span>
+      </a>
     </div>
   </header>
 
@@ -451,16 +549,35 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
       <div class="footer-brand">
         <a href="index.html" class="logo">
           <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
-          <span class="logo-text">Global VA's</span>
+          <span class="logo-text">GLOBAL VA's</span>
         </a>
         <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
-        <div class="social-icons" aria-label="Platforms we work with">
-          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
-          <span title="Google"><i class="fa-brands fa-google"></i></span>
-          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
-          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
-          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
-          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+
+        <div class="social-icons">
+          <div class="social-icon-item">
+            <i class="fa-brands fa-meta"></i>
+            <span class="social-tooltip">Meta</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-google"></i>
+            <span class="social-tooltip">Google</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span class="social-tooltip">LinkedIn</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span class="social-tooltip">X / Twitter</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span class="social-tooltip">TikTok</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-youtube"></i>
+            <span class="social-tooltip">YouTube</span>
+          </div>
         </div>
       </div>
 
@@ -474,7 +591,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
       </div>
 
       <div class="footer-col">
-        <h4>Legal & Policy</h4>
+        <h4>Legal & Policy Terms</h4>
         <a href="javascript:void(0);" onclick="switchTab('privacy', event, true)">Privacy Policy</a>
         <a href="javascript:void(0);" onclick="switchTab('terms', event, true)">Terms of Service</a>
       </div>
@@ -486,43 +603,54 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.3; }
     </div>
   </footer>
 
+  <!-- BACK TO TOP BUTTON -->
   <button id="backToTop" class="back-to-top" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
   <script>
+/* Always Start at the Top on Page Refresh */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 /* Navbar & Back-to-Top Dynamic Scroll */
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
+
+function updateScrollState() {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
   backToTop.classList.toggle('show', window.scrollY > 500);
-});
+}
+window.addEventListener('scroll', updateScrollState, { passive: true });
+updateScrollState();
+
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* Mobile Menu Toggle */
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('active');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
-
-/* Scroll Reveal IntersectionObserver */
+/* Scroll Animations Observer */
 const revealEls = document.querySelectorAll('.fade-up');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      io.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-revealEls.forEach(el => io.observe(el));
+if (!('IntersectionObserver' in window)) {
+  revealEls.forEach(el => el.classList.add('visible'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+}
 
-/* Interactive Tab Switching Logic with Auto-Scroll / Pop-down to Card */
+/* Interactive Tab Switching Logic with Guard Against Double-Click */
 function switchTab(tabId, e, shouldScroll = false) {
   if (e) e.preventDefault();
+
+  const selectedBtn = document.getElementById('tabBtn-' + tabId);
+  if (selectedBtn && selectedBtn.classList.contains('active') && !shouldScroll) {
+    return;
+  }
 
   document.querySelectorAll('.tab-content').forEach(content => {
     content.classList.remove('active');
@@ -532,7 +660,6 @@ function switchTab(tabId, e, shouldScroll = false) {
   });
 
   const selectedContent = document.getElementById(tabId);
-  const selectedBtn = document.getElementById('tabBtn-' + tabId);
 
   if (selectedContent) selectedContent.classList.add('active');
   if (selectedBtn) selectedBtn.classList.add('active');
@@ -541,7 +668,6 @@ function switchTab(tabId, e, shouldScroll = false) {
     history.replaceState(null, null, '#' + tabId);
   }
 
-  // Smooth pop-down / auto-scroll down to the legal card
   if (shouldScroll) {
     const cardTarget = document.getElementById('legalCard');
     if (cardTarget) {
@@ -557,18 +683,124 @@ function switchTab(tabId, e, shouldScroll = false) {
   }
 }
 
-/* Auto-Switch Tab & Scroll on Load Based on URL Hash (#privacy or #terms) */
-function checkHashAndSwitchTab() {
+/* Page Load Initialization */
+function initPageTab() {
+  window.scrollTo(0, 0);
   const hash = window.location.hash.replace('#', '');
   if (hash === 'terms') {
-    switchTab('terms', null, true);
-  } else if (hash === 'privacy') {
-    switchTab('privacy', null, true);
+    switchTab('terms', null, false);
+  } else {
+    switchTab('privacy', null, false);
   }
 }
 
-window.addEventListener('DOMContentLoaded', checkHashAndSwitchTab);
-window.addEventListener('hashchange', checkHashAndSwitchTab);
+window.addEventListener('DOMContentLoaded', initPageTab);
+
+/* Background Video Endless Cross-Fade Loop Engine */
+(function () {
+  const videoA = document.getElementById('bgVideoA');
+  const videoB = document.getElementById('bgVideoB');
+  if (!videoA || !videoB) return;
+
+  const FADE = 1.0;
+  let front = videoA;
+  let back = videoB;
+  let engineOn = false;
+  let crossfading = false;
+  let fadeTimer = null;
+
+  [videoA, videoB].forEach(v => { v.muted = true; v.setAttribute('playsinline', ''); });
+
+  function play(video) {
+    const p = video.play();
+    return (p && typeof p.then === 'function') ? p.then(() => true, () => false) : Promise.resolve(!video.paused);
+  }
+
+  function enableEngine() {
+    if (engineOn) return;
+    if (back.readyState >= 2 && isFinite(front.duration) && front.duration > FADE * 3) {
+      engineOn = true;
+      videoA.loop = false;
+      videoB.loop = false;
+    }
+  }
+
+  function disableEngine() {
+    engineOn = false;
+    crossfading = false;
+    clearTimeout(fadeTimer);
+    videoA.loop = true;
+    videoB.loop = true;
+  }
+
+  function prepareSecondCopy() {
+    if (back.getAttribute('src') || !front.currentSrc) return;
+    back.preload = 'auto';
+    back.src = front.currentSrc;
+    back.load();
+  }
+
+  videoB.addEventListener('loadeddata', enableEngine);
+  videoA.addEventListener('loadedmetadata', enableEngine);
+  videoA.addEventListener('canplaythrough', prepareSecondCopy, { once: true });
+  setTimeout(prepareSecondCopy, 3000);
+
+  function startCrossfade() {
+    crossfading = true;
+    if (back.currentTime > 0.05) back.currentTime = 0;
+    play(back).then(ok => {
+      if (!ok) { disableEngine(); return; }
+      back.style.zIndex = '-2';
+      front.style.zIndex = '-3';
+      void back.offsetWidth;
+      back.style.transition = 'opacity ' + FADE + 's linear';
+      back.style.opacity = '1';
+      fadeTimer = setTimeout(finishCrossfade, FADE * 1000 + 100);
+    });
+  }
+
+  function finishCrossfade() {
+    if (!crossfading) return;
+    clearTimeout(fadeTimer);
+    const old = front;
+    front = back;
+    back = old;
+    old.pause();
+    old.style.transition = 'none';
+    old.style.opacity = '0';
+    old.style.zIndex = '-3';
+    front.style.transition = 'none';
+    front.style.opacity = '1';
+    front.style.zIndex = '-2';
+    try { old.currentTime = 0; } catch (e) {}
+    crossfading = false;
+  }
+
+  function watch() {
+    if (engineOn && !crossfading && !front.paused && isFinite(front.duration)) {
+      const remaining = front.duration - front.currentTime;
+      if (remaining <= FADE + 0.15) {
+        if (back.readyState >= 2) startCrossfade();
+        else front.loop = true;
+      } else if (front.loop && remaining > FADE + 1) {
+        front.loop = false;
+      }
+    }
+    requestAnimationFrame(watch);
+  }
+  requestAnimationFrame(watch);
+
+  play(front);
+  ['touchstart', 'click'].forEach(type => {
+    document.addEventListener(type, () => { if (front.paused) play(front); }, { once: true, passive: true });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) return;
+    if (crossfading) finishCrossfade();
+    if (front.paused) play(front);
+  });
+  window.addEventListener('pageshow', (e) => { if (e.persisted && front.paused) play(front); });
+})();
   </script>
 </body>
 </html>
