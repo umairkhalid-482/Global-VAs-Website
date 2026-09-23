@@ -3,12 +3,16 @@
 <head>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="theme-color" content="#0A0A0F" />
  <title>Global VA's - Digital Growth Partner</title>
  <meta name="description" content="Global VA's -Social Media, Websites, Marketing. Everything you need to scale your brand." />
 
  <!-- Google Fonts -->
+ <link rel="icon" type="image/png" href="logo.png">
+ <link rel="apple-touch-icon" href="logo.png">
  <link rel="preconnect" href="https://fonts.googleapis.com">
- <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
  <!-- Font Awesome Icons -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -42,6 +46,8 @@ html {
  scroll-behavior: smooth;
  overflow-x: hidden;
  width: 100%;
+ -webkit-text-size-adjust: 100%;
+ text-size-adjust: 100%;
 }
 
 body {
@@ -57,9 +63,33 @@ body {
  top: 0;
  left: 0;
  width: 100%;
- height: 100%;
+ height: 100vh;
+ height: 100lvh;
  object-fit: cover;
+ object-position: center center;
  z-index: -2;
+ pointer-events: none;
+}
+/* Second copy waits invisibly underneath and fades in just before the first one ends */
+#bgVideoB {
+ opacity: 0;
+ z-index: -3;
+ will-change: opacity;
+}
+/* Portrait screens (phones, tablets held upright): show the whole wave centred instead of a
+   zoomed-in slice, and soften the top and bottom edges so no box is visible */
+@media (max-aspect-ratio: 1/1) {
+ .page-bg-video {
+ top: 50vh;
+ top: 50lvh;
+ left: 50%;
+ width: 150%;
+ height: auto;
+ aspect-ratio: 748 / 418;
+ transform: translate(-50%, -50%);
+ -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+ mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+ }
 }
 
 .page-bg-overlay {
@@ -67,7 +97,8 @@ body {
  top: 0;
  left: 0;
  width: 100%;
- height: 100%;
+ height: 100vh;
+ height: 100lvh;
  background: rgba(10, 10, 15, 0.65);
  z-index: -1;
 }
@@ -160,6 +191,7 @@ h1, h2, h3, h4 {
 
 .navbar.scrolled {
  background: rgba(10, 10, 15, 0.95);
+ -webkit-backdrop-filter: blur(10px);
  backdrop-filter: blur(10px);
  padding: 8px 0;
  border-bottom: 1px solid var(--border-color);
@@ -193,14 +225,16 @@ h1, h2, h3, h4 {
  object-fit: contain;
 }
 .logo-text {
- font-family: var(--font-heading);
-  font-size: 1.35rem;
+ /* Same classic serif capitals as the lettering inside the logo image */
+ font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 4.6vw, 1.3rem);
   font-weight: 700;
   /* Pure white se clean light-gray gradient */
   background: linear-gradient(180deg, #FFFFFF 0%, #A0A0AC 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
@@ -247,7 +281,7 @@ h1, h2, h3, h4 {
  margin-left: 5px;
  transition: transform 0.3s ease;
 }
-.nav-item:hover .dropdown-arrow {
+.nav-item.open .dropdown-arrow {
  transform: rotate(180deg);
 }
 .dropdown-menu {
@@ -267,11 +301,22 @@ h1, h2, h3, h4 {
  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
  z-index: 100;
 }
-.nav-item:hover .dropdown-menu {
+.nav-item.open .dropdown-menu {
  opacity: 1;
  visibility: visible;
  pointer-events: auto;
  transform: translateX(-50%) translateY(0);
+}
+@media (hover: hover) and (pointer: fine) {
+ .nav-item:hover .dropdown-arrow {
+ transform: rotate(180deg);
+ }
+ .nav-item:hover .dropdown-menu {
+ opacity: 1;
+ visibility: visible;
+ pointer-events: auto;
+ transform: translateX(-50%) translateY(0);
+ }
 }
 .dropdown-menu a {
  display: flex !important;
@@ -305,17 +350,22 @@ h1, h2, h3, h4 {
 
 .menu-toggle {
  display: none;
+ min-width: 44px;
+ min-height: 44px;
  background: none;
  border: none;
  color: #fff;
  font-size: 1.4rem;
  cursor: pointer;
+ -webkit-tap-highlight-color: transparent;
+ touch-action: manipulation;
 }
 
 /* ============ HERO SECTION ============ */
 .hero {
  position: relative;
- height: 100vh;
+ min-height: 100vh;
+ min-height: 100svh;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -431,23 +481,39 @@ section {
  margin: 30px auto 0;
  position: relative;
  min-height: 260px;
+ display: grid;
+ grid-template-columns: minmax(0, 1fr);
+ touch-action: pan-y pinch-zoom;
+}
+.testimonial-slider-wrapper:focus-visible {
+ outline: 2px solid var(--accent-light);
+ outline-offset: 6px;
+ border-radius: 16px;
 }
 .testimonial-card {
+ grid-area: 1 / 1;
  background: var(--bg-card);
  border: 1px solid var(--border-color);
  border-radius: 16px;
  padding: 36px;
  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
- display: none;
+ display: flex;
  flex-direction: column;
  align-items: center;
+ justify-content: center;
  text-align: center;
- transition: all 0.4s ease;
+ visibility: hidden;
+ opacity: 0;
+ pointer-events: none;
 }
 .testimonial-card.active {
- display: flex;
+ visibility: visible;
+ opacity: 1;
+ pointer-events: auto;
  animation: fadeIn 0.5s ease-in-out;
 }
+.testimonial-card.active.enter-next { animation: slideInNext 0.45s ease; }
+.testimonial-card.active.enter-prev { animation: slideInPrev 0.45s ease; }
 .stars { color: #FFB800; margin-bottom: 16px; font-size: 1rem; }
 .testimonial-card p {
  color: var(--text-white);
@@ -484,23 +550,85 @@ section {
 .client-details h4 { font-size: 1rem; color: #fff; margin-bottom: 2px; }
 .client-details span { color: var(--text-gray); font-size: 0.85rem; }
 
+.slider-controls {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 18px;
+ margin-top: 24px;
+}
+.slider-arrow {
+ width: 44px;
+ height: 44px;
+ flex-shrink: 0;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 50%;
+ border: 1px solid var(--border-color);
+ background: var(--bg-card);
+ color: #fff;
+ font-size: 0.95rem;
+ cursor: pointer;
+ transition: background 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+ -webkit-tap-highlight-color: transparent;
+ touch-action: manipulation;
+}
+.slider-arrow:active { transform: scale(0.93); }
+.slider-arrow:focus-visible,
+.dot:focus-visible {
+ outline: 2px solid var(--accent-light);
+ outline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+ .slider-arrow:hover {
+ background: var(--accent);
+ border-color: var(--accent);
+ }
+}
 .slider-dots {
  display: flex;
  justify-content: center;
  gap: 8px;
- margin-top: 24px;
 }
 .dot {
+ position: relative;
  width: 10px;
  height: 10px;
+ padding: 0;
+ border: none;
  border-radius: 50%;
  background: rgba(255,255,255,0.2);
  cursor: pointer;
  transition: all 0.3s ease;
+ -webkit-tap-highlight-color: transparent;
+ touch-action: manipulation;
+}
+.dot::after {
+ content: '';
+ position: absolute;
+ top: -8px;
+ right: -4px;
+ bottom: -8px;
+ left: -4px;
 }
 .dot.active, .dot:hover {
  background: var(--accent);
  transform: scale(1.3);
+}
+
+@keyframes slideInNext {
+ from { opacity: 0; transform: translateX(28px); }
+ to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInPrev {
+ from { opacity: 0; transform: translateX(-28px); }
+ to { opacity: 1; transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .testimonial-card.active,
+ .testimonial-card.active.enter-next,
+ .testimonial-card.active.enter-prev { animation: none; }
 }
 
 @keyframes fadeIn {
@@ -611,6 +739,7 @@ section {
  background: var(--bg-card);
  transition: background 0.3s ease, transform 0.25s ease;
  cursor: default;
+ -webkit-user-select: none;
  user-select: none;
 }
 
@@ -802,6 +931,7 @@ section {
  .nav-links.active {
  display: flex;
  flex-direction: column;
+ align-items: flex-start;
  position: absolute;
  top: 100%;
  left: 0;
@@ -810,11 +940,51 @@ section {
  padding: 20px;
  gap: 16px;
  border-bottom: 1px solid var(--border-color);
+ max-height: calc(100vh - 100px);
+ max-height: calc(100svh - 100px);
+ overflow-y: auto;
+ -webkit-overflow-scrolling: touch;
  }
 
+ .nav-links.active > a {
+ display: block;
+ width: 100%;
+ padding: 8px 0;
+ }
+ .nav-item { width: 100%; }
+ .nav-item::after { display: none; }
+ .services-toggle {
+ display: flex;
+ align-items: center;
+ width: 100%;
+ padding: 8px 0;
+ cursor: pointer;
+ }
+
+ .dropdown-menu {
+ position: static;
+ min-width: 0;
+ width: 100%;
+ opacity: 1;
+ visibility: visible;
+ pointer-events: auto;
+ display: none;
+ margin-top: 8px;
+ box-shadow: none;
+ }
+ .nav-item .dropdown-menu,
+ .nav-item:hover .dropdown-menu,
+ .nav-item.open .dropdown-menu { transform: none; }
+ .nav-item.open .dropdown-menu { display: block; }
+ .dropdown-menu a { white-space: normal; }
+
  .hero-title { font-size: 2.1rem; }
- .footer-grid { grid-template-columns: 1fr; text-align: center; }
- .social-icons { justify-content: center; }
+ .testimonial-card { padding: 28px 20px; }
+ .testimonial-card p { font-size: 1rem; }
+ .slider-controls { gap: 14px; }
+ .footer-grid { grid-template-columns: minmax(0, 1fr); text-align: center; }
+ .social-icons { justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+ .footer-hours-title { margin-top: 52px; }
  .section-title { font-size: 1.8rem; }
 }
 
@@ -822,10 +992,11 @@ section {
 </head>
 <body>
 
- <!-- Full-page background video - non-stop loop -->
- <video class="page-bg-video" autoplay muted loop playsinline>
+ <!-- Full-page background video - endless loop. Two copies cross-fade into each other so the restart is never visible -->
+ <video class="page-bg-video" id="bgVideoA" autoplay muted loop playsinline preload="auto" poster="theme1-poster.jpg" aria-hidden="true">
  <source src="theme1.mp4" type="video/mp4">
  </video>
+ <video class="page-bg-video" id="bgVideoB" muted playsinline preload="none" aria-hidden="true"></video>
  <div class="page-bg-overlay"></div>
 
  <!-- ===================== NAVBAR ===================== -->
@@ -834,12 +1005,12 @@ section {
 
  <a href="index.html" class="logo">
  <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
- <span class="logo-text">Global VA's</span>
+ <span class="logo-text">GLOBAL VA's</span>
  </a>
 
  <nav class="nav-links" id="navLinks">
- <div class="nav-item has-dropdown">
- <a href="javascript:void(0);" onclick="return false;" class="services-toggle">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+ <div class="nav-item has-dropdown" id="servicesNav">
+ <a href="javascript:void(0);" class="services-toggle" id="servicesToggle" aria-haspopup="true" aria-expanded="false">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
  <div class="dropdown-menu">
  <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
  <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
@@ -854,7 +1025,7 @@ section {
  <a href="about-us.html">About Us</a>
  </nav>
 
- <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+ <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
  <i class="fa-solid fa-bars"></i>
  </button>
  </div>
@@ -892,7 +1063,7 @@ section {
  <span class="section-label">Testimonials</span>
  <h2 class="section-title">What Enterprise Leaders Say About Us</h2>
 
- <div class="testimonial-slider-wrapper">
+ <div class="testimonial-slider-wrapper" id="testimonialSlider" role="region" aria-roledescription="carousel" aria-label="Client testimonials" aria-live="polite" tabindex="0">
    <!-- Testimonial 1 -->
    <div class="testimonial-card active">
      <div class="stars">★★★★★</div>
@@ -992,15 +1163,19 @@ section {
    </div>
  </div>
 
- <!-- Navigation Dots -->
- <div class="slider-dots">
-   <span class="dot active" onclick="setSlide(0)"></span>
-   <span class="dot" onclick="setSlide(1)"></span>
-   <span class="dot" onclick="setSlide(2)"></span>
-   <span class="dot" onclick="setSlide(3)"></span>
-   <span class="dot" onclick="setSlide(4)"></span>
-   <span class="dot" onclick="setSlide(5)"></span>
-   <span class="dot" onclick="setSlide(6)"></span>
+ <!-- Slider controls: previous arrow, dots, next arrow -->
+ <div class="slider-controls">
+   <button type="button" class="slider-arrow" id="testimonialPrev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+   <div class="slider-dots">
+     <button type="button" class="dot active" aria-label="Show testimonial 1"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 2"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 3"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 4"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 5"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 6"></button>
+     <button type="button" class="dot" aria-label="Show testimonial 7"></button>
+   </div>
+   <button type="button" class="slider-arrow" id="testimonialNext" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
  </div>
  </div>
  </section>
@@ -1055,7 +1230,6 @@ section {
  <!-- ===================== CTA BANNER ===================== -->
  <section class="cta-banner" id="contact">
  <div class="container cta-content">
- <span class="section-label light">Ready to Grow?</span>
  <h2>Ready to Grow Your Business?</h2>
  <p>Book a free strategy call and see how Global VA's can transform your brand.</p>
  <div class="hero-buttons">
@@ -1073,7 +1247,7 @@ section {
  <div class="footer-brand">
  <a href="index.html" class="logo footer-logo">
  <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
- <span class="logo-text">Global VA's</span>
+ <span class="logo-text">GLOBAL VA's</span>
  </a>
  <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
 
@@ -1162,34 +1336,65 @@ section {
 
 // ---------- 1. NAVBAR: Background change on scroll ----------
 const navbar = document.getElementById('navbar');
+const backToTop = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
- if (window.scrollY > 50) {
- navbar.classList.add('scrolled');
- } else {
- navbar.classList.remove('scrolled');
- }
+function updateScrollState() {
+ navbar.classList.toggle('scrolled', window.scrollY > 50);
+ backToTop.classList.toggle('show', window.scrollY > 500);
+}
 
- const backToTop = document.getElementById('backToTop');
- if (window.scrollY > 500) {
- backToTop.classList.add('show');
- } else {
- backToTop.classList.remove('show');
- }
-});
+window.addEventListener('scroll', updateScrollState, { passive: true });
+updateScrollState();
 
-// ---------- 2. MOBILE MENU TOGGLE ----------
+// ---------- 2. MOBILE MENU + SERVICES DROPDOWN ----------
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
+const servicesNav = document.getElementById('servicesNav');
+const servicesToggle = document.getElementById('servicesToggle');
+const hasMouseHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+function closeServices() {
+ servicesNav.classList.remove('open');
+ servicesToggle.setAttribute('aria-expanded', 'false');
+}
+
+function closeMenu() {
+ navLinks.classList.remove('active');
+ menuToggle.setAttribute('aria-expanded', 'false');
+ closeServices();
+}
 
 menuToggle.addEventListener('click', () => {
- navLinks.classList.toggle('active');
+ const isOpen = navLinks.classList.toggle('active');
+ menuToggle.setAttribute('aria-expanded', String(isOpen));
+ if (!isOpen) closeServices();
 });
 
+servicesToggle.addEventListener('click', (e) => {
+ e.preventDefault();
+ // Desktop with a mouse uses the hover dropdown; touch, small screens and keyboard use click
+ if (hasMouseHover.matches && window.innerWidth > 768 && e.detail !== 0) return;
+ const isOpen = servicesNav.classList.toggle('open');
+ servicesToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+// Every real page link closes the mobile menu (the Services toggle does not)
 navLinks.querySelectorAll('a').forEach(link => {
- link.addEventListener('click', () => {
- navLinks.classList.remove('active');
- });
+ if (link === servicesToggle) return;
+ link.addEventListener('click', closeMenu);
+});
+
+// Tap outside or press Escape to close
+document.addEventListener('click', (e) => {
+ if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) closeMenu();
+});
+document.addEventListener('keydown', (e) => {
+ if (e.key === 'Escape') closeMenu();
+});
+
+// Reset menu state when the screen grows to desktop size (rotation, window resize)
+window.addEventListener('resize', () => {
+ if (window.innerWidth > 768) closeMenu();
 });
 
 // ---------- 3. FAQ ACCORDION ----------
@@ -1198,6 +1403,7 @@ const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
  const question = item.querySelector('.faq-question');
  const answer = item.querySelector('.faq-answer');
+ question.setAttribute('aria-expanded', 'false');
 
  question.addEventListener('click', () => {
  const isActive = item.classList.contains('active');
@@ -1205,10 +1411,22 @@ faqItems.forEach(item => {
  faqItems.forEach(otherItem => {
  otherItem.classList.remove('active');
  otherItem.querySelector('.faq-answer').style.maxHeight = null;
+ otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
  });
 
  if (!isActive) {
  item.classList.add('active');
+ answer.style.maxHeight = answer.scrollHeight + 'px';
+ question.setAttribute('aria-expanded', 'true');
+ }
+ });
+});
+
+// Keep the open answer the right height after rotation or resize
+window.addEventListener('resize', () => {
+ faqItems.forEach(item => {
+ if (item.classList.contains('active')) {
+ const answer = item.querySelector('.faq-answer');
  answer.style.maxHeight = answer.scrollHeight + 'px';
  }
  });
@@ -1221,32 +1439,80 @@ backToTopBtn.addEventListener('click', () => {
  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ---------- 5. TESTIMONIALS SLIDER AUTOMATION ----------
-let currentSlideIndex = 0;
+// ---------- 5. TESTIMONIALS SLIDER (manual: arrows, dots, swipe, keyboard) ----------
+const testimonialSlider = document.getElementById('testimonialSlider');
 const slides = document.querySelectorAll('.testimonial-card');
-const dots = document.querySelectorAll('.dot');
+const dots = document.querySelectorAll('.slider-dots .dot');
+const prevBtn = document.getElementById('testimonialPrev');
+const nextBtn = document.getElementById('testimonialNext');
+let currentSlideIndex = 0;
 
-function showSlide(index) {
+function showSlide(index, direction) {
  if (!slides.length) return;
+ const total = slides.length;
+ index = ((index % total) + total) % total;
+
  slides.forEach((slide, i) => {
- slide.classList.remove('active');
- if (dots[i]) dots[i].classList.remove('active');
+ slide.classList.remove('active', 'enter-next', 'enter-prev');
+ if (dots[i]) {
+ dots[i].classList.remove('active');
+ dots[i].removeAttribute('aria-current');
+ }
  });
+
  slides[index].classList.add('active');
- if (dots[index]) dots[index].classList.add('active');
+ if (direction) slides[index].classList.add('enter-' + direction);
+ if (dots[index]) {
+ dots[index].classList.add('active');
+ dots[index].setAttribute('aria-current', 'true');
+ }
  currentSlideIndex = index;
 }
 
-function setSlide(index) {
- showSlide(index);
-}
+function nextSlide() { showSlide(currentSlideIndex + 1, 'next'); }
+function prevSlide() { showSlide(currentSlideIndex - 1, 'prev'); }
 
-setInterval(() => {
- if (slides.length > 0) {
- currentSlideIndex = (currentSlideIndex + 1) % slides.length;
- showSlide(currentSlideIndex);
+if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+dots.forEach((dot, i) => {
+ dot.addEventListener('click', () => {
+ if (i !== currentSlideIndex) showSlide(i, i > currentSlideIndex ? 'next' : 'prev');
+ });
+});
+
+if (testimonialSlider) {
+ // Swipe left / right on touch screens (vertical scrolling stays normal)
+ let touchStartX = 0;
+ let touchStartY = 0;
+ let touchTracking = false;
+
+ testimonialSlider.addEventListener('touchstart', (e) => {
+ if (e.touches.length !== 1) { touchTracking = false; return; }
+ touchStartX = e.touches[0].clientX;
+ touchStartY = e.touches[0].clientY;
+ touchTracking = true;
+ }, { passive: true });
+
+ testimonialSlider.addEventListener('touchend', (e) => {
+ if (!touchTracking) return;
+ touchTracking = false;
+ const touch = e.changedTouches[0];
+ const dx = touch.clientX - touchStartX;
+ const dy = touch.clientY - touchStartY;
+ if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+ if (dx < 0) nextSlide(); else prevSlide();
  }
-}, 5000);
+ }, { passive: true });
+
+ testimonialSlider.addEventListener('touchcancel', () => { touchTracking = false; }, { passive: true });
+
+ // Left / right arrow keys when the slider is focused
+ testimonialSlider.addEventListener('keydown', (e) => {
+ if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+ if (e.key === 'ArrowRight') { e.preventDefault(); nextSlide(); }
+ });
+}
 
 // ---------- 6. SCROLL REVEAL ANIMATIONS ----------
 const animatedSelectors = [
@@ -1258,7 +1524,12 @@ const animatedElements = document.querySelectorAll(animatedSelectors.join(','));
 
 animatedElements.forEach(el => el.classList.add('fade-up'));
 
-const observer = new IntersectionObserver((entries) => {
+// Very old browsers without IntersectionObserver: show everything instead of leaving it hidden
+if (!('IntersectionObserver' in window)) {
+ animatedElements.forEach(el => el.classList.add('visible'));
+}
+
+const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
  entries.forEach(entry => {
  if (entry.isIntersecting) {
  entry.target.classList.add('visible');
@@ -1267,9 +1538,9 @@ const observer = new IntersectionObserver((entries) => {
  });
 }, {
  threshold: 0.15
-});
+}) : null;
 
-animatedElements.forEach(el => observer.observe(el));
+if (observer) animatedElements.forEach(el => observer.observe(el));
 
 // ---------- 7. SMOOTH SCROLL FOR NAV LINKS ----------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1284,6 +1555,117 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
  }
  });
 });
+
+ // ---------- 8. BACKGROUND VIDEO: endless loop with no visible restart ----------
+// Two copies of the same video take turns. A moment before the visible copy ends, the second
+// copy starts from the beginning and fades in on top of it, so the loop point is never seen.
+// If anything goes wrong the browser's normal loop keeps the video running.
+(function () {
+ const videoA = document.getElementById('bgVideoA');
+ const videoB = document.getElementById('bgVideoB');
+ if (!videoA || !videoB) return;
+
+ const FADE = 1.0;          // seconds of cross-fade
+ let front = videoA;        // visible, playing copy
+ let back = videoB;         // copy waiting at the first frame
+ let engineOn = false;
+ let crossfading = false;
+ let fadeTimer = null;
+
+ [videoA, videoB].forEach(v => { v.muted = true; v.setAttribute('playsinline', ''); });
+
+ function play(video) {
+ const p = video.play();
+ return (p && typeof p.then === 'function') ? p.then(() => true, () => false) : Promise.resolve(!video.paused);
+ }
+
+ function enableEngine() {
+ if (engineOn) return;
+ if (back.readyState >= 2 && isFinite(front.duration) && front.duration > FADE * 3) {
+ engineOn = true;
+ videoA.loop = false;
+ videoB.loop = false;
+ }
+ }
+
+ function disableEngine() {
+ engineOn = false;
+ crossfading = false;
+ clearTimeout(fadeTimer);
+ videoA.loop = true;
+ videoB.loop = true;
+ }
+
+ // Load the second copy from the same file once the first one has its data
+ function prepareSecondCopy() {
+ if (back.getAttribute('src') || !front.currentSrc) return;
+ back.preload = 'auto';
+ back.src = front.currentSrc;
+ back.load();
+ }
+
+ videoB.addEventListener('loadeddata', enableEngine);
+ videoA.addEventListener('loadedmetadata', enableEngine);
+ videoA.addEventListener('canplaythrough', prepareSecondCopy, { once: true });
+ setTimeout(prepareSecondCopy, 3000);
+
+ function startCrossfade() {
+ crossfading = true;
+ if (back.currentTime > 0.05) back.currentTime = 0;
+ play(back).then(ok => {
+ if (!ok) { disableEngine(); return; }   // e.g. Low Power Mode: keep the normal loop
+ back.style.zIndex = '-2';
+ front.style.zIndex = '-3';
+ void back.offsetWidth;
+ back.style.transition = 'opacity ' + FADE + 's linear';
+ back.style.opacity = '1';
+ fadeTimer = setTimeout(finishCrossfade, FADE * 1000 + 100);
+ });
+ }
+
+ function finishCrossfade() {
+ if (!crossfading) return;
+ clearTimeout(fadeTimer);
+ const old = front;
+ front = back;
+ back = old;
+ old.pause();
+ old.style.transition = 'none';
+ old.style.opacity = '0';
+ old.style.zIndex = '-3';
+ front.style.transition = 'none';
+ front.style.opacity = '1';
+ front.style.zIndex = '-2';
+ try { old.currentTime = 0; } catch (e) { /* not seekable yet */ }
+ crossfading = false;
+ }
+
+ function watch() {
+ if (engineOn && !crossfading && !front.paused && isFinite(front.duration)) {
+ const remaining = front.duration - front.currentTime;
+ if (remaining <= FADE + 0.15) {
+ if (back.readyState >= 2) startCrossfade();
+ else front.loop = true;                         // second copy not ready: normal loop this round
+ } else if (front.loop && remaining > FADE + 1) {
+ front.loop = false;
+ }
+ }
+ requestAnimationFrame(watch);
+ }
+ requestAnimationFrame(watch);
+
+ // Make sure the video plays on iPhone and Android
+ play(front);
+ ['touchstart', 'click'].forEach(type => {
+ document.addEventListener(type, () => { if (front.paused) play(front); }, { once: true, passive: true });
+ });
+ document.addEventListener('visibilitychange', () => {
+ if (document.hidden) return;
+ if (crossfading) finishCrossfade();
+ if (front.paused) play(front);
+ });
+ window.addEventListener('pageshow', (e) => { if (e.persisted && front.paused) play(front); });
+})();
 
  </script>
 </body>
