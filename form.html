@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="theme-color" content="#0A0A0F" />
   <title>Contact | Global VA's</title>
-  <meta name="description" content="Contact Global VA's for SEO & GEO, Performance Marketing, Social Media Management, Web Design & Development, and Branding & Identity. Every enquiry is reviewed by a team member and answered with a clear next step." />
+  <meta name="description" content="Contact Global VA's for SEO & GEO, Performance Marketing, Social Media Management, Web Design & Development, and Branding & Identity." />
 
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -30,12 +34,22 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg-dark);
   color: var(--text-white);
   overflow-x: hidden;
+  line-height: 1.65;
+  width: 100%;
 }
 
 .skip-link {
@@ -45,64 +59,79 @@ body {
 }
 .skip-link:focus { left: 16px; }
 
+/* Dynamic Background Video */
 .page-bg-video {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: -2;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh;
+  object-fit: cover; object-position: center center; z-index: -2; pointer-events: none;
 }
+
+@media (max-aspect-ratio: 1/1) {
+  .page-bg-video {
+    top: 50vh; top: 50lvh; left: 50%; width: 150%; height: auto; aspect-ratio: 748 / 418;
+    transform: translate(-50%, -50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  }
+}
+
 .page-bg-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background:
     radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
     radial-gradient(700px 460px at 90% 60%, rgba(79, 209, 232, 0.09), transparent 50%),
-    rgba(10, 10, 15, 0.65);
+    rgba(10, 10, 15, 0.66);
   z-index: -1;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container { 
+  width: 100%; max-width: 1240px; margin: 0 auto; 
+  padding-left: clamp(20px, 4vw, 40px) !important;
+  padding-right: clamp(20px, 4vw, 40px) !important;
+}
+
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
-h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; word-break: break-word; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 28px; border-radius: 8px; font-weight: 600;
   font-size: 0.95rem; transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer; border: none;
+  cursor: pointer; border: none; max-width: 100%;
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover:not(:disabled) { background: var(--accent-light); transform: translateY(-2px); }
 .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
 
-/* ============ NAVBAR (80PX LOGO STRICT HEIGHT FIX) ============ */
+/* NAVBAR */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-  padding: 6px 0; background: rgba(10,10,15,0.75); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0; background: transparent;
   transition: background 0.3s ease, padding 0.3s ease;
 }
-.navbar.scrolled { background: rgba(10, 10, 15, 0.92); padding: 4px 0; }
+.navbar.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  padding: 8px 0; border-bottom: 1px solid var(--border-color);
+}
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
 .logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
 .logo:hover { transform: translateY(-2px); }
-.footer-logo { cursor: default; }
-.footer-logo:hover { transform: none; }
 
-/* Fixed Strictly to 80px */
-.logo-img { height: 80px; width: auto; object-fit: contain; }
-.logo-text { font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 700;
-  /* Pure white se clean light-gray gradient */
+.logo-img { height: clamp(50px, 8vw, 80px); width: auto; object-fit: contain; }
+.logo-text {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 4.6vw, 1.3rem); font-weight: 700;
   background: linear-gradient(180deg, #FFFFFF 0%, #A0A0AC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-  white-space: nowrap; }
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 0.04em; white-space: nowrap;
+}
 
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links > a, .services-toggle {
   font-size: 0.95rem; font-weight: 500; color: var(--text-gray);
-  transition: color 0.3s, transform 0.25s ease; display: inline-block;
+  transition: color 0.3s, transform 0.25s ease; display: inline-flex; align-items: center; gap: 6px;
+  cursor: pointer; background: none; border: none; font-family: inherit; padding: 6px 0;
 }
 .nav-links > a:hover, .services-toggle:hover {
   background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%);
@@ -112,597 +141,314 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
 .nav-item { position: relative; }
 .nav-item::after {
   content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-  width: 100%; min-width: 280px; height: 20px; z-index: 99;
+  width: 120%; height: 20px; z-index: 99;
 }
-.services-toggle { cursor: pointer; }
-.dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
-.nav-item:hover .dropdown-arrow, .nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+
+.dropdown-arrow { font-size: 0.75rem; transition: transform 0.3s ease; }
+.nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+
 .dropdown-menu {
-  position: absolute; top: calc(100% + 18px); left: 50%;
-  transform: translateX(-50%) translateY(10px); min-width: 280px;
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%) translateY(10px); min-width: 270px;
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
-  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
 }
-.nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu {
+.nav-item.open .dropdown-menu {
   opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
 }
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+  .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+}
 .dropdown-menu a {
-  display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
+  display: flex !important; align-items: center; gap: 12px; padding: 11px 14px;
   border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
-.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
-.dropdown-menu a:hover {
-  background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px);
-}
-.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.88rem; }
+.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); }
+.menu-toggle { display: none; min-width: 44px; min-height: 44px; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
 
-.breadcrumb {
-  padding: 110px 0 10px;
-  font-size: 0.82rem;
-  color: var(--text-gray);
-}
+/* BREADCRUMB & HERO */
+.breadcrumb { padding: 130px 0 10px; font-size: 0.85rem; color: var(--text-gray); }
 .breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
 .breadcrumb a:hover { color: var(--accent-light); }
 .breadcrumb .sep { margin: 0 8px; opacity: 0.4; }
 .breadcrumb .current { color: var(--accent-light); }
 
-/* ============ CONTACT HERO / INTRO ============ */
-.contact-hero {
-  padding: 28px 0 30px;
-  max-width: 720px;
-}
+.contact-hero { padding: 20px 0 30px; max-width: 760px; }
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 14px; border: 1px solid rgba(108, 92, 231, 0.45); border-radius: 30px;
-  font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+  border: 1px solid rgba(108, 92, 231, 0.45); border-radius: 30px;
+  font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase;
   color: var(--accent-light); margin-bottom: 20px;
 }
 .eyebrow .live-dot {
   width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan);
-  animation: livePulse 1.8s ease-out infinite;
+  box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.7); animation: livePulse 1.8s ease-out infinite;
 }
-.contact-hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 18px;
-}
+.contact-hero h1 { font-size: clamp(1.8rem, 3.8vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 18px; line-height: 1.18; }
 .contact-hero h1 .accent-word { color: var(--accent-light); }
-.contact-hero p {
-  color: var(--text-gray);
-  font-size: 1.06rem;
-  line-height: 1.75;
-}
+.contact-hero p { color: var(--text-gray); font-size: clamp(0.92rem, 1.5vw, 1.04rem); line-height: 1.75; }
 
-/* ============ CONTACT LAYOUT ============ */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 56px;
-  padding: 30px 0 100px;
-  align-items: start;
-}
-
+/* LAYOUT */
+.contact-wrap { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; padding: 20px 0 80px; align-items: start; }
 .trust-list { margin-top: 8px; }
-.trust-item {
-  display: flex;
-  gap: 16px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border-color);
-}
+.trust-item { display: flex; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--border-color); }
 .trust-item:first-child { padding-top: 0; }
 .trust-icon {
-  flex-shrink: 0;
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: rgba(108, 92, 231, 0.15);
-  color: var(--accent-light);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(108, 92, 231, 0.15); color: var(--accent-light);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
 }
 .trust-item h3 { font-size: 1.02rem; margin-bottom: 6px; }
 .trust-item p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.65; }
 
-.direct-contact {
-  margin-top: 32px;
-  padding: 22px 22px;
-  border-radius: 14px;
-  background: rgba(23, 23, 31, 0.6);
-  border: 1px solid var(--border-color);
-}
-.direct-contact p.label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent-light);
-  margin-bottom: 12px;
-}
-.direct-contact a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--text-gray);
-  font-size: 0.92rem;
-  padding: 6px 0;
-  transition: color 0.2s ease;
-}
+.direct-contact { margin-top: 32px; padding: 22px; border-radius: 14px; background: rgba(23, 23, 31, 0.6); border: 1px solid var(--border-color); }
+.direct-contact p.label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-light); margin-bottom: 12px; }
+.direct-contact a { display: flex; align-items: center; gap: 10px; color: var(--text-gray); font-size: 0.92rem; padding: 6px 0; transition: color 0.2s ease; }
 .direct-contact a:hover { color: #fff; }
 .direct-contact a i { color: var(--accent-light); width: 16px; }
 
-/* ============ FORM CARD ============ */
+/* FORM CARD & FLOATING INPUTS */
 .form-card {
-  position: relative;
-  background: rgba(20, 20, 28, 0.85);
-  border: 1px solid var(--border-color);
-  border-radius: 22px;
-  padding: 40px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-  overflow: hidden;
+  position: relative; background: rgba(20, 20, 28, 0.85);
+  border: 1px solid var(--border-color); border-radius: 22px;
+  padding: clamp(22px, 4vw, 40px); box-shadow: 0 30px 80px rgba(0,0,0,0.45); z-index: 10;
 }
-.form-card::before {
-  content: '';
-  position: absolute; top: -80px; right: -80px;
-  width: 260px; height: 260px;
-  background: radial-gradient(circle, rgba(108,92,231,0.28), transparent 70%);
-  pointer-events: none;
-}
-.form-card::after {
-  content: '';
-  position: absolute; bottom: -100px; left: -60px;
-  width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(79,209,232,0.15), transparent 70%);
-  pointer-events: none;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px 18px;
-  position: relative;
-  z-index: 1;
-}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; position: relative; z-index: 1; }
 .form-grid .full { grid-column: 1 / -1; }
 
-.field {
-  position: relative;
-}
+.field { position: relative; }
 .field-icon {
-  position: absolute;
-  left: 16px;
-  top: 17px;
-  color: var(--text-gray);
-  font-size: 0.95rem;
-  transition: color 0.25s ease;
-  pointer-events: none;
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  color: var(--text-gray); font-size: 0.95rem; transition: color 0.25s ease; pointer-events: none; z-index: 2;
 }
-.field input,
-.field textarea {
-  width: 100%;
-  background: rgba(10, 10, 15, 0.6);
-  border: 1.5px solid var(--border-color);
-  border-radius: 10px;
-  padding: 18px 16px 8px 44px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: #fff;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+.field input, .field textarea {
+  width: 100%; background: rgba(10, 10, 15, 0.6);
+  border: 1.5px solid var(--border-color); border-radius: 12px;
+  padding: 16px 16px 16px 46px; font-family: var(--font-body);
+  font-size: 0.95rem; color: #fff; transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.field textarea {
-  padding-top: 22px;
-  min-height: 120px;
-  resize: vertical;
-}
-.field input:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--accent);
+.field textarea { padding-top: 16px; min-height: 130px; resize: vertical; }
+
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15);
 }
-.field input:focus + .field-icon,
-.field textarea:focus ~ .field-icon {
-  color: var(--accent-light);
-}
+.field:focus-within .field-icon { color: var(--accent-light); }
+
 .field label {
-  position: absolute;
-  left: 44px;
-  top: 17px;
-  font-size: 0.95rem;
-  color: var(--text-gray);
-  pointer-events: none;
-  transform-origin: left top;
-  transition: transform 0.2s ease, color 0.2s ease, top 0.2s ease;
+  position: absolute; left: 46px; top: 50%; transform: translateY(-50%);
+  font-size: 0.92rem; color: var(--text-gray); pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); background: transparent; padding: 0 4px;
 }
-.field textarea ~ label { top: 20px; }
+
+.field textarea ~ label {
+  top: 28px !important;
+  transform: none !important;
+  line-height: 1.2;
+}
+
+.field:has(textarea) .field-icon {
+  top: 28px !important;
+  transform: none !important;
+  line-height: 1.2;
+}
+
 .field input:focus ~ label,
 .field input:not(:placeholder-shown) ~ label,
+.field input:-webkit-autofill ~ label,
+.field input:autofill ~ label,
 .field textarea:focus ~ label,
 .field textarea:not(:placeholder-shown) ~ label {
-  transform: translateY(-11px) scale(0.78);
-  color: var(--accent-light);
+  top: 0 !important; transform: translateY(-50%) scale(0.82) !important;
+  color: var(--accent-light); background: #15151e; border-radius: 4px; font-weight: 600;
 }
-.field input::placeholder,
-.field textarea::placeholder { color: transparent; }
+.field input::placeholder, .field textarea::placeholder { color: transparent; }
 
-.field.error input,
-.field.error textarea { border-color: var(--error); }
-.field.error label { color: var(--error); }
+.field.error input, .field.error textarea { border-color: var(--error); }
 .field-error-msg {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  color: var(--error);
-  font-size: 0.78rem;
-  margin-top: 6px;
-  padding-left: 4px;
+  display: none; align-items: center; gap: 6px;
+  color: var(--error); font-size: 0.8rem; margin-top: 8px; padding-left: 4px; font-weight: 500;
 }
 .field.error .field-error-msg { display: flex; animation: shakeX 0.4s ease; }
 
-.field.valid input,
-.field.valid textarea { border-color: rgba(85, 239, 196, 0.5); }
-.field-valid-tick {
-  position: absolute;
-  right: 14px;
-  top: 17px;
-  color: var(--success);
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.field.valid .field-valid-tick { opacity: 1; transform: scale(1); }
-
-.phone-field { display: grid; grid-template-columns: 132px 1fr; gap: 10px; }
-.cc-select {
-  position: relative;
-}
+.phone-field { display: grid; grid-template-columns: 125px 1fr; gap: 10px; }
+.cc-select { position: relative; z-index: 30; }
 .cc-button {
-  width: 100%;
-  height: 100%;
-  min-height: 54px;
-  background: rgba(10, 10, 15, 0.6);
-  border: 1.5px solid var(--border-color);
-  border-radius: 10px;
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 12px;
-  cursor: pointer;
-  transition: border-color 0.25s ease;
+  width: 100%; height: 100%; min-height: 52px; background: rgba(10, 10, 15, 0.6);
+  border: 1.5px solid var(--border-color); border-radius: 12px; color: #fff;
+  font-family: var(--font-body); font-size: 0.92rem; display: flex; align-items: center; gap: 8px; padding: 0 14px; cursor: pointer;
 }
-.cc-select.open .cc-button,
-.cc-button:focus { border-color: var(--accent); outline: none; }
-.cc-flag { font-size: 1.15rem; line-height: 1; }
+.cc-button:focus, .cc-select.open .cc-button { border-color: var(--accent); outline: none; }
+.cc-flag { font-size: 1.15rem; }
 .cc-code { font-weight: 600; }
 .cc-caret { margin-left: auto; font-size: 0.7rem; color: var(--text-gray); transition: transform 0.25s ease; }
 .cc-select.open .cc-caret { transform: rotate(180deg); }
 
 .cc-list {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  width: 280px;
-  max-height: 320px;
-  overflow-y: auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-  padding: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  z-index: 50;
+  position: absolute; top: calc(100% + 8px); left: 0; width: 280px; max-height: 280px; overflow-y: auto;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.6); padding: 8px; opacity: 0; visibility: hidden;
+  transform: translateY(-8px); transition: all 0.2s ease; z-index: 100;
 }
 .cc-select.open .cc-list { opacity: 1; visibility: visible; transform: translateY(0); }
-.cc-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 10px; border-radius: 8px;
-  font-size: 0.88rem; color: var(--text-gray);
-  cursor: pointer; transition: background 0.15s ease, color 0.15s ease;
-}
-.cc-item:hover, .cc-item.active { background: rgba(108, 92, 231, 0.15); color: #fff; }
-.cc-item .cc-country { flex: 1; }
-.cc-item .cc-num { color: var(--accent-light); font-weight: 600; }
+.cc-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); cursor: pointer; }
+.cc-item:hover, .cc-item.active, .cc-item:focus-visible { background: rgba(108, 92, 231, 0.15); color: #fff; outline: none; }
 
-.phone-number input {
-  padding-left: 16px;
-}
-.phone-number label { left: 16px; }
+.phone-number input { padding-left: 18px; }
+.phone-number label { left: 18px; }
 
-.chip-label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--text-gray);
-  margin-bottom: 12px;
-}
+/* SERVICES CHIPS */
+.chip-label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-white); margin-bottom: 12px; }
 .chip-group { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
-  background: rgba(10, 10, 15, 0.6);
-  border: 1.5px solid var(--border-color);
-  color: var(--text-gray);
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-gray); padding: 10px 18px; border-radius: 30px; font-size: 0.88rem;
+  font-weight: 500; cursor: pointer; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 8px;
 }
-.chip i { font-size: 0.7rem; opacity: 0; transform: scale(0.5); transition: opacity 0.2s ease, transform 0.2s ease; }
-.chip:hover { border-color: var(--accent-light); color: #fff; }
+.chip i { font-size: 0.75rem; display: none; }
+.chip:hover { border-color: var(--accent-light); color: #fff; background: rgba(108, 92, 231, 0.1); }
 .chip.selected {
-  background: linear-gradient(90deg, var(--accent), #4834d4);
-  border-color: transparent;
-  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+  border-color: transparent; color: #fff; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.35);
 }
-.chip.selected i { opacity: 1; transform: scale(1); }
-.chip-error-msg {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  color: var(--error);
-  font-size: 0.78rem;
-  margin-top: 10px;
-}
+.chip.selected i { display: inline-block; }
+
+.chip-error-msg { display: none; align-items: center; gap: 6px; color: var(--error); font-size: 0.8rem; margin-top: 10px; font-weight: 500; }
 .chip-group.error ~ .chip-error-msg { display: flex; animation: shakeX 0.4s ease; }
 
-.char-count {
-  text-align: right;
-  font-size: 0.75rem;
-  color: var(--text-gray);
-  margin-top: 6px;
+.char-count { text-align: right; font-size: 0.75rem; color: var(--text-gray); margin-top: 6px; }
+
+/* hCaptcha - Desktop + Mobile Friendly */
+.h-captcha {
+  margin: 8px 0 4px;
+  min-height: 78px;
+  position: relative;
+  z-index: 10;
+}
+.h-captcha iframe {
+  pointer-events: auto !important;
 }
 
-/* ============ RECAPTCHA CHECKBOX ============ */
+/* RECAPTCHA BOX (old unused) */
 .recaptcha-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  max-width: 330px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  width: 100%; max-width: 340px;
   background: linear-gradient(135deg, rgba(23, 23, 31, 0.95), rgba(15, 15, 23, 0.98));
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 12px;
-  padding: 14px 18px;
-  user-select: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
+  border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; padding: 14px 18px;
+  user-select: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.3s ease;
 }
-.recaptcha-box:hover {
-  border-color: var(--accent-gold);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px var(--accent-gold-glow);
-}
-.recaptcha-box.error { 
-  border-color: var(--error); 
-  animation: shakeX 0.4s ease; 
-}
+.recaptcha-box.error { border-color: var(--error); animation: shakeX 0.4s ease; }
 .rc-tick {
-  width: 30px; height: 30px;
-  flex-shrink: 0;
-  border: 2px solid rgba(212, 175, 55, 0.6);
-  border-radius: 6px;
-  background: rgba(10, 10, 15, 0.8);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-  cursor: pointer;
-  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  width: 30px; height: 30px; flex-shrink: 0; border: 2px solid rgba(212, 175, 55, 0.6);
+  border-radius: 6px; background: rgba(10, 10, 15, 0.8); display: flex; align-items: center; justify-content: center; cursor: pointer;
 }
-.rc-tick:hover {
-  border-color: var(--accent-gold);
-  transform: scale(1.08);
-  box-shadow: 0 0 10px var(--accent-gold-glow);
-}
-.recaptcha-box.checking .rc-tick { 
-  border-color: var(--accent-light); 
-  cursor: wait;
-}
-.recaptcha-box.verified .rc-tick {
-  background: linear-gradient(135deg, #00b894, #55efc4);
-  border-color: var(--success);
-  box-shadow: 0 0 12px rgba(85, 239, 196, 0.4);
-  cursor: default;
-}
-.rc-spinner {
-  width: 18px; height: 18px;
-  border: 2px solid rgba(162, 155, 254, 0.25);
-  border-top-color: var(--accent-light);
-  border-radius: 50%;
-  display: none;
-  animation: spin 0.7s linear infinite;
-}
+.recaptcha-box.verified .rc-tick { background: linear-gradient(135deg, #00b894, #55efc4); border-color: var(--success); }
+.rc-spinner { width: 18px; height: 18px; border: 2px solid rgba(162, 155, 254, 0.25); border-top-color: var(--accent-light); border-radius: 50%; display: none; animation: spin 0.7s linear infinite; }
 .recaptcha-box.checking .rc-spinner { display: block; }
-.recaptcha-box.checking .rc-tick svg,
-.recaptcha-box.verified .rc-spinner { display: none; }
-.rc-tick svg {
-  width: 18px; height: 18px;
-  stroke: #0A0A0F;
-  stroke-width: 3.5;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 20;
-  stroke-dashoffset: 20;
-}
+.recaptcha-box.checking .rc-tick svg, .recaptcha-box.verified .rc-spinner { display: none; }
+.rc-tick svg { width: 18px; height: 18px; stroke: #0A0A0F; stroke-width: 3.5; fill: none; stroke-linecap: round; stroke-dasharray: 20; stroke-dashoffset: 20; }
 .recaptcha-box.verified .rc-tick svg { animation: tickDraw 0.35s ease forwards 0.05s; }
 .rc-text { flex: 1; }
-.rc-text .rc-main { 
-  font-size: 0.92rem; 
-  color: #fff; 
-  font-weight: 600; 
-  letter-spacing: 0.02em;
-}
-.rc-text .rc-sub { 
-  font-size: 0.68rem; 
-  color: var(--accent-gold); 
-  margin-top: 2px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.rc-badge {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent-gold);
-  font-size: 0.9rem;
-}
-.rc-footnote {
-  font-size: 0.72rem;
-  color: var(--text-gray);
-  margin-top: 10px;
-  line-height: 1.6;
-}
+.rc-text .rc-main { font-size: 0.92rem; color: #fff; font-weight: 600; }
+.rc-text .rc-sub { font-size: 0.68rem; color: var(--accent-gold); margin-top: 2px; font-weight: 500; text-transform: uppercase; }
+.rc-badge { width: 32px; height: 32px; border-radius: 8px; background: rgba(212, 175, 55, 0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-gold); flex-shrink: 0; }
+.rc-footnote { font-size: 0.72rem; color: var(--text-gray); margin-top: 10px; }
 .rc-footnote a { color: var(--accent-light); }
 
-.submit-row {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.submit-note {
-  font-size: 0.78rem;
-  color: var(--text-gray);
-  line-height: 1.6;
-}
-.btn-spinner {
-  width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.35);
-  border-top-color: #fff;
-  border-radius: 50%;
-  display: none;
-  animation: spin 0.6s linear infinite;
-}
+.submit-row { display: flex; flex-direction: column; gap: 10px; }
+.submit-note { font-size: 0.78rem; color: var(--text-gray); line-height: 1.6; }
+.btn-spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff; border-radius: 50%; display: none; animation: spin 0.6s linear infinite; }
 .btn-primary.loading .btn-spinner { display: inline-block; }
-.btn-primary.loading .btn-label { opacity: 0.85; }
 
-.success-state {
-  display: none;
-  text-align: center;
-  padding: 40px 10px 10px;
-  position: relative;
-  z-index: 1;
-}
-.success-state.show {
-  display: block;
-  animation: fadeUpIn 0.5s ease;
-}
-.success-ring {
-  width: 84px; height: 84px;
-  margin: 0 auto 22px;
-  border-radius: 50%;
-  background: rgba(85, 239, 196, 0.12);
-  display: flex; align-items: center; justify-content: center;
-}
-.success-ring svg {
-  width: 40px; height: 40px;
-  stroke: var(--success);
-  stroke-width: 3.5;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  animation: tickDraw 0.5s ease forwards 0.2s;
-}
+.success-state { display: none; text-align: center; padding: 40px 10px 10px; }
+.success-state.show { display: block; animation: fadeUpIn 0.5s ease; }
+.success-ring { width: 84px; height: 84px; margin: 0 auto 22px; border-radius: 50%; background: rgba(85, 239, 196, 0.12); display: flex; align-items: center; justify-content: center; }
+.success-ring svg { width: 40px; height: 40px; stroke: var(--success); stroke-width: 3.5; fill: none; stroke-dasharray: 40; stroke-dashoffset: 40; animation: tickDraw 0.5s ease forwards 0.2s; }
 .success-state h3 { font-size: 1.4rem; margin-bottom: 10px; }
 .success-state p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; max-width: 400px; margin: 0 auto; }
 
-.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
-.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
-.social-icons { display: flex; gap: 14px; }
-.social-icons span {
-  width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
-  display: flex; align-items: center; justify-content: center;
-  cursor: default;
-  transition: background 0.3s, transform 0.25s ease;
-}
-.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
-.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
-.footer-hours-title { margin-top: 24px; }
-.footer-closed { color: #ff7675 !important; }
-.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
-.footer-col a:hover { color: #fff; }
-.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+/* FOOTER */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 50px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 30px; }
+.footer-brand p { color: var(--text-gray); margin: 12px 0 16px; font-size: 0.88rem; line-height: 1.5; }
 
-.back-to-top {
-  position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
-  background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
-  display: none; align-items: center; justify-content: center; z-index: 999;
-  transition: background 0.3s, transform 0.25s ease;
+.social-icons { display: flex; gap: 10px; }
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%; background: var(--bg-card);
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default; user-select: none;
 }
-.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.social-icon-item i { font-size: 0.9rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+
+.footer-col h4 { margin-bottom: 14px; font-size: 0.95rem; font-weight: 700; color: #fff; }
+.footer-hours-title { margin-top: 14px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 8px; font-size: 0.85rem; line-height: 1.4; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 18px 0; text-align: center; color: var(--text-gray); font-size: 0.82rem; }
+
+/* Sticky Widgets */
+.back-to-top { position: fixed; bottom: 90px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; border: none; font-size: 1rem; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 999; }
 .back-to-top.show { display: flex; }
+.floating-whatsapp { position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); animation: whatsappPulse 2.5s infinite; }
 
 .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .fade-up.visible { opacity: 1; transform: none; }
 
-@keyframes livePulse {
-  0% { box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.55); }
-  100% { box-shadow: 0 0 0 8px rgba(79, 209, 232, 0); }
-}
+@keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.55); } 100% { box-shadow: 0 0 0 8px rgba(79, 209, 232, 0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes tickDraw { to { stroke-dashoffset: 0; } }
-@keyframes shakeX {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(5px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(3px); }
-}
-@keyframes fadeUpIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; }
+@keyframes shakeX { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+@keyframes fadeUpIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes whatsappPulse { 0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4); } 70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+@media (max-width: 992px) { 
+  .contact-wrap { grid-template-columns: 1fr; gap: 44px; } 
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; } 
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .fade-up { opacity: 1; transform: none; }
-}
-
-@media (max-width: 992px) {
-  .contact-wrap { grid-template-columns: 1fr; gap: 44px; }
-  .footer-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .nav-links { display: none; }
   .menu-toggle { display: block; }
   .nav-links.active {
     display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
     width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color); max-height: calc(100vh - 80px); overflow-y: auto;
   }
   .nav-item { width: 100%; }
-  .nav-item::after { display: none; }
+  .services-toggle { width: 100%; justify-content: space-between; padding: 8px 0; }
   .dropdown-menu {
-    position: static; transform: none; min-width: 0; width: 100%;
-    opacity: 1; visibility: visible; pointer-events: auto;
-    display: none; box-shadow: none; margin-top: 8px;
+    position: static !important; transform: none !important; min-width: 0 !important; width: 100% !important;
+    display: none; box-shadow: none !important; margin-top: 8px !important; background: rgba(23, 23, 31, 0.6) !important;
   }
-  .nav-item.open .dropdown-menu { display: block; }
+  .nav-item.open .dropdown-menu { display: block !important; opacity: 1 !important; visibility: visible !important; }
+  .dropdown-menu a { white-space: normal !important; width: 100% !important; }
+
   .form-grid { grid-template-columns: 1fr; }
-  .phone-field { grid-template-columns: 108px 1fr; }
-  .form-card { padding: 26px 20px; }
-  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .phone-field { grid-template-columns: 115px 1fr; }
+  
+  .footer-grid { 
+    grid-template-columns: 1fr; 
+    text-align: center; 
+    gap: 32px !important;
+    padding-bottom: 30px;
+  }
   .social-icons { justify-content: center; }
+  .footer-brand p { margin: 12px auto 16px; max-width: 320px; }
 }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <video class="page-bg-video" autoplay muted loop playsinline>
+  <video class="page-bg-video" id="bgVideoA" autoplay muted loop playsinline preload="auto">
     <source src="theme1.mp4" type="video/mp4">
   </video>
   <div class="page-bg-overlay"></div>
@@ -710,14 +456,17 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
       <a href="index.html" class="logo">
-        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
-        <span class="logo-text">Global VA's</span>
+        <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+        <span class="logo-text">GLOBAL VA's</span>
       </a>
 
       <nav class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <div class="nav-item has-dropdown" id="servicesNav">
-          <a href="javascript:void(0);" class="services-toggle" id="servicesToggle" aria-expanded="false" aria-haspopup="true">Services <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a>
+          <button type="button" class="services-toggle" id="servicesToggle">
+            <span>Services</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+          </button>
           <div class="dropdown-menu">
             <a href="seo-geo.html"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO + GEO</a>
             <a href="performance-marketing.html"><i class="fa-solid fa-bullseye"></i> Performance Marketing</a>
@@ -732,20 +481,16 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
         <a href="about-us.html">About Us</a>
       </nav>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
   <main id="main">
-    <div class="container breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="sep">/</span>
-      <span class="current">Contact Us</span>
+    <div class="container breadcrumb fade-up">
+      <a href="index.html">Home</a><span class="sep">/</span><span class="current">Contact Us</span>
     </div>
 
-    <section class="container contact-hero">
+    <section class="container contact-hero fade-up">
       <span class="eyebrow"><span class="live-dot"></span> Start a Conversation</span>
       <h1>Your Vision, <br>Our strategy - <span class="accent-word">Growth Simplified</span>.</h1>
       <p>From SEO & GEO and Performance Marketing to Social Media Management, Web Design & Development, and Branding & Identity - tell us what you are looking to achieve. A member of our team will review your enquiry and reply with a clear next step, a focused question, or an honest assessment if we are not the best fit for the project. No sales pressure. No generic templates.</p>
@@ -756,24 +501,15 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
         <div class="trust-list">
           <div class="trust-item fade-up">
             <div class="trust-icon"><i class="fa-solid fa-user-check"></i></div>
-            <div>
-              <h3>Every submission is read personally</h3>
-              <p>No automated triage, no chatbot standing in. A member of the team reviews what you have shared before anyone replies.</p>
-            </div>
+            <div><h3>Every submission is read personally</h3><p>No automated triage, no chatbot standing in. A member of the team reviews what you have shared before anyone replies.</p></div>
           </div>
           <div class="trust-item fade-up">
             <div class="trust-icon"><i class="fa-solid fa-reply"></i></div>
-            <div>
-              <h3>You get a direct answer</h3>
-              <p>Next steps, a clarifying question, or an honest note that we are not the right fit - never a generic form-letter reply.</p>
-            </div>
+            <div><h3>You get a direct answer</h3><p>Next steps, a clarifying question, or an honest note that we are not the right fit - never a generic form-letter reply.</p></div>
           </div>
           <div class="trust-item fade-up">
             <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <div>
-              <h3>No pressure, no obligation</h3>
-              <p>Reaching out does not commit you to anything. Take the time you need after we reply.</p>
-            </div>
+            <div><h3>No pressure, no obligation</h3><p>Reaching out does not commit you to anything. Take the time you need after we reply.</p></div>
           </div>
         </div>
 
@@ -786,14 +522,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
 
       <div class="form-card fade-up">
         <form id="contactForm" novalidate>
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
           <div class="form-grid">
 
             <div class="field">
               <i class="fa-solid fa-user field-icon"></i>
               <input type="text" id="firstName" name="firstName" placeholder=" " autocomplete="given-name" required>
               <label for="firstName">First name</label>
-              <span class="field-valid-tick"><i class="fa-solid fa-circle-check"></i></span>
               <p class="field-error-msg"><i class="fa-solid fa-circle-exclamation"></i> Please enter your first name</p>
             </div>
 
@@ -801,7 +536,6 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
               <i class="fa-solid fa-user field-icon"></i>
               <input type="text" id="lastName" name="lastName" placeholder=" " autocomplete="family-name" required>
               <label for="lastName">Last name</label>
-              <span class="field-valid-tick"><i class="fa-solid fa-circle-check"></i></span>
               <p class="field-error-msg"><i class="fa-solid fa-circle-exclamation"></i> Please enter your last name</p>
             </div>
 
@@ -809,58 +543,31 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
               <i class="fa-solid fa-envelope field-icon"></i>
               <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
               <label for="email">Email address</label>
-              <span class="field-valid-tick"><i class="fa-solid fa-circle-check"></i></span>
               <p class="field-error-msg"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address</p>
             </div>
 
             <div class="field full">
-              <span class="chip-label" style="margin-bottom: 8px; display:block;">WhatsApp number</span>
+              <span class="chip-label">WhatsApp number</span>
               <div class="phone-field">
                 <div class="cc-select" id="ccSelect">
-                  <button type="button" class="cc-button" id="ccButton" aria-haspopup="listbox" aria-expanded="false">
-                    <span class="cc-flag" id="ccFlag">🇵🇰</span>
-                    <span class="cc-code" id="ccCode">+92</span>
+                  <button type="button" class="cc-button" id="ccButton">
+                    <span class="cc-flag" id="ccFlag">🇵🇰</span><span class="cc-code" id="ccCode">+92</span>
                     <i class="fa-solid fa-chevron-down cc-caret"></i>
                   </button>
                   <div class="cc-list" id="ccList" role="listbox">
-                    <div class="cc-item" data-flag="🇺🇸" data-code="+1" role="option"><span class="cc-flag">🇺🇸</span><span class="cc-country">United States</span><span class="cc-num">+1</span></div>
-                    <div class="cc-item" data-flag="🇨🇦" data-code="+1" role="option"><span class="cc-flag">🇨🇦</span><span class="cc-country">Canada</span><span class="cc-num">+1</span></div>
-                    <div class="cc-item" data-flag="🇬🇧" data-code="+44" role="option"><span class="cc-flag">🇬🇧</span><span class="cc-country">United Kingdom</span><span class="cc-num">+44</span></div>
-                    <div class="cc-item" data-flag="🇩🇪" data-code="+49" role="option"><span class="cc-flag">🇩🇪</span><span class="cc-country">Germany</span><span class="cc-num">+49</span></div>
-                    <div class="cc-item" data-flag="🇫🇷" data-code="+33" role="option"><span class="cc-flag">🇫🇷</span><span class="cc-country">France</span><span class="cc-num">+33</span></div>
-                    <div class="cc-item" data-flag="🇮🇹" data-code="+39" role="option"><span class="cc-flag">🇮🇹</span><span class="cc-country">Italy</span><span class="cc-num">+39</span></div>
-                    <div class="cc-item" data-flag="🇳🇱" data-code="+31" role="option"><span class="cc-flag">🇳🇱</span><span class="cc-country">Netherlands</span><span class="cc-num">+31</span></div>
-                    <div class="cc-item" data-flag="🇪🇸" data-code="+34" role="option"><span class="cc-flag">🇪🇸</span><span class="cc-country">Spain</span><span class="cc-num">+34</span></div>
-                    <div class="cc-item" data-flag="🇮🇪" data-code="+353" role="option"><span class="cc-flag">🇮🇪</span><span class="cc-country">Ireland</span><span class="cc-num">+353</span></div>
-                    <div class="cc-item" data-flag="🇨🇭" data-code="+41" role="option"><span class="cc-flag">🇨🇭</span><span class="cc-country">Switzerland</span><span class="cc-num">+41</span></div>
-                    <div class="cc-item" data-flag="🇸🇪" data-code="+46" role="option"><span class="cc-flag">🇸🇪</span><span class="cc-country">Sweden</span><span class="cc-num">+46</span></div>
-                    <div class="cc-item" data-flag="🇳🇴" data-code="+47" role="option"><span class="cc-flag">🇳🇴</span><span class="cc-country">Norway</span><span class="cc-num">+47</span></div>
-                    <div class="cc-item" data-flag="🇩🇰" data-code="+45" role="option"><span class="cc-flag">🇩🇰</span><span class="cc-country">Denmark</span><span class="cc-num">+45</span></div>
-                    <div class="cc-item" data-flag="🇧🇪" data-code="+32" role="option"><span class="cc-flag">🇧🇪</span><span class="cc-country">Belgium</span><span class="cc-num">+32</span></div>
-                    <div class="cc-item" data-flag="🇦🇪" data-code="+971" role="option"><span class="cc-flag">🇦🇪</span><span class="cc-country">United Arab Emirates</span><span class="cc-num">+971</span></div>
-                    <div class="cc-item" data-flag="🇸🇦" data-code="+966" role="option"><span class="cc-flag">🇸🇦</span><span class="cc-country">Saudi Arabia</span><span class="cc-num">+966</span></div>
-                    <div class="cc-item" data-flag="🇶🇦" data-code="+974" role="option"><span class="cc-flag">🇶🇦</span><span class="cc-country">Qatar</span><span class="cc-num">+974</span></div>
-                    <div class="cc-item" data-flag="🇰🇼" data-code="+965" role="option"><span class="cc-flag">🇰🇼</span><span class="cc-country">Kuwait</span><span class="cc-num">+965</span></div>
-                    <div class="cc-item" data-flag="🇧🇭" data-code="+973" role="option"><span class="cc-flag">🇧🇭</span><span class="cc-country">Bahrain</span><span class="cc-num">+973</span></div>
-                    <div class="cc-item" data-flag="🇴🇲" data-code="+968" role="option"><span class="cc-flag">🇴🇲</span><span class="cc-country">Oman</span><span class="cc-num">+968</span></div>
-                    <div class="cc-item" data-flag="🇦🇺" data-code="+61" role="option"><span class="cc-flag">🇦🇺</span><span class="cc-country">Australia</span><span class="cc-num">+61</span></div>
-                    <div class="cc-item" data-flag="🇳🇿" data-code="+64" role="option"><span class="cc-flag">🇳🇿</span><span class="cc-country">New Zealand</span><span class="cc-num">+64</span></div>
-                    <div class="cc-item" data-flag="🇸🇬" data-code="+65" role="option"><span class="cc-flag">🇸🇬</span><span class="cc-country">Singapore</span><span class="cc-num">+65</span></div>
-                    <div class="cc-item" data-flag="🇭🇰" data-code="+852" role="option"><span class="cc-flag">🇭🇰</span><span class="cc-country">Hong Kong</span><span class="cc-num">+852</span></div>
-                    <div class="cc-item" data-flag="🇯🇵" data-code="+81" role="option"><span class="cc-flag">🇯🇵</span><span class="cc-country">Japan</span><span class="cc-num">+81</span></div>
-                    <div class="cc-item" data-flag="🇰🇷" data-code="+82" role="option"><span class="cc-flag">🇰🇷</span><span class="cc-country">South Korea</span><span class="cc-num">+82</span></div>
-                    <div class="cc-item" data-flag="🇲🇾" data-code="+60" role="option"><span class="cc-flag">🇲🇾</span><span class="cc-country">Malaysia</span><span class="cc-num">+60</span></div>
-                    <div class="cc-item" data-flag="🇮🇳" data-code="+91" role="option"><span class="cc-flag">🇮🇳</span><span class="cc-country">India</span><span class="cc-num">+91</span></div>
-                    <div class="cc-item active" data-flag="🇵🇰" data-code="+92" role="option"><span class="cc-flag">🇵🇰</span><span class="cc-country">Pakistan</span><span class="cc-num">+92</span></div>
-                    <div class="cc-item" data-flag="🇹🇷" data-code="+90" role="option"><span class="cc-flag">🇹🇷</span><span class="cc-country">Turkey</span><span class="cc-num">+90</span></div>
-                    <div class="cc-item" data-flag="🇿🇦" data-code="+27" role="option"><span class="cc-flag">🇿🇦</span><span class="cc-country">South Africa</span><span class="cc-num">+27</span></div>
-                    <div class="cc-item" data-flag="🇧🇷" data-code="+55" role="option"><span class="cc-flag">🇧🇷</span><span class="cc-country">Brazil</span><span class="cc-num">+55</span></div>
+                    <div class="cc-item active" tabindex="0" role="option" aria-selected="true" data-flag="🇵🇰" data-code="+92"><span class="cc-flag">🇵🇰</span><span class="cc-country">Pakistan (PK)</span><span class="cc-num">+92</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇺🇸" data-code="+1"><span class="cc-flag">🇺🇸</span><span class="cc-country">United States (US)</span><span class="cc-num">+1</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇦" data-code="+1"><span class="cc-flag">🇨🇦</span><span class="cc-country">Canada (CA)</span><span class="cc-num">+1</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇬🇧" data-code="+44"><span class="cc-flag">🇬🇧</span><span class="cc-country">United Kingdom (UK)</span><span class="cc-num">+44</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇩🇪" data-code="+49"><span class="cc-flag">🇩🇪</span><span class="cc-country">Germany (DE)</span><span class="cc-num">+49</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇫🇷" data-code="+33"><span class="cc-flag">🇫🇷</span><span class="cc-country">France (FR)</span><span class="cc-num">+33</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇦🇪" data-code="+971"><span class="cc-flag">🇦🇪</span><span class="cc-country">United Arab Emirates (AE)</span><span class="cc-num">+971</span></div>
+                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇸🇦" data-code="+966"><span class="cc-flag">🇸🇦</span><span class="cc-country">Saudi Arabia (SA)</span><span class="cc-num">+966</span></div>
                   </div>
                 </div>
-                <div class="field phone-number" style="margin-bottom:0;">
-                  <input type="tel" id="phone" name="phone" placeholder=" " inputmode="numeric" required>
-                  <label for="phone">329 8232502</label>
-                  <span class="field-valid-tick"><i class="fa-solid fa-circle-check"></i></span>
+                <div class="field phone-number">
+                  <input type="tel" id="phone" name="phone" placeholder=" " inputmode="numeric" autocomplete="tel" required>
+                  <label for="phone">Enter WhatsApp number</label>
                 </div>
               </div>
               <p class="field-error-msg" id="phoneError"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid WhatsApp number</p>
@@ -888,18 +595,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
             </div>
 
             <div class="full">
-              <div class="recaptcha-box" id="recaptchaBox">
-                <div class="rc-tick" id="rcTick" role="checkbox" aria-checked="false" tabindex="0">
-                  <div class="rc-spinner"></div>
-                  <svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg>
-                </div>
-                <div class="rc-text">
-                  <div class="rc-main" id="rcLabel">I'm not a robot</div>
-                  <div class="rc-sub">reCAPTCHA</div>
-                </div>
-                <div class="rc-badge"><i class="fa-solid fa-shield-halved"></i></div>
-              </div>
-              <p class="rc-footnote">Protected against automated form submissions. <a href="privacy-terms.html">Privacy</a> - <a href="privacy-terms.html">Terms</a></p>
+              <div class="h-captcha" data-captcha="true"></div>
+              <p class="rc-footnote" style="margin-top: 12px;">Protected against automated form submissions. <a href="privacy-terms.html">Privacy</a> - <a href="privacy-terms.html">Terms</a></p>
             </div>
 
             <div class="full submit-row">
@@ -912,9 +609,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
           </div>
 
           <div class="success-state" id="successState">
-            <div class="success-ring">
-              <svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg>
-            </div>
+            <div class="success-ring"><svg viewBox="0 0 24 24"><polyline points="4,13 9,18 20,6"/></svg></div>
             <h3>Message received</h3>
             <p>Thank you for reaching out. A member of the Global VA's team will review your project details and reply directly to the email address you provided.</p>
           </div>
@@ -927,17 +622,18 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="logo footer-logo">
-          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.src='logo.png';">
-          <span class="logo-text">Global VA's</span>
+          <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
+          <span class="logo-text">GLOBAL VA's</span>
         </a>
         <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
-        <div class="social-icons" aria-label="Platforms we work with">
-          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
-          <span title="Google"><i class="fa-brands fa-google"></i></span>
-          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
-          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
-          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
-          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+
+        <div class="social-icons">
+          <div class="social-icon-item"><i class="fa-brands fa-meta"></i></div>
+          <div class="social-icon-item"><i class="fa-brands fa-google"></i></div>
+          <div class="social-icon-item"><i class="fa-brands fa-linkedin"></i></div>
+          <div class="social-icon-item"><i class="fa-brands fa-x-twitter"></i></div>
+          <div class="social-icon-item"><i class="fa-brands fa-tiktok"></i></div>
+          <div class="social-icon-item"><i class="fa-brands fa-youtube"></i></div>
         </div>
       </div>
 
@@ -968,6 +664,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
         <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
       </div>
     </div>
+
     <div class="footer-bottom">
       <div class="container">
         <p>&copy; 2026 Global VA's. All rights reserved.</p>
@@ -975,11 +672,11 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
     </div>
   </footer>
 
-  <button id="backToTop" class="back-to-top" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
+  <a href="https://wa.me/923298232502" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat with us on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  <button id="backToTop" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
+/* Navbar & Scroll State */
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
@@ -988,27 +685,186 @@ window.addEventListener('scroll', () => {
 });
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+/* Mobile Drawer & Navbar Services Toggle Fix */
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 const servicesNav = document.getElementById('servicesNav');
 const servicesToggle = document.getElementById('servicesToggle');
 
-menuToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('active');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+
 servicesToggle.addEventListener('click', (e) => {
-  e.preventDefault();
-  const open = servicesNav.classList.toggle('open');
-  servicesToggle.setAttribute('aria-expanded', String(open));
-});
-document.addEventListener('click', (e) => {
-  if (!servicesNav.contains(e.target)) {
-    servicesNav.classList.remove('open');
-    servicesToggle.setAttribute('aria-expanded', 'false');
-  }
+  e.stopPropagation();
+  servicesNav.classList.toggle('open');
 });
 
+document.addEventListener('click', (e) => {
+  if (!servicesNav.contains(e.target)) servicesNav.classList.remove('open');
+  if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) navLinks.classList.remove('active');
+});
+
+/* Country Code Dropdown */
+const ccSelect = document.getElementById('ccSelect');
+const ccButton = document.getElementById('ccButton');
+const ccList = document.getElementById('ccList');
+
+ccButton.addEventListener('click', (e) => {
+  e.stopPropagation();
+  ccSelect.classList.toggle('open');
+});
+function selectCcItem(item) {
+  ccList.querySelectorAll('.cc-item').forEach(i => { i.classList.remove('active'); i.setAttribute('aria-selected', 'false'); });
+  item.classList.add('active');
+  item.setAttribute('aria-selected', 'true');
+  document.getElementById('ccFlag').textContent = item.dataset.flag;
+  document.getElementById('ccCode').textContent = item.dataset.code;
+  ccSelect.classList.remove('open');
+  ccButton.focus();
+}
+ccList.querySelectorAll('.cc-item').forEach(item => {
+  item.addEventListener('click', () => selectCcItem(item));
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      selectCcItem(item);
+    }
+  });
+});
+document.addEventListener('click', () => ccSelect.classList.remove('open'));
+
+/* Chips Selection */
+const chipGroup = document.getElementById('chipGroup');
+const chipError = document.getElementById('chipError');
+chipGroup.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    if (chip.dataset.service === 'Not sure yet') {
+      chipGroup.querySelectorAll('.chip').forEach(c => { if (c !== chip) c.classList.remove('selected'); });
+      chip.classList.toggle('selected');
+    } else {
+      const notSure = chipGroup.querySelector('.chip[data-service="Not sure yet"]');
+      if (notSure) notSure.classList.remove('selected');
+      chip.classList.toggle('selected');
+    }
+    if (chipGroup.querySelector('.chip.selected')) {
+      chipGroup.classList.remove('error');
+      chipError.style.display = 'none';
+    }
+  });
+});
+
+/* Input Error Removal */
+document.querySelectorAll('.field input, .field textarea').forEach(input => {
+  input.addEventListener('input', () => {
+    const field = input.closest('.field');
+    if (field) field.classList.remove('error');
+    if (input.id === 'phone') {
+      document.getElementById('phoneError').style.display = 'none';
+    }
+  });
+});
+
+const projectDesc = document.getElementById('projectDesc');
+projectDesc.addEventListener('input', function() {
+  document.getElementById('charCount').textContent = this.value.length;
+});
+
+/* Form Submission Validation */
+const form = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  let valid = true;
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  function checkField(id, cond) {
+    const el = document.getElementById(id);
+    const field = el.closest('.field');
+    const isOk = cond(el.value.trim());
+    field.classList.toggle('error', !isOk);
+    if (!isOk) valid = false;
+    return isOk;
+  }
+
+  checkField('firstName', v => v.length > 0);
+  checkField('lastName', v => v.length > 0);
+  checkField('email', v => emailPattern.test(v));
+
+  let phoneDigits = document.getElementById('phone').value.replace(/\D/g, '');
+  if (phoneDigits.startsWith('0')) phoneDigits = phoneDigits.substring(1);
+  const phoneOk = phoneDigits.length >= 7 && phoneDigits.length <= 13;
+  const phoneField = document.getElementById('phone').closest('.field');
+  phoneField.classList.toggle('error', !phoneOk);
+  document.getElementById('phoneError').style.display = phoneOk ? 'none' : 'flex';
+  if (!phoneOk) valid = false;
+
+  const hasService = !!chipGroup.querySelector('.chip.selected');
+  chipGroup.classList.toggle('error', !hasService);
+  chipError.style.display = hasService ? 'none' : 'flex';
+  if (!hasService) valid = false;
+
+  checkField('projectDesc', v => v.length >= 10);
+
+  // Get hCaptcha token
+  let hcaptchaToken = '';
+  const hcaptchaResponse = form.querySelector('textarea[name="h-captcha-response"]');
+  if (hcaptchaResponse) {
+    hcaptchaToken = hcaptchaResponse.value.trim();
+  }
+
+  if (!hcaptchaToken) {
+    alert('Please complete the captcha verification first.');
+    valid = false;
+  }
+
+  if (!valid) {
+    const firstErr = form.querySelector('.field.error, .chip-group.error');
+    if (firstErr) {
+      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const input = firstErr.querySelector('input, textarea');
+      if (input) input.focus();
+    }
+    return;
+  }
+
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+
+  const payload = {
+    access_key: '29cee576-27cb-45ac-bc7d-17cc119460e0',
+    subject: "New inquiry from Global VA's website",
+    from_name: "Global VA's Website",
+    name: document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    whatsapp: document.getElementById('ccCode').textContent.trim() + ' ' + phoneDigits,
+    services: Array.from(chipGroup.querySelectorAll('.chip.selected')).map(c => c.dataset.service).join(', '),
+    message: document.getElementById('projectDesc').value.trim(),
+    botcheck: form.querySelector('[name="botcheck"]').checked,
+    'h-captcha-response': hcaptchaToken
+  };
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (!data.success) throw new Error(data.message || 'Submission failed');
+    submitBtn.classList.remove('loading');
+    form.querySelector('.form-grid').style.display = 'none';
+    document.getElementById('successState').classList.add('show');
+  })
+  .catch((err) => {
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    alert('Failed to send message. Please try again.');
+    console.error(err);
+  });
+});
+
+/* Animations */
 const revealEls = document.querySelectorAll('.fade-up');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1017,215 +873,10 @@ const io = new IntersectionObserver((entries) => {
       io.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 revealEls.forEach(el => io.observe(el));
-
-const ccSelect = document.getElementById('ccSelect');
-const ccButton = document.getElementById('ccButton');
-const ccList = document.getElementById('ccList');
-const ccFlag = document.getElementById('ccFlag');
-const ccCode = document.getElementById('ccCode');
-
-ccButton.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = ccSelect.classList.toggle('open');
-  ccButton.setAttribute('aria-expanded', String(open));
-});
-
-ccList.querySelectorAll('.cc-item').forEach(item => {
-  item.addEventListener('click', () => {
-    ccList.querySelectorAll('.cc-item').forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    ccFlag.textContent = item.dataset.flag;
-    ccCode.textContent = item.dataset.code;
-    ccSelect.classList.remove('open');
-    ccButton.setAttribute('aria-expanded', 'false');
-  });
-});
-
-document.addEventListener('click', (e) => {
-  if (!ccSelect.contains(e.target)) {
-    ccSelect.classList.remove('open');
-    ccButton.setAttribute('aria-expanded', 'false');
-  }
-});
-
-const chipGroup = document.getElementById('chipGroup');
-const chipError = document.getElementById('chipError');
-
-chipGroup.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    const isNotSure = chip.dataset.service === 'Not sure yet';
-
-    if (isNotSure) {
-      chipGroup.querySelectorAll('.chip').forEach(c => {
-        if (c !== chip) c.classList.remove('selected');
-      });
-      chip.classList.toggle('selected');
-    } else {
-      const notSureChip = chipGroup.querySelector('.chip[data-service="Not sure yet"]');
-      if (notSureChip) {
-        notSureChip.classList.remove('selected');
-      }
-      chip.classList.toggle('selected');
-    }
-
-    if (chipGroup.querySelector('.chip.selected')) {
-      chipGroup.classList.remove('error');
-      chipError.style.display = 'none';
-    }
-  });
-});
-
-function validateField(field, testFn) {
-  const input = field.querySelector('input, textarea');
-  const isValid = testFn(input.value.trim());
-  field.classList.toggle('error', !isValid);
-  field.classList.toggle('valid', isValid && input.value.trim().length > 0);
-  return isValid;
-}
-
-const firstNameField = document.getElementById('firstName').closest('.field');
-const lastNameField = document.getElementById('lastName').closest('.field');
-const emailField = document.getElementById('email').closest('.field');
-const phoneField = document.getElementById('phone').closest('.field');
-const descField = document.getElementById('projectDesc').closest('.field');
-const phoneErrorMsg = document.getElementById('phoneError');
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-[firstNameField, lastNameField].forEach(field => {
-  field.querySelector('input').addEventListener('blur', () => {
-    validateField(field, v => v.length > 0);
-  });
-});
-
-emailField.querySelector('input').addEventListener('blur', () => {
-  validateField(emailField, v => emailPattern.test(v));
-});
-
-document.getElementById('phone').addEventListener('blur', function () {
-  const digits = this.value.replace(/\D/g, '');
-  const isValid = digits.length >= 7 && digits.length <= 13;
-  phoneField.classList.toggle('error', !isValid);
-  phoneField.classList.toggle('valid', isValid);
-  phoneErrorMsg.style.display = isValid ? 'none' : 'flex';
-});
-
-const projectDesc = document.getElementById('projectDesc');
-const charCount = document.getElementById('charCount');
-projectDesc.addEventListener('input', function () {
-  charCount.textContent = this.value.length;
-});
-descField.querySelector('textarea').addEventListener('blur', () => {
-  validateField(descField, v => v.length >= 10);
-});
-
-const recaptchaBox = document.getElementById('recaptchaBox');
-const rcTick = document.getElementById('rcTick');
-const rcLabel = document.getElementById('rcLabel');
-let recaptchaVerified = false;
-
-function triggerRecaptcha(e) {
-  if (e) e.stopPropagation();
-  if (recaptchaBox.classList.contains('checking') || recaptchaVerified) return;
-  recaptchaBox.classList.remove('error');
-  recaptchaBox.classList.add('checking');
-  rcTick.setAttribute('aria-checked', 'false');
-  const delay = 600 + Math.random() * 500;
-  setTimeout(() => {
-    recaptchaBox.classList.remove('checking');
-    recaptchaBox.classList.add('verified');
-    rcTick.setAttribute('aria-checked', 'true');
-    rcLabel.textContent = 'Verified';
-    recaptchaVerified = true;
-  }, delay);
-}
-
-rcTick.addEventListener('click', triggerRecaptcha);
-rcTick.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    triggerRecaptcha(e);
-  }
-});
-
-const form = document.getElementById('contactForm');
-const submitBtn = document.getElementById('submitBtn');
-const successState = document.getElementById('successState');
-
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  let valid = true;
-
-  if (!validateField(firstNameField, v => v.length > 0)) valid = false;
-  if (!validateField(lastNameField, v => v.length > 0)) valid = false;
-  if (!validateField(emailField, v => emailPattern.test(v))) valid = false;
-
-  const phoneDigits = document.getElementById('phone').value.replace(/\D/g, '');
-  const phoneValid = phoneDigits.length >= 7 && phoneDigits.length <= 13;
-  phoneField.classList.toggle('error', !phoneValid);
-  phoneField.classList.toggle('valid', phoneValid);
-  phoneErrorMsg.style.display = phoneValid ? 'none' : 'flex';
-  if (!phoneValid) valid = false;
-
-  const hasService = !!chipGroup.querySelector('.chip.selected');
-  chipGroup.classList.toggle('error', !hasService);
-  chipError.style.display = hasService ? 'none' : 'flex';
-  if (!hasService) valid = false;
-
-  if (!validateField(descField, v => v.length >= 10)) valid = false;
-
-  if (!recaptchaVerified) {
-    recaptchaBox.classList.add('error');
-    valid = false;
-  }
-
-  if (!valid) {
-    const firstInvalid = form.querySelector('.field.error, .chip-group.error, .recaptcha-box.error');
-    if (firstInvalid) {
-      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    return;
-  }
-
-  submitBtn.classList.add('loading');
-  submitBtn.disabled = true;
-
-  const services = Array.from(chipGroup.querySelectorAll('.chip.selected'))
-    .map(c => c.dataset.service).join(', ');
-
-  const payload = {
-    access_key: '29cee576-27cb-45ac-bc7d-17cc119460e0',
-    subject: "New inquiry from Global VA's website",
-    from_name: "Global VA's Website",
-    name: document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    whatsapp: document.getElementById('ccCode').textContent.trim() + ' ' + document.getElementById('phone').value.trim(),
-    services: services,
-    message: document.getElementById('projectDesc').value.trim(),
-    botcheck: form.querySelector('[name="botcheck"]').checked
-  };
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (!data.success) throw new Error(data.message || 'Submit failed');
-      submitBtn.classList.remove('loading');
-      form.querySelector('.form-grid').style.display = 'none';
-      successState.classList.add('show');
-    })
-    .catch(() => {
-      submitBtn.classList.remove('loading');
-      submitBtn.disabled = false;
-      alert('Sorry, your message could not be sent. Please try again or contact us on WhatsApp.');
-    });
-});
   </script>
+
+  <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
