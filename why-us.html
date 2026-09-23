@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0A0F" />
   <title>Why Us | Global VA's - Digital Growth Partner</title>
   <meta name="description" content="Discover why ambitious brands trust Global VA's for search engine domination, performance marketing, and high-converting web engineering." />
 
   <!-- Google Fonts -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -32,7 +36,15 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg-dark);
@@ -48,13 +60,44 @@ body {
 }
 .skip-link:focus { left: 16px; }
 
-/* Background Video & Overlay */
+/* Background Video & Overlay System */
 .page-bg-video {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: -2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -2;
+  pointer-events: none;
+}
+#bgVideoB {
+  opacity: 0;
+  z-index: -3;
+  will-change: opacity;
+}
+@media (max-aspect-ratio: 1/1) {
+  .page-bg-video {
+    top: 50vh;
+    top: 50lvh;
+    left: 50%;
+    width: 150%;
+    height: auto;
+    aspect-ratio: 748 / 418;
+    transform: translate(-50%, -50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  }
 }
 .page-bg-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
   background:
     radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
     radial-gradient(700px 460px at 90% 60%, rgba(79, 209, 232, 0.09), transparent 50%),
@@ -86,27 +129,30 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 /* NAVBAR */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-  padding: 8px 0; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0; background: transparent;
   transition: background 0.3s ease, padding 0.3s ease;
 }
 .navbar.scrolled {
-  background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px);
-  padding: 4px 0; border-bottom: 1px solid var(--border-color);
+  background: rgba(10, 10, 15, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 8px 0; border-bottom: 1px solid var(--border-color);
 }
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo { display: flex; align-items: center; gap: 10px; transition: transform 0.25s ease; }
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
 .logo:hover { transform: translateY(-2px); }
-.logo-img { height: 80px; width: auto; }
-.logo-text { font-family: var(--font-heading);
-  font-size: 1.35rem;
+.logo-img { height: 80px; width: auto; object-fit: contain; }
+.logo-text {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 4.6vw, 1.3rem);
   font-weight: 700;
-  /* Pure white se clean light-gray gradient */
   background: linear-gradient(180deg, #FFFFFF 0%, #A0A0AC 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-  white-space: nowrap; }
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
 
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links > a, .services-toggle {
@@ -125,19 +171,23 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
   content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
   width: 100%; min-width: 260px; height: 20px; z-index: 99;
 }
-.services-toggle { cursor: pointer; }
+.services-toggle { cursor: default; }
 .dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
-.nav-item:hover .dropdown-arrow, .nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+.nav-item.open .dropdown-arrow { transform: rotate(180deg); }
 .dropdown-menu {
   position: absolute; top: calc(100% + 18px); left: 50%;
-  transform: translateX(-50%) translateY(10px); min-width: 280px;
+  transform: translateX(-50%) translateY(10px); min-width: 260px;
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
   padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
 }
-.nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu {
+.nav-item.open .dropdown-menu {
   opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+  .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 }
 .dropdown-menu a {
   display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
@@ -145,8 +195,15 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 .dropdown-menu a i { width: 16px; text-align: center; color: var(--accent-light); font-size: 0.85rem; }
-.dropdown-menu a:hover { background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px); }
-.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.dropdown-menu a:hover {
+  background: rgba(108, 92, 231, 0.15); color: #fff; transform: translateX(3px);
+  -webkit-background-clip: initial; background-clip: initial;
+}
+.menu-toggle {
+  display: none; min-width: 44px; min-height: 44px; background: none; border: none;
+  color: #fff; font-size: 1.4rem; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 
 /* BREADCRUMB */
 .breadcrumb {
@@ -236,7 +293,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
 .pillar-card p { color: var(--text-gray); font-size: 0.92rem; line-height: 1.6; }
 
-/* TESTIMONIALS GRID (why-us.html) */
+/* TESTIMONIALS GRID */
 .testimonials-grid-section {
   margin-bottom: 80px;
 }
@@ -262,7 +319,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
   font-size: 0.95rem;
 }
 .grid-card p {
-  color: var(--text-gray);
+  color: var(--text-white);
   font-size: 0.95rem;
   margin-bottom: 20px;
   line-height: 1.6;
@@ -336,17 +393,36 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .cta-banner p { color: rgba(255,255,255,0.88); font-size: 1rem; max-width: 580px; margin: 0 auto 28px; }
 .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-/* FOOTER */
+/* FOOTER & SOCIAL ICONS WITH TOOLTIP */
 .footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
 .footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
+
 .social-icons { display: flex; gap: 14px; }
-.social-icons span {
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
-  display: flex; align-items: center; justify-content: center;
-  cursor: default; transition: background 0.3s, transform 0.25s ease;
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default;
+  -webkit-user-select: none; user-select: none;
 }
-.social-icons span:hover { background: var(--accent); transform: translateY(-4px) scale(1.08); }
+.social-icon-item i { font-size: 1rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item .social-tooltip {
+  position: absolute; bottom: 100%; left: 50%;
+  transform: translateX(-50%) translateY(-6px); background: #1f1f2b;
+  color: #ffffff; font-size: 0.75rem; font-weight: 600; font-family: var(--font-body);
+  padding: 5px 10px; border-radius: 6px; white-space: nowrap; opacity: 0;
+  visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); z-index: 10;
+}
+.social-icon-item .social-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-width: 5px 5px 0 5px; border-style: solid;
+  border-color: #1f1f2b transparent transparent transparent;
+}
+.social-icon-item:hover .social-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-10px); }
+
 .footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
 .footer-hours-title { margin-top: 24px; }
 .footer-closed { color: #ff7675 !important; }
@@ -354,54 +430,25 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 .footer-col a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
 
-/* BACK TO TOP BUTTON (Identical to index) */
+/* BACK TO TOP BUTTON */
 .back-to-top {
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  transition: background 0.3s, transform 0.25s ease;
+  position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px;
+  border-radius: 50%; background: var(--accent); color: #fff; border: none;
+  font-size: 1.1rem; cursor: pointer; display: none; align-items: center; justify-content: center;
+  z-index: 999; transition: background 0.3s, opacity 0.3s, transform 0.25s ease;
 }
-.back-to-top:hover {
-  background: var(--accent-light);
-  transform: translateY(-4px);
-}
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
 .back-to-top.show { display: flex; }
 
-/* FLOATING WHATSAPP BUTTON (Identical to index) */
+/* FLOATING WHATSAPP BUTTON */
 .floating-whatsapp {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #25D366;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  z-index: 1000;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+  border-radius: 50%; background: #25D366; color: #fff; display: flex;
+  align-items: center; justify-content: center; font-size: 1.8rem; z-index: 1000;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transition: transform 0.25s ease, box-shadow 0.25s ease;
   animation: whatsappPulse 2.5s infinite;
 }
-.floating-whatsapp:hover {
-  transform: translateY(-6px) scale(1.08);
-  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.65);
-}
+.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); box-shadow: 0 10px 26px rgba(37, 211, 102, 0.65); }
 @keyframes whatsappPulse {
   0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
   70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
@@ -409,39 +456,17 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 }
 
 .whatsapp-tooltip {
-  position: absolute;
-  right: 74px;
-  top: 50%;
-  transform: translateY(-50%) translateX(10px);
-  background: #1f1f2b;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: var(--font-body);
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px);
+  background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;
+  font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0;
+  visibility: hidden; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35);
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 .whatsapp-tooltip::after {
-  content: '';
-  position: absolute;
-  right: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-width: 6px 0 6px 6px;
-  border-style: solid;
-  border-color: transparent transparent transparent #1f1f2b;
+  content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+  border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent #1f1f2b;
 }
-.floating-whatsapp:hover .whatsapp-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(0);
-}
+.floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
 
 /* ANIMATIONS */
 .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
@@ -460,24 +485,41 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .menu-toggle { display: block; }
+
   .nav-links.active {
-    display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
-    width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px; border-bottom: 1px solid var(--border-color);
+    display: flex; flex-direction: column; align-items: flex-start; position: absolute;
+    top: 100%; left: 0; width: 100%; background: var(--bg-dark-2); padding: 20px;
+    gap: 16px; border-bottom: 1px solid var(--border-color); max-height: calc(100vh - 100px);
+    max-height: calc(100svh - 100px); overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
+  .nav-links.active > a { display: block; width: 100%; padding: 8px 0; }
+  .nav-item { width: 100%; }
+  .nav-item::after { display: none; }
+  .services-toggle { display: flex; align-items: center; width: 100%; padding: 8px 0; cursor: pointer; }
+
+  .dropdown-menu {
+    position: static; min-width: 0; width: 100%; opacity: 1; visibility: visible;
+    pointer-events: auto; display: none; margin-top: 8px; box-shadow: none;
+  }
+  .nav-item .dropdown-menu, .nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu { transform: none; }
+  .nav-item.open .dropdown-menu { display: block; }
+  .dropdown-menu a { white-space: normal; }
+
   .pillars-grid, .stats-grid, .testimonials-grid { grid-template-columns: 1fr; }
   .matrix-card { overflow-x: auto; }
-  .footer-grid { grid-template-columns: 1fr; text-align: center; }
-  .social-icons { justify-content: center; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); text-align: center; }
+  .social-icons { justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
 }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Dynamic Background Video -->
-  <video class="page-bg-video" autoplay muted loop playsinline>
+  <!-- Dynamic Background Video Loop -->
+  <video class="page-bg-video" id="bgVideoA" autoplay muted loop playsinline preload="auto" poster="theme1-poster.jpg" aria-hidden="true">
     <source src="theme1.mp4" type="video/mp4">
   </video>
+  <video class="page-bg-video" id="bgVideoB" muted playsinline preload="none" aria-hidden="true"></video>
   <div class="page-bg-overlay"></div>
 
   <!-- NAVBAR -->
@@ -485,7 +527,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
     <div class="container navbar-inner">
       <a href="index.html" class="logo">
         <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
-        <span class="logo-text">Global VA's</span>
+        <span class="logo-text">GLOBAL VA's</span>
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -606,8 +648,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
       <div class="testimonials-grid">
         <!-- Card 1 -->
         <div class="grid-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>When scaling our paid spend past $30k/month, our Facebook CPA spiked unexpectedly. Global VA's audited our account, fixed Meta CAPI, and reduced our CAC by 38%.</p>
+          <div class="stars">★★★★★</div>
+          <p>"When scaling our paid spend past $30k/month, our Facebook CPA spiked unexpectedly. Global VA's audited our account, fixed Meta CAPI, and reduced our CAC by 38%."</p>
           <div class="client-info">
             <img src="images/client1.jpg" alt="David Miller" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="client-avatar-badge" style="display: none;">DM</div>
@@ -620,8 +662,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 
         <!-- Card 2 -->
         <div class="grid-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>Global VA's re-engineered our frontend architecture with clean HTML5. Page load speed dropped to under 1.2s with a 100/100 Core Web Vitals score.</p>
+          <div class="stars">★★★★★</div>
+          <p>"Global VA's re-engineered our frontend architecture with clean HTML5. Page load speed dropped to under 1.2s with a 100/100 Core Web Vitals score."</p>
           <div class="client-info">
             <img src="images/client2.jpg" alt="Marcus Vance" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="client-avatar-badge" style="display: none;">MV</div>
@@ -634,8 +676,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 
         <!-- Card 3 -->
         <div class="grid-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>They overhauled our site taxonomy and JSON-LD Schema. Our brand secured consistent citations across Google AI Overviews within 2 months.</p>
+          <div class="stars">★★★★★</div>
+          <p>"They overhauled our site taxonomy and JSON-LD Schema. Our brand secured consistent citations across Google AI Overviews within 2 months."</p>
           <div class="client-info">
             <img src="images/client3.jpg" alt="Sarah Jenkins" class="client-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="client-avatar-badge" style="display: none;">SJ</div>
@@ -708,16 +750,35 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
       <div class="footer-brand">
         <a href="index.html" class="logo">
           <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
-          <span class="logo-text">Global VA's</span>
+          <span class="logo-text">GLOBAL VA's</span>
         </a>
         <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
-        <div class="social-icons" aria-label="Platforms we work with">
-          <span title="Meta"><i class="fa-brands fa-meta"></i></span>
-          <span title="Google"><i class="fa-brands fa-google"></i></span>
-          <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
-          <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
-          <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
-          <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+
+        <div class="social-icons">
+          <div class="social-icon-item">
+            <i class="fa-brands fa-meta"></i>
+            <span class="social-tooltip">Meta</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-google"></i>
+            <span class="social-tooltip">Google</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <span class="social-tooltip">LinkedIn</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span class="social-tooltip">X / Twitter</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <span class="social-tooltip">TikTok</span>
+          </div>
+          <div class="social-icon-item">
+            <i class="fa-brands fa-youtube"></i>
+            <span class="social-tooltip">YouTube</span>
+          </div>
         </div>
       </div>
 
@@ -755,13 +816,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
     </div>
   </footer>
 
-  <!-- FLOATING WHATSAPP BUTTON (Identical to index) -->
+  <!-- FLOATING WHATSAPP BUTTON -->
   <a href="https://wa.me/923298232502" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp" rel="noopener">
     <i class="fa-brands fa-whatsapp"></i>
     <span class="whatsapp-tooltip">Contact Us</span>
   </a>
 
-  <!-- BACK TO TOP BUTTON (Identical to index) -->
+  <!-- BACK TO TOP BUTTON -->
   <button id="backToTop" class="back-to-top" aria-label="Back to top">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
@@ -770,46 +831,184 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; }
 /* Navbar & Back-to-top Scroll Handlers */
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
+
+function updateScrollState() {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
   backToTop.classList.toggle('show', window.scrollY > 500);
-});
+}
+window.addEventListener('scroll', updateScrollState, { passive: true });
+updateScrollState();
+
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* Mobile Nav Toggle */
+/* Mobile Nav Toggle & Services Dropdown Sync */
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('active');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
-
-/* Services Dropdown Toggle */
 const servicesNav = document.getElementById('servicesNav');
 const servicesToggle = document.getElementById('servicesToggle');
+const hasMouseHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+function closeServices() {
+  servicesNav.classList.remove('open');
+  servicesToggle.setAttribute('aria-expanded', 'false');
+}
+
+function closeMenu() {
+  navLinks.classList.remove('active');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  closeServices();
+}
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('active');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  if (!isOpen) closeServices();
+});
+
 servicesToggle.addEventListener('click', (e) => {
   e.preventDefault();
-  const open = servicesNav.classList.toggle('open');
-  servicesToggle.setAttribute('aria-expanded', String(open));
+  if (hasMouseHover.matches && window.innerWidth > 768 && e.detail !== 0) return;
+  const isOpen = servicesNav.classList.toggle('open');
+  servicesToggle.setAttribute('aria-expanded', String(isOpen));
 });
+
+navLinks.querySelectorAll('a').forEach(link => {
+  if (link === servicesToggle) return;
+  link.addEventListener('click', closeMenu);
+});
+
 document.addEventListener('click', (e) => {
-  if (!servicesNav.contains(e.target)) {
-    servicesNav.classList.remove('open');
-    servicesToggle.setAttribute('aria-expanded', 'false');
-  }
+  if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) closeMenu();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeMenu();
 });
 
 /* Scroll Reveal Observer */
 const revealEls = document.querySelectorAll('.fade-up');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      io.unobserve(entry.target);
+if (!('IntersectionObserver' in window)) {
+  revealEls.forEach(el => el.classList.add('visible'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+}
+
+/* Background Video Seamless Loop Engine */
+(function () {
+  const videoA = document.getElementById('bgVideoA');
+  const videoB = document.getElementById('bgVideoB');
+  if (!videoA || !videoB) return;
+
+  const FADE = 1.0;
+  let front = videoA;
+  let back = videoB;
+  let engineOn = false;
+  let crossfading = false;
+  let fadeTimer = null;
+
+  [videoA, videoB].forEach(v => { v.muted = true; v.setAttribute('playsinline', ''); });
+
+  function play(video) {
+    const p = video.play();
+    return (p && typeof p.then === 'function') ? p.then(() => true, () => false) : Promise.resolve(!video.paused);
+  }
+
+  function enableEngine() {
+    if (engineOn) return;
+    if (back.readyState >= 2 && isFinite(front.duration) && front.duration > FADE * 3) {
+      engineOn = true;
+      videoA.loop = false;
+      videoB.loop = false;
     }
+  }
+
+  function disableEngine() {
+    engineOn = false;
+    crossfading = false;
+    clearTimeout(fadeTimer);
+    videoA.loop = true;
+    videoB.loop = true;
+  }
+
+  function prepareSecondCopy() {
+    if (back.getAttribute('src') || !front.currentSrc) return;
+    back.preload = 'auto';
+    back.src = front.currentSrc;
+    back.load();
+  }
+
+  videoB.addEventListener('loadeddata', enableEngine);
+  videoA.addEventListener('loadedmetadata', enableEngine);
+  videoA.addEventListener('canplaythrough', prepareSecondCopy, { once: true });
+  setTimeout(prepareSecondCopy, 3000);
+
+  function startCrossfade() {
+    crossfading = true;
+    if (back.currentTime > 0.05) back.currentTime = 0;
+    play(back).then(ok => {
+      if (!ok) { disableEngine(); return; }
+      back.style.zIndex = '-2';
+      front.style.zIndex = '-3';
+      void back.offsetWidth;
+      back.style.transition = 'opacity ' + FADE + 's linear';
+      back.style.opacity = '1';
+      fadeTimer = setTimeout(finishCrossfade, FADE * 1000 + 100);
+    });
+  }
+
+  function finishCrossfade() {
+    if (!crossfading) return;
+    clearTimeout(fadeTimer);
+    const old = front;
+    front = back;
+    back = old;
+    old.pause();
+    old.style.transition = 'none';
+    old.style.opacity = '0';
+    old.style.zIndex = '-3';
+    front.style.transition = 'none';
+    front.style.opacity = '1';
+    front.style.zIndex = '-2';
+    try { old.currentTime = 0; } catch (e) {}
+    crossfading = false;
+  }
+
+  function watch() {
+    if (engineOn && !crossfading && !front.paused && isFinite(front.duration)) {
+      const remaining = front.duration - front.currentTime;
+      if (remaining <= FADE + 0.15) {
+        if (back.readyState >= 2) startCrossfade();
+        else front.loop = true;
+      } else if (front.loop && remaining > FADE + 1) {
+        front.loop = false;
+      }
+    }
+    requestAnimationFrame(watch);
+  }
+  requestAnimationFrame(watch);
+
+  play(front);
+  ['touchstart', 'click'].forEach(type => {
+    document.addEventListener(type, () => { if (front.paused) play(front); }, { once: true, passive: true });
   });
-}, { threshold: 0.12 });
-revealEls.forEach(el => io.observe(el));
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) return;
+    if (crossfading) finishCrossfade();
+    if (front.paused) play(front);
+  });
+  window.addEventListener('pageshow', (e) => { if (e.persisted && front.paused) play(front); });
+})();
   </script>
 </body>
 </html>
