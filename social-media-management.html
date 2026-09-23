@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+ <meta name="theme-color" content="#0A0A0F" />
  <title>Social Media Management | Global VA's</title>
  <meta name="description" content="Global VA's social media management: strategy-led content systems across Meta, LinkedIn, TikTok and beyond - built for consistency, brand clarity and measurable engagement, not empty posting schedules." />
 
+ <!-- Google Fonts & FontAwesome -->
+ <link rel="icon" type="image/png" href="logo.png">
+ <link rel="apple-touch-icon" href="logo.png">
  <link rel="preconnect" href="https://fonts.googleapis.com">
- <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
  <style>
@@ -27,31 +32,62 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
  font-family: var(--font-body);
  background: var(--bg-dark);
  color: var(--text-white);
  overflow-x: hidden;
+ line-height: 1.65;
+ width: 100%;
 }
 
 .skip-link {
- position: absolute;
- left: -999px;
- top: 8px;
- background: var(--accent);
- color: #fff;
- padding: 10px 16px;
- z-index: 2000;
- border-radius: 6px;
+ position: absolute; left: -999px; top: 8px;
+ background: var(--accent); color: #fff; padding: 10px 16px;
+ z-index: 2000; border-radius: 6px;
 }
 .skip-link:focus { left: 16px; }
 
+/* Dynamic Background Video & Overlay */
 .page-bg-video {
- position: fixed; top: 0; left: 0; width: 100%; height: 100%;
- object-fit: cover; z-index: -2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -2;
+  pointer-events: none;
 }
+#bgVideoB {
+  opacity: 0;
+  z-index: -3;
+  will-change: opacity;
+}
+@media (max-aspect-ratio: 1/1) {
+  .page-bg-video {
+    top: 50vh;
+    top: 50lvh;
+    left: 50%;
+    width: 150%;
+    height: auto;
+    aspect-ratio: 748 / 418;
+    transform: translate(-50%, -50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  }
+}
+
 .page-bg-overlay {
  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
  background:
@@ -61,16 +97,26 @@ body {
  z-index: -1;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+/* MANDATORY SAFE CONTAINER PADDING (FIX FOR NARROW/SPLIT SCREENS) */
+.container { 
+  width: 100%;
+  max-width: 1240px; 
+  margin: 0 auto; 
+  padding-left: clamp(20px, 4vw, 40px) !important;
+  padding-right: clamp(20px, 4vw, 40px) !important;
+}
+
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
-h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; word-break: break-word; }
 
+/* Buttons */
 .btn {
- display: inline-flex; align-items: center; gap: 8px;
+ display: inline-flex; align-items: center; justify-content: center; gap: 8px;
  padding: 14px 28px; border-radius: 8px; font-weight: 600;
- font-size: 0.95rem; transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+ font-size: 0.95rem; transition: all 0.3s ease;
  cursor: pointer; border: none;
+ max-width: 100%;
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
@@ -82,30 +128,35 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
  background: #1ebe5a; transform: translateY(-2px);
  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
 }
-.btn-whatsapp i { font-size: 1.2rem; }
+.btn-whatsapp i { font-size: 1.1rem; }
 
+/* Navbar Layout & Logo Typography */
 .navbar {
  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
- padding: 8px 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(10px);
- border-bottom: 1px solid var(--border-color);
+ padding: 12px 0; background: transparent;
  transition: background 0.3s ease, padding 0.3s ease;
 }
-.navbar.scrolled { background: rgba(10, 10, 15, 0.95); padding: 4px 0; }
+.navbar.scrolled {
+ background: rgba(10, 10, 15, 0.95);
+ -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+ padding: 8px 0; border-bottom: 1px solid var(--border-color);
+}
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
-.logo { display: flex; align-items: center; gap: 10px; transition: transform 0.25s ease; }
+
+.logo { display: inline-flex; align-items: center; gap: 12px; transition: transform 0.25s ease; text-decoration: none; }
 .logo:hover { transform: translateY(-2px); }
-.footer-logo { cursor: default; }
-.footer-logo:hover { transform: none; }
-.logo-img { height: 80px; width: auto; }
-.logo-text { font-family: var(--font-heading);
-  font-size: 1.35rem;
+.logo-img { height: clamp(50px, 8vw, 80px); width: auto; object-fit: contain; }
+.logo-text {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: clamp(0.95rem, 4.6vw, 1.3rem);
   font-weight: 700;
-  /* Pure white se clean light-gray gradient */
   background: linear-gradient(180deg, #FFFFFF 0%, #A0A0AC 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
-  white-space: nowrap; }
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
 
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links > a, .services-toggle {
@@ -120,25 +171,29 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
 .nav-item { position: relative; }
 .nav-item::after {
  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
- width: 100%; min-width: 280px; height: 20px; z-index: 99;
+ width: 100%; min-width: 260px; height: 20px; z-index: 99;
 }
-.services-toggle { cursor: pointer; }
+.services-toggle { cursor: default; }
 .services-toggle.is-current {
  background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 50%, #00d9ff 100%);
  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .dropdown-arrow { font-size: 0.7rem; margin-left: 5px; transition: transform 0.3s ease; }
-.nav-item:hover .dropdown-arrow, .nav-item.open .dropdown-arrow { transform: rotate(180deg); }
+.nav-item.open .dropdown-arrow { transform: rotate(180deg); }
 .dropdown-menu {
  position: absolute; top: calc(100% + 18px); left: 50%;
- transform: translateX(-50%) translateY(10px); min-width: 280px;
+ transform: translateX(-50%) translateY(10px); min-width: 260px;
  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
  padding: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
  opacity: 0; visibility: hidden; pointer-events: none;
  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 100;
 }
-.nav-item:hover .dropdown-menu, .nav-item.open .dropdown-menu {
+.nav-item.open .dropdown-menu {
  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+@media (hover: hover) and (pointer: fine) {
+ .nav-item:hover .dropdown-arrow { transform: rotate(180deg); }
+ .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 }
 .dropdown-menu a {
  display: flex !important; align-items: center; gap: 10px; padding: 11px 14px;
@@ -151,16 +206,17 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
  -webkit-background-clip: initial; background-clip: initial;
 }
 .dropdown-menu a.current {
- background: rgba(108, 92, 231, 0.12);
+ background: rgba(108, 92, 231, 0.2);
  color: #fff;
+ font-weight: 600;
 }
-.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+.menu-toggle { display: none; min-width: 44px; min-height: 44px; background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
+/* Breadcrumb & Hero */
 .breadcrumb {
  padding: 130px 0 10px;
- font-size: 0.82rem;
+ font-size: 0.85rem;
  color: var(--text-gray);
- letter-spacing: 0.01em;
 }
 .breadcrumb a { color: var(--text-gray); transition: color 0.2s ease; }
 .breadcrumb a:hover { color: var(--accent-light); }
@@ -168,48 +224,60 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
 .breadcrumb .current { color: var(--accent-light); }
 
 .service-hero {
- padding: 28px 0 72px;
+ padding: 20px 0 72px;
  display: grid;
  grid-template-columns: 1.05fr 0.95fr;
- gap: 48px;
+ gap: 40px;
  align-items: center;
 }
 .eyebrow {
  display: inline-flex;
  align-items: center;
  gap: 8px;
- padding: 6px 14px;
+ padding: 6px 16px;
  border: 1px solid rgba(108, 92, 231, 0.45);
  border-radius: 30px;
- font-size: 0.78rem;
+ font-size: 0.8rem;
  letter-spacing: 0.04em;
  text-transform: uppercase;
  color: var(--accent-light);
  margin-bottom: 20px;
+ max-width: 100%;
 }
 .eyebrow .live-dot {
  width: 7px; height: 7px; border-radius: 50%;
  background: var(--accent-cyan);
  box-shadow: 0 0 0 0 rgba(79, 209, 232, 0.7);
  animation: livePulse 1.8s ease-out infinite;
+ flex-shrink: 0;
 }
 .service-hero-text h1 {
- font-size: clamp(2.15rem, 4.2vw, 3.35rem);
+ font-size: clamp(1.8rem, 3.8vw, 3.2rem);
  font-weight: 800;
- margin-bottom: 18px;
+ margin-bottom: 20px;
+ line-height: 1.18;
  letter-spacing: -0.03em;
 }
 .service-hero-text h1 .accent-word { color: var(--accent-light); }
+
+/* ELEVATED HERO CARD STYLE */
+.hero-text-card {
+ background: rgba(23, 23, 31, 0.65);
+ border: 1px solid var(--border-color);
+ backdrop-filter: blur(12px);
+ border-radius: 18px;
+ padding: clamp(18px, 3vw, 28px);
+ margin-bottom: 24px;
+}
 .lede {
  color: var(--text-gray);
- font-size: 1.08rem;
- line-height: 1.75;
- margin-bottom: 28px;
- max-width: 540px;
+ font-size: clamp(0.92rem, 1.5vw, 1.02rem);
+ line-height: 1.7;
+ margin-bottom: 0;
 }
 .service-hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
 .hero-note {
- margin-top: 22px;
+ margin-top: 18px;
  font-size: 0.82rem;
  color: var(--text-gray);
  max-width: 480px;
@@ -218,15 +286,13 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
 .hero-stage {
  position: relative;
  min-height: 430px;
+ width: 100%;
 }
 .hero-stage svg { width: 100%; height: auto; display: block; }
 
 .rank-fill { transform-origin: left center; animation: fillBar 1.2s cubic-bezier(.2,.8,.2,1) 0.4s both; }
 .rank-fill.mid { animation-delay: 0.55s; }
 .rank-fill.late { animation-delay: 0.7s; }
-.fade-row { animation: riseIn 0.7s ease 0.55s both; }
-.fade-row.two { animation-delay: 0.75s; }
-.fade-row.three { animation-delay: 0.9s; }
 .ai-panel { animation: cardIn 0.8s ease 1s both; }
 .spark { stroke-dasharray: 180; stroke-dashoffset: 180; animation: drawLine 1.4s ease 1.1s forwards; }
 .orbit-dot { animation: pulseDot 2.2s ease-in-out infinite; }
@@ -248,7 +314,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
  gap: 20px;
 }
 .split-card {
- background: rgba(23, 23, 31, 0.72);
+ background: var(--bg-card);
  border: 1px solid var(--border-color);
  border-radius: 16px;
  padding: 28px 26px 26px;
@@ -289,7 +355,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
  position: absolute; left: 0; top: 16px;
 }
 
-section { padding: 88px 0; }
+section { padding: clamp(48px, 8vw, 88px) 0; }
 .section-heading { max-width: 720px; margin-bottom: 44px; }
 .section-kicker {
  display: block;
@@ -299,7 +365,7 @@ section { padding: 88px 0; }
  color: var(--accent-light);
  margin-bottom: 12px;
 }
-.section-heading h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; }
+.section-heading h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; margin-bottom: 14px; }
 .section-heading p { color: var(--text-gray); font-size: 1.02rem; line-height: 1.75; }
 
 .why-matters {
@@ -487,60 +553,79 @@ section { padding: 88px 0; }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .faq-answer p { color: var(--text-gray); padding-bottom: 20px; line-height: 1.7; }
 
-.cta-banner { background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%); text-align: center; }
+.cta-banner {
+ background: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
+ text-align: center; border-radius: 20px; padding: clamp(32px, 5vw, 50px) 24px; margin-bottom: 80px;
+}
 .cta-content { max-width: 680px; margin: 0 auto; }
-.cta-content h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 14px; }
+.cta-content h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 14px; color: #fff; }
 .cta-content p { color: rgba(255,255,255,0.88); margin-bottom: 28px; font-size: 1.02rem; line-height: 1.7; }
 .cta-content .btn-primary { background: #fff; color: var(--accent); }
 .cta-content .btn-primary:hover { background: #f0f0f0; }
 .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-.footer { background: rgba(18, 18, 26, 0.7); padding-top: 80px; border-top: 1px solid var(--border-color); }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; }
-.footer-brand p { color: var(--text-gray); margin: 16px 0 20px; font-size: 0.9rem; line-height: 1.6; }
-.social-icons { display: flex; gap: 14px; }
-.social-icons span {
- width: 38px; height: 38px; border-radius: 50%; background: var(--bg-card);
- display: flex; align-items: center; justify-content: center;
- cursor: default;
- transition: background 0.3s, transform 0.25s ease;
-}
-.social-icons span:hover {
- background: var(--accent);
- transform: translateY(-4px) scale(1.08);
-}
-.footer-col h4 { margin-bottom: 18px; font-size: 1rem; }
-.footer-hours-title { margin-top: 24px; }
-.footer-closed { color: #ff7675 !important; }
-.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 0.9rem; }
-.footer-col a:hover { color: #fff; }
-.footer-bottom { border-top: 1px solid var(--border-color); padding: 24px 0; text-align: center; color: var(--text-gray); font-size: 0.85rem; }
+/* COMPACT INDEX-MATCHED FOOTER STYLES */
+.footer { background: rgba(18, 18, 26, 0.7); padding-top: 50px; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; padding-bottom: 30px; }
+.footer-brand p { color: var(--text-gray); margin: 12px 0 16px; font-size: 0.88rem; line-height: 1.5; }
 
+.social-icons { display: flex; gap: 10px; }
+.social-icon-item {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%; background: var(--bg-card);
+  transition: background 0.3s ease, transform 0.25s ease; cursor: default; user-select: none;
+}
+.social-icon-item i { font-size: 0.9rem; color: var(--text-white); transition: color 0.3s ease; }
+.social-icon-item:hover { background: var(--accent); transform: translateY(-3px); }
+.social-icon-item .social-tooltip {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-6px);
+  background: #1f1f2b; color: #ffffff; font-size: 0.72rem; font-weight: 600;
+  font-family: var(--font-body); padding: 4px 8px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); z-index: 10;
+}
+.social-icon-item .social-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border-width: 4px 4px 0 4px; border-style: solid; border-color: #1f1f2b transparent transparent transparent;
+}
+.social-icon-item:hover .social-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(-8px); }
+
+.footer-col h4 { margin-bottom: 12px; font-size: 0.95rem; font-weight: 700; color: #fff; }
+.footer-hours-title { margin-top: 14px; }
+.footer-closed { color: #ff7675 !important; }
+.footer-col a, .footer-col p { display: block; color: var(--text-gray); margin-bottom: 8px; font-size: 0.85rem; line-height: 1.4; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid var(--border-color); padding: 18px 0; text-align: center; color: var(--text-gray); font-size: 0.82rem; }
+
+/* Sticky Widgets */
 .back-to-top {
- position: fixed; bottom: 100px; right: 30px; width: 48px; height: 48px; border-radius: 50%;
- background: var(--accent); color: #fff; border: none; font-size: 1.1rem; cursor: pointer;
+ position: fixed; bottom: 90px; right: 24px; width: 44px; height: 44px; border-radius: 50%;
+ background: var(--accent); color: #fff; border: none; font-size: 1rem; cursor: pointer;
  display: none; align-items: center; justify-content: center; z-index: 999;
  transition: background 0.3s, transform 0.25s ease;
 }
-.back-to-top:hover { background: var(--accent-light); transform: translateY(-4px); }
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-3px); }
 .back-to-top.show { display: flex; }
+
 .floating-whatsapp {
- position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%;
+ position: fixed; bottom: 24px; right: 24px; width: 52px; height: 52px; border-radius: 50%;
  background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center;
- font-size: 1.8rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+ font-size: 1.6rem; z-index: 1000; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
  transition: transform 0.25s ease, box-shadow 0.25s ease; animation: whatsappPulse 2.5s infinite;
 }
-.floating-whatsapp:hover { transform: translateY(-6px) scale(1.08); }
+.floating-whatsapp:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6); }
+
 .whatsapp-tooltip {
- position: absolute; right: 74px; top: 50%; transform: translateY(-50%) translateX(10px);
- background: #1f1f2b; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem;
- font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0; visibility: hidden;
- pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+ position: absolute; right: 66px; top: 50%; transform: translateY(-50%) translateX(10px);
+ background: #1f1f2b; color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem;
+ font-weight: 600; font-family: var(--font-body); white-space: nowrap; opacity: 0;
+ visibility: hidden; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,0.35);
  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 .whatsapp-tooltip::after {
- content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
- border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent #1f1f2b;
+ content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%);
+ border-width: 5px 0 5px 5px; border-style: solid; border-color: transparent transparent transparent #1f1f2b;
 }
 .floating-whatsapp:hover .whatsapp-tooltip { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
 
@@ -555,13 +640,9 @@ section { padding: 88px 0; }
  from { transform: scaleX(0); }
  to { transform: scaleX(1); }
 }
-@keyframes riseIn {
- from { opacity: 0; transform: translateY(8px); }
- to { opacity: 1; transform: none; }
-}
 @keyframes cardIn {
  from { opacity: 0; transform: translate(12px, 16px); }
- to { opacity: 1; transform: none; }
+ to { transform: scaleX(1); }
 }
 @keyframes drawLine {
  to { stroke-dashoffset: 0; }
@@ -575,9 +656,9 @@ section { padding: 88px 0; }
  to { transform: scaleY(1); }
 }
 @keyframes whatsappPulse {
- 0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.5); }
- 70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 14px rgba(37, 211, 102, 0); }
- 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 0 rgba(37, 211, 102, 0); }
+ 0% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+ 70% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0); }
+ 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -595,42 +676,65 @@ section { padding: 88px 0; }
  .include-aside { position: static; }
  .service-hero-text p, .lede { max-width: none; }
  .hero-stage { min-height: 0; }
- .footer-grid { grid-template-columns: repeat(2, 1fr); }
+ .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 }
+
+/* RESPONSIVE & MOBILE SPACING SAFEGUARDS */
 @media (max-width: 768px) {
  .nav-links { display: none; }
  .menu-toggle { display: block; }
  .nav-links.active {
  display: flex; flex-direction: column; align-items: flex-start; position: absolute; top: 100%; left: 0;
  width: 100%; background: var(--bg-dark-2); padding: 20px; gap: 16px;
- border-bottom: 1px solid var(--border-color);
+ border-bottom: 1px solid var(--border-color); max-height: calc(100vh - 100px);
+ max-height: calc(100svh - 100px); overflow-y: auto; -webkit-overflow-scrolling: touch;
  }
  .nav-item { width: 100%; }
  .nav-item::after { display: none; }
+ .services-toggle { display: flex; align-items: center; width: 100%; padding: 8px 0; cursor: pointer; }
+
  .dropdown-menu {
- position: static; transform: none; min-width: 0; width: 100%;
- opacity: 1; visibility: visible; pointer-events: auto;
- display: none; box-shadow: none; margin-top: 8px;
+ position: static !important;
+ transform: none !important;
+ min-width: 0 !important;
+ width: 100% !important;
+ left: auto !important;
+ top: auto !important;
+ opacity: 1 !important;
+ visibility: visible !important;
+ pointer-events: auto !important;
+ display: none;
+ box-shadow: none !important;
+ margin-top: 8px !important;
+ background: rgba(23, 23, 31, 0.6) !important;
  }
- .nav-item.open .dropdown-menu { display: block; }
- .footer-grid { grid-template-columns: 1fr; text-align: center; }
- .social-icons { justify-content: center; }
+ .nav-item.open .dropdown-menu { display: block !important; }
+ .dropdown-menu a { white-space: normal !important; width: 100% !important; }
+
+ .footer { padding-top: 36px; }
+ .footer-grid { grid-template-columns: minmax(0, 1fr); text-align: center; gap: 22px; padding-bottom: 24px; }
+ .footer-col h4 { margin-bottom: 8px; font-size: 0.9rem; }
+ .footer-col a, .footer-col p { margin-bottom: 6px; font-size: 0.83rem; }
+ .footer-hours-title { margin-top: 10px; }
+ .social-icons { justify-content: center; flex-wrap: wrap; margin-bottom: 6px; }
 }
  </style>
 </head>
 <body>
  <a class="skip-link" href="#main">Skip to content</a>
 
- <video class="page-bg-video" autoplay muted loop playsinline>
- <source src="theme1.mp4" type="video/mp4">
+ <!-- Background Dynamic Dual-Video Preload -->
+ <video class="page-bg-video" id="bgVideoA" autoplay muted loop playsinline preload="auto" poster="theme1-poster.jpg" aria-hidden="true">
+   <source src="theme1.mp4" type="video/mp4">
  </video>
+ <video class="page-bg-video" id="bgVideoB" muted playsinline preload="none" aria-hidden="true"></video>
  <div class="page-bg-overlay"></div>
 
  <header class="navbar" id="navbar">
  <div class="container navbar-inner">
  <a href="index.html" class="logo">
  <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
- <span class="logo-text">Global VA's</span>
+ <span class="logo-text">GLOBAL VA's</span>
  </a>
 
  <nav class="nav-links" id="navLinks">
@@ -658,7 +762,7 @@ section { padding: 88px 0; }
  </header>
 
  <main id="main">
- <div class="container breadcrumb">
+ <div class="container breadcrumb fade-up">
  <a href="index.html">Home</a>
  <span class="sep">/</span>
  <span>Services</span>
@@ -666,21 +770,24 @@ section { padding: 88px 0; }
  <span class="current">Social Media Management</span>
  </div>
 
- <section class="service-hero container">
+ <section class="service-hero container fade-up">
  <div class="service-hero-text">
- <span class="eyebrow"><span class="live-dot"></span> FACEBOOK · INSTAGRAM · TIKTOK & BEYOND  </span>
+ <span class="eyebrow"><span class="live-dot"></span> FACEBOOK · INSTAGRAM · TIKTOK & BEYOND</span>
  <h1>Posting is easy.<br>Building a <span class="accent-word">system</span> that compounds is not.</h1>
- <p class="lede">
- Most brands treat social media as a content calendar. We treat it as a distribution system - one that protects brand voice, earns attention deliberately, and turns consistent presence into measurable commercial signal.
- </p>
+ 
+ <div class="hero-text-card">
+   <p class="lede">
+   Most brands treat social media as a content calendar. We treat it as a distribution system - one that protects brand voice, earns attention deliberately, and turns consistent presence into measurable commercial signal.
+   </p>
+ </div>
+
  <div class="service-hero-buttons">
  <a href="form.html" class="btn btn-primary">Book a Free Strategy Call</a>
  <a href="https://wa.me/923298232502" target="_blank" class="btn btn-whatsapp" rel="noopener">
  <i class="fa-brands fa-whatsapp"></i> WhatsApp
  </a>
  </div>
- <p class="hero-note">Strategy first. Creative second. Scheduling last.
-We build content systems around your actual audience, your brand constraints, and the platforms where your buyers already spend time.</p>
+ <p class="hero-note">Strategy first. Creative second. Scheduling last. We build content systems around your actual audience, your brand constraints, and the platforms where your buyers already spend time.</p>
  </div>
 
  <div class="hero-stage" aria-hidden="true">
@@ -763,20 +870,14 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section class="why-matters">
  <div class="container">
- <div class="section-heading">
+ <div class="section-heading fade-up">
  <span class="section-kicker">The difference</span>
  <h2>A content calendar is not a strategy. A system is.</h2>
  </div>
- <div class="why-copy">
- <p>
- Most social media management still operates on volume. More posts. More platforms. More "engagement". The result is usually a feed that looks busy and a brand that still feels invisible to the people who actually buy.
- </p>
- <p>
- We build the opposite. A small number of content pillars, written in your voice, distributed with platform-native craft, and measured against the signals that matter - saves, profile visits, qualified conversations, and eventual commercial movement.
- </p>
- <p>
- Consistency without direction is just noise. Direction without consistency never compounds. We treat both as non-negotiable.
- </p>
+ <div class="why-copy fade-up">
+ <p>Most social media management still operates on volume. More posts. More platforms. More "engagement". The result is usually a feed that looks busy and a brand that still feels invisible to the people who actually buy.</p>
+ <p>We build the opposite. A small number of content pillars, written in your voice, distributed with platform-native craft, and measured against the signals that matter - saves, profile visits, qualified conversations, and eventual commercial movement.</p>
+ <p>Consistency without direction is just noise. Direction without consistency never compounds. We treat both as non-negotiable.</p>
  </div>
 
  <div class="fact-row">
@@ -798,7 +899,7 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section>
  <div class="container">
- <div class="section-heading">
+ <div class="section-heading fade-up">
  <span class="section-kicker">Two layers</span>
  <h2>Presence and conversion are different jobs</h2>
  <p>Treating every post as a sales pitch exhausts an audience. Treating every post as pure brand theatre wastes the commercial opportunity. We separate the two deliberately.</p>
@@ -830,7 +931,7 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section>
  <div class="container include-wrap">
- <aside class="include-aside">
+ <aside class="include-aside fade-up">
  <span class="section-kicker">Scope</span>
  <h2>What sits in the monthly work</h2>
  <p>This is the full stack. Strategy, creative direction, production support, community handling, and reporting all live inside the same retainer - not in later phases.</p>
@@ -885,7 +986,7 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section class="process">
  <div class="container">
- <div class="section-heading">
+ <div class="section-heading fade-up">
  <span class="section-kicker">First quarter</span>
  <h2>What the first 90 days look like</h2>
  <p>If brand guidelines or decision-makers are slow to respond, the timeline stretches. We need clear access, a defined voice, and someone who can approve content without multi-week delays.</p>
@@ -933,7 +1034,7 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section>
  <div class="container">
- <div class="section-heading">
+ <div class="section-heading fade-up">
  <span class="section-kicker">Fit</span>
  <h2>Who this is for and who should wait</h2>
  </div>
@@ -962,13 +1063,11 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section>
  <div class="container report-visual">
- <div>
+ <div class="fade-up">
  <div class="section-heading" style="margin-bottom: 18px;">
  <span class="section-kicker">Reporting</span>
  <h2>You see the same numbers we see</h2>
- <p>
- Monthly written report plus a short call. Reach quality, engagement depth, content that performed, content that did not, and the adjustments for the next cycle. No vanity dashboards. No inflated screenshots.
- </p>
+ <p>Monthly written report plus a short call. Reach quality, engagement depth, content that performed, content that did not, and the adjustments for the next cycle. No vanity dashboards. No inflated screenshots.</p>
  </div>
  </div>
  <div class="fake-report fade-up" aria-hidden="true">
@@ -988,12 +1087,12 @@ We build content systems around your actual audience, your brand constraints, an
 
  <section>
  <div class="container">
- <div class="section-heading">
+ <div class="section-heading fade-up">
  <span class="section-kicker">Questions</span>
  <h2>Straight answers</h2>
  </div>
  <div class="faq-list" id="faqList">
- <div class="faq-item">
+ <div class="faq-item fade-up">
  <button class="faq-question" aria-expanded="false">
  How many posts per week should we expect?
  <i class="fa-solid fa-plus"></i>
@@ -1002,7 +1101,7 @@ We build content systems around your actual audience, your brand constraints, an
  <p>There is no universal number. Volume is determined by the platforms you prioritize, the resources available for production, and the quality bar we agree on. We would rather publish fewer pieces that hold attention than fill a calendar with content that gets scrolled past.</p>
  </div>
  </div>
- <div class="faq-item">
+ <div class="faq-item fade-up">
  <button class="faq-question" aria-expanded="false">
  Do you guarantee follower growth or engagement rates?
  <i class="fa-solid fa-plus"></i>
@@ -1011,7 +1110,7 @@ We build content systems around your actual audience, your brand constraints, an
  <p>No. Algorithms shift, audiences change, and any agency promising fixed growth numbers is selling certainty they do not control. Our commitment is to build a system that improves the quality of attention over time and to report honestly on what is and is not working.</p>
  </div>
  </div>
- <div class="faq-item">
+ <div class="faq-item fade-up">
  <button class="faq-question" aria-expanded="false">
  Can you work with our existing in-house designer or videographer?
  <i class="fa-solid fa-plus"></i>
@@ -1020,7 +1119,7 @@ We build content systems around your actual audience, your brand constraints, an
  <p>Yes. Many clients keep production internal. In those cases we provide tight creative direction, frameworks, and feedback so the output stays consistent with the system. The strategy and voice remain ours; the pixels can stay with your team.</p>
  </div>
  </div>
- <div class="faq-item">
+ <div class="faq-item fade-up">
  <button class="faq-question" aria-expanded="false">
  What if our brand voice is still unclear?
  <i class="fa-solid fa-plus"></i>
@@ -1033,9 +1132,9 @@ We build content systems around your actual audience, your brand constraints, an
  </div>
  </section>
 
- <section class="cta-banner">
+ <section class="cta-banner fade-up">
  <div class="container cta-content">
- <h2> Ready for social media that actually supports the business?</h2>
+ <h2>Ready for social media that actually supports the business?</h2>
  <p>Send us your profiles and a short brand overview. We will identify what is working, what is not, and outline a practical system built around clear goals.</p>
  <div class="cta-buttons">
  <a href="form.html" class="btn btn-primary">Book a Free Strategy Call</a>
@@ -1052,16 +1151,35 @@ We build content systems around your actual audience, your brand constraints, an
  <div class="footer-brand">
  <a href="index.html" class="logo footer-logo">
  <img src="logo.png" alt="Global VA's Logo" class="logo-img" onerror="this.style.display='none';">
- <span class="logo-text">Global VA's</span>
+ <span class="logo-text">GLOBAL VA's</span>
  </a>
  <p>Digital work for brands that need search, ads, and a site that does not fight them.</p>
- <div class="social-icons" aria-label="Platforms we work with">
- <span title="Meta"><i class="fa-brands fa-meta"></i></span>
- <span title="Google"><i class="fa-brands fa-google"></i></span>
- <span title="LinkedIn"><i class="fa-brands fa-linkedin"></i></span>
- <span title="X"><i class="fa-brands fa-x-twitter"></i></span>
- <span title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
- <span title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+
+ <div class="social-icons">
+ <div class="social-icon-item">
+ <i class="fa-brands fa-meta"></i>
+ <span class="social-tooltip">Meta</span>
+ </div>
+ <div class="social-icon-item">
+ <i class="fa-brands fa-google"></i>
+ <span class="social-tooltip">Google</span>
+ </div>
+ <div class="social-icon-item">
+ <i class="fa-brands fa-linkedin"></i>
+ <span class="social-tooltip">LinkedIn</span>
+ </div>
+ <div class="social-icon-item">
+ <i class="fa-brands fa-x-twitter"></i>
+ <span class="social-tooltip">X / Twitter</span>
+ </div>
+ <div class="social-icon-item">
+ <i class="fa-brands fa-tiktok"></i>
+ <span class="social-tooltip">TikTok</span>
+ </div>
+ <div class="social-icon-item">
+ <i class="fa-brands fa-youtube"></i>
+ <span class="social-tooltip">YouTube</span>
+ </div>
  </div>
  </div>
 
@@ -1087,11 +1205,12 @@ We build content systems around your actual audience, your brand constraints, an
  <h4>Contact</h4>
  <a href="mailto:globalvas65@gmail.com"><i class="fa-solid fa-envelope"></i> globalvas65@gmail.com</a>
  <a href="https://wa.me/923298232502" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i> +92 329 8232502</a>
-<h4 class="footer-hours-title">Hours</h4>
+ <h4 class="footer-hours-title">Hours</h4>
  <p><i class="fa-solid fa-clock"></i> Monday to Friday</p>
  <p class="footer-closed"><i class="fa-solid fa-clock"></i> Saturday & Sunday Closed</p>
  </div>
  </div>
+
  <div class="footer-bottom">
  <div class="container">
  <p>&copy; 2026 Global VA's. All rights reserved.</p>
@@ -1099,6 +1218,7 @@ We build content systems around your actual audience, your brand constraints, an
  </div>
  </footer>
 
+ <!-- Floating Widgets -->
  <a href="https://wa.me/923298232502" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp" rel="noopener">
  <i class="fa-brands fa-whatsapp"></i>
  <span class="whatsapp-tooltip">Contact Us</span>
@@ -1109,40 +1229,74 @@ We build content systems around your actual audience, your brand constraints, an
  </button>
 
  <script>
+/* Navbar & Back-To-Top Scroll State */
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
+
+function updateScrollState() {
  navbar.classList.toggle('scrolled', window.scrollY > 50);
  backToTop.classList.toggle('show', window.scrollY > 500);
-});
+}
+window.addEventListener('scroll', updateScrollState, { passive: true });
+updateScrollState();
 
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* Mobile Drawer & Dropdown Navigation Logic */
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 const servicesNav = document.getElementById('servicesNav');
 const servicesToggle = document.getElementById('servicesToggle');
+const hasMouseHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+function closeServices() {
+ servicesNav.classList.remove('open');
+ servicesToggle.setAttribute('aria-expanded', 'false');
+}
+
+function closeMenu() {
+ navLinks.classList.remove('active');
+ menuToggle.setAttribute('aria-expanded', 'false');
+ closeServices();
+}
 
 menuToggle.addEventListener('click', () => {
- const open = navLinks.classList.toggle('active');
- menuToggle.setAttribute('aria-expanded', String(open));
+ const isOpen = navLinks.classList.toggle('active');
+ menuToggle.setAttribute('aria-expanded', String(isOpen));
+ if (!isOpen) closeServices();
 });
 
 servicesToggle.addEventListener('click', (e) => {
  e.preventDefault();
- const open = servicesNav.classList.toggle('open');
- servicesToggle.setAttribute('aria-expanded', String(open));
+ if (hasMouseHover.matches && window.innerWidth > 768 && e.detail !== 0) return;
+ const isOpen = servicesNav.classList.toggle('open');
+ servicesToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+ if (link === servicesToggle) return;
+ link.addEventListener('click', closeMenu);
 });
 
 document.addEventListener('click', (e) => {
- if (!servicesNav.contains(e.target)) {
- servicesNav.classList.remove('open');
- servicesToggle.setAttribute('aria-expanded', 'false');
- }
+ if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) closeMenu();
 });
 
+document.addEventListener('keydown', (e) => {
+ if (e.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('resize', () => {
+ if (window.innerWidth > 768) closeMenu();
+});
+
+/* FAQ Accordion Interaction */
 const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
  const question = item.querySelector('.faq-question');
  const answer = item.querySelector('.faq-answer');
+ question.setAttribute('aria-expanded', 'false');
+
  question.addEventListener('click', () => {
  const isActive = item.classList.contains('active');
  faqItems.forEach(other => {
@@ -1158,21 +1312,136 @@ faqItems.forEach(item => {
  });
 });
 
-backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+window.addEventListener('resize', () => {
+ faqItems.forEach(item => {
+ if (item.classList.contains('active')) {
+ const answer = item.querySelector('.faq-answer');
+ answer.style.maxHeight = answer.scrollHeight + 'px';
+ }
+ });
+});
 
+/* Scroll Animations Observer */
 const revealEls = document.querySelectorAll('.fade-up, .split-card, .section-heading, .work-item, .month-card, .honest-box, .fact');
-const io = new IntersectionObserver((entries) => {
+if (!('IntersectionObserver' in window)) {
+ revealEls.forEach(el => el.classList.add('visible'));
+} else {
+ const io = new IntersectionObserver((entries) => {
  entries.forEach(entry => {
  if (entry.isIntersecting) {
  entry.target.classList.add('visible');
  io.unobserve(entry.target);
  }
  });
-}, { threshold: 0.12 });
-revealEls.forEach(el => {
- el.classList.add('fade-up');
- io.observe(el);
-});
+ }, { threshold: 0.12 });
+ revealEls.forEach(el => io.observe(el));
+}
+
+/* Background Video Endless Cross-Fade Loop Engine */
+(function () {
+ const videoA = document.getElementById('bgVideoA');
+ const videoB = document.getElementById('bgVideoB');
+ if (!videoA || !videoB) return;
+
+ const FADE = 1.0;
+ let front = videoA;
+ let back = videoB;
+ let engineOn = false;
+ let crossfading = false;
+ let fadeTimer = null;
+
+ [videoA, videoB].forEach(v => { v.muted = true; v.setAttribute('playsinline', ''); });
+
+ function play(video) {
+ const p = video.play();
+ return (p && typeof p.then === 'function') ? p.then(() => true, () => false) : Promise.resolve(!video.paused);
+ }
+
+ function enableEngine() {
+ if (engineOn) return;
+ if (back.readyState >= 2 && isFinite(front.duration) && front.duration > FADE * 3) {
+ engineOn = true;
+ videoA.loop = false;
+ videoB.loop = false;
+ }
+ }
+
+ function disableEngine() {
+ engineOn = false;
+ crossfading = false;
+ clearTimeout(fadeTimer);
+ videoA.loop = true;
+ videoB.loop = true;
+ }
+
+ function prepareSecondCopy() {
+ if (back.getAttribute('src') || !front.currentSrc) return;
+ back.preload = 'auto';
+ back.src = front.currentSrc;
+ back.load();
+ }
+
+ videoB.addEventListener('loadeddata', enableEngine);
+ videoA.addEventListener('loadedmetadata', enableEngine);
+ videoA.addEventListener('canplaythrough', prepareSecondCopy, { once: true });
+ setTimeout(prepareSecondCopy, 3000);
+
+ function startCrossfade() {
+ crossfading = true;
+ if (back.currentTime > 0.05) back.currentTime = 0;
+ play(back).then(ok => {
+ if (!ok) { disableEngine(); return; }
+ back.style.zIndex = '-2';
+ front.style.zIndex = '-3';
+ void back.offsetWidth;
+ back.style.transition = 'opacity ' + FADE + 's linear';
+ back.style.opacity = '1';
+ fadeTimer = setTimeout(finishCrossfade, FADE * 1000 + 100);
+ });
+ }
+
+ function finishCrossfade() {
+ if (!crossfading) return;
+ clearTimeout(fadeTimer);
+ const old = front;
+ front = back;
+ back = old;
+ old.pause();
+ old.style.transition = 'none';
+ old.style.opacity = '0';
+ old.style.zIndex = '-3';
+ front.style.transition = 'none';
+ front.style.opacity = '1';
+ front.style.zIndex = '-2';
+ try { old.currentTime = 0; } catch (e) {}
+ crossfading = false;
+ }
+
+ function watch() {
+ if (engineOn && !crossfading && !front.paused && isFinite(front.duration)) {
+ const remaining = front.duration - front.currentTime;
+ if (remaining <= FADE + 0.15) {
+ if (back.readyState >= 2) startCrossfade();
+ else front.loop = true;
+ } else if (front.loop && remaining > FADE + 1) {
+ front.loop = false;
+ }
+ }
+ requestAnimationFrame(watch);
+ }
+ requestAnimationFrame(watch);
+
+ play(front);
+ ['touchstart', 'click'].forEach(type => {
+ document.addEventListener(type, () => { if (front.paused) play(front); }, { once: true, passive: true });
+ });
+ document.addEventListener('visibilitychange', () => {
+ if (document.hidden) return;
+ if (crossfading) finishCrossfade();
+ if (front.paused) play(front);
+ });
+ window.addEventListener('pageshow', (e) => { if (e.persisted && front.paused) play(front); });
+})();
  </script>
 </body>
 </html>
