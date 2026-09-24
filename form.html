@@ -79,7 +79,7 @@ body {
   background:
     radial-gradient(900px 480px at 12% 8%, rgba(108, 92, 231, 0.16), transparent 55%),
     radial-gradient(700px 460px at 90% 60%, rgba(79, 209, 232, 0.09), transparent 50%),
-    rgba(10, 10, 15, 0.66);
+    rgba(10, 10, 15, 0.85);
   z-index: -1;
 }
 
@@ -290,18 +290,57 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; word-break
 .cc-caret { margin-left: auto; font-size: 0.7rem; color: var(--text-gray); transition: transform 0.25s ease; }
 .cc-select.open .cc-caret { transform: rotate(180deg); }
 
-.cc-list {
-  position: absolute; top: calc(100% + 8px); left: 0; width: 280px; max-height: 280px; overflow-y: auto;
+.cc-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 0; width: 300px; max-width: calc(100vw - 40px);
   background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.6); padding: 8px; opacity: 0; visibility: hidden;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.6); opacity: 0; visibility: hidden;
   transform: translateY(-8px); transition: all 0.2s ease; z-index: 100;
+  display: flex; flex-direction: column; overflow: hidden;
 }
-.cc-select.open .cc-list { opacity: 1; visibility: visible; transform: translateY(0); }
-.cc-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; font-size: 0.88rem; color: var(--text-gray); cursor: pointer; }
+.cc-select.open .cc-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.cc-search-wrap {
+  position: relative; padding: 10px 10px 8px; border-bottom: 1px solid var(--border-color); flex-shrink: 0;
+}
+.cc-search {
+  width: 100%; background: rgba(10, 10, 15, 0.7); border: 1.5px solid var(--border-color);
+  border-radius: 8px; padding: 10px 12px 10px 36px; font-family: var(--font-body);
+  font-size: 0.88rem; color: #fff; outline: none; transition: border-color 0.2s ease;
+}
+.cc-search:focus { border-color: var(--accent); }
+.cc-search::placeholder { color: var(--text-gray); }
+.cc-search-icon {
+  position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+  color: var(--text-gray); font-size: 0.85rem; pointer-events: none;
+}
+
+.cc-list {
+  max-height: 260px; overflow-y: auto; padding: 6px 8px 8px;
+  scrollbar-width: thin; scrollbar-color: rgba(108,92,231,0.4) transparent;
+}
+.cc-list::-webkit-scrollbar { width: 6px; }
+.cc-list::-webkit-scrollbar-track { background: transparent; }
+.cc-list::-webkit-scrollbar-thumb { background: rgba(108,92,231,0.35); border-radius: 3px; }
+
+.cc-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px;
+  font-size: 0.88rem; color: var(--text-gray); cursor: pointer; transition: background 0.15s ease, color 0.15s ease;
+}
 .cc-item:hover, .cc-item.active, .cc-item:focus-visible { background: rgba(108, 92, 231, 0.15); color: #fff; outline: none; }
+.cc-item .cc-flag { font-size: 1.1rem; flex-shrink: 0; }
+.cc-item .cc-country { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cc-item .cc-num { font-weight: 600; color: var(--accent-light); flex-shrink: 0; }
+.cc-item.hidden { display: none; }
 
 .phone-number input { padding-left: 18px; }
 .phone-number label { left: 18px; }
+
+@media (max-width: 768px) {
+  .cc-dropdown {
+    width: min(320px, calc(100vw - 40px));
+    left: 0;
+  }
+}
 
 /* SERVICES CHIPS */
 .chip-label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-white); margin-bottom: 12px; }
@@ -492,7 +531,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; word-break
 
     <section class="container contact-hero fade-up">
       <span class="eyebrow"><span class="live-dot"></span> Start a Conversation</span>
-      <h1>Your Vision, <br>Our strategy - <span class="accent-word">Growth Simplified.</span></h1>
+      <h1>Your Vision, <br>Our strategy - <span class="accent-word">Growth Simplified</span>.</h1>
       <p>From SEO & GEO and Performance Marketing to Social Media Management, Web Design & Development, and Branding & Identity - tell us what you are looking to achieve. A member of our team will review your enquiry and reply with a clear next step, a focused question, or an honest assessment if we are not the best fit for the project. No sales pressure. No generic templates.</p>
     </section>
 
@@ -547,27 +586,61 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; word-break
             </div>
 
             <div class="field full">
-              <span class="chip-label">WhatsApp number</span>
+              <span class="chip-label">Enter your WhatsApp number</span>
               <div class="phone-field">
                 <div class="cc-select" id="ccSelect">
-                  <button type="button" class="cc-button" id="ccButton">
+                  <button type="button" class="cc-button" id="ccButton" aria-haspopup="listbox" aria-expanded="false">
                     <span class="cc-flag" id="ccFlag">🇵🇰</span><span class="cc-code" id="ccCode">+92</span>
                     <i class="fa-solid fa-chevron-down cc-caret"></i>
                   </button>
-                  <div class="cc-list" id="ccList" role="listbox">
-                    <div class="cc-item active" tabindex="0" role="option" aria-selected="true" data-flag="🇵🇰" data-code="+92"><span class="cc-flag">🇵🇰</span><span class="cc-country">Pakistan (PK)</span><span class="cc-num">+92</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇺🇸" data-code="+1"><span class="cc-flag">🇺🇸</span><span class="cc-country">United States (US)</span><span class="cc-num">+1</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇦" data-code="+1"><span class="cc-flag">🇨🇦</span><span class="cc-country">Canada (CA)</span><span class="cc-num">+1</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇬🇧" data-code="+44"><span class="cc-flag">🇬🇧</span><span class="cc-country">United Kingdom (UK)</span><span class="cc-num">+44</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇩🇪" data-code="+49"><span class="cc-flag">🇩🇪</span><span class="cc-country">Germany (DE)</span><span class="cc-num">+49</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇫🇷" data-code="+33"><span class="cc-flag">🇫🇷</span><span class="cc-country">France (FR)</span><span class="cc-num">+33</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇦🇪" data-code="+971"><span class="cc-flag">🇦🇪</span><span class="cc-country">United Arab Emirates (AE)</span><span class="cc-num">+971</span></div>
-                    <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇸🇦" data-code="+966"><span class="cc-flag">🇸🇦</span><span class="cc-country">Saudi Arabia (SA)</span><span class="cc-num">+966</span></div>
+                  <div class="cc-dropdown" id="ccDropdown">
+                    <div class="cc-search-wrap">
+                      <i class="fa-solid fa-magnifying-glass cc-search-icon"></i>
+                      <input type="text" class="cc-search" id="ccSearch" placeholder="Search country..." autocomplete="off" aria-label="Search country">
+                    </div>
+                    <div class="cc-list" id="ccList" role="listbox">
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇦🇹" data-code="+43" data-name="austria"><span class="cc-flag">🇦🇹</span><span class="cc-country">Austria</span><span class="cc-num">+43</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇦🇿" data-code="+994" data-name="azerbaijan"><span class="cc-flag">🇦🇿</span><span class="cc-country">Azerbaijan</span><span class="cc-num">+994</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇧🇭" data-code="+973" data-name="bahrain"><span class="cc-flag">🇧🇭</span><span class="cc-country">Bahrain</span><span class="cc-num">+973</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇧🇪" data-code="+32" data-name="belgium"><span class="cc-flag">🇧🇪</span><span class="cc-country">Belgium</span><span class="cc-num">+32</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇦" data-code="+1" data-name="canada"><span class="cc-flag">🇨🇦</span><span class="cc-country">Canada</span><span class="cc-num">+1</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇳" data-code="+86" data-name="china"><span class="cc-flag">🇨🇳</span><span class="cc-country">China</span><span class="cc-num">+86</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇿" data-code="+420" data-name="czech republic"><span class="cc-flag">🇨🇿</span><span class="cc-country">Czech Republic</span><span class="cc-num">+420</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇩🇰" data-code="+45" data-name="denmark"><span class="cc-flag">🇩🇰</span><span class="cc-country">Denmark</span><span class="cc-num">+45</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇫🇮" data-code="+358" data-name="finland"><span class="cc-flag">🇫🇮</span><span class="cc-country">Finland</span><span class="cc-num">+358</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇫🇷" data-code="+33" data-name="france"><span class="cc-flag">🇫🇷</span><span class="cc-country">France</span><span class="cc-num">+33</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇩🇪" data-code="+49" data-name="germany"><span class="cc-flag">🇩🇪</span><span class="cc-country">Germany</span><span class="cc-num">+49</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇭🇰" data-code="+852" data-name="hong kong"><span class="cc-flag">🇭🇰</span><span class="cc-country">Hong Kong</span><span class="cc-num">+852</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇮🇳" data-code="+91" data-name="india"><span class="cc-flag">🇮🇳</span><span class="cc-country">India</span><span class="cc-num">+91</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇮🇪" data-code="+353" data-name="ireland"><span class="cc-flag">🇮🇪</span><span class="cc-country">Ireland</span><span class="cc-num">+353</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇮🇹" data-code="+39" data-name="italy"><span class="cc-flag">🇮🇹</span><span class="cc-country">Italy</span><span class="cc-num">+39</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇯🇵" data-code="+81" data-name="japan"><span class="cc-flag">🇯🇵</span><span class="cc-country">Japan</span><span class="cc-num">+81</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇰🇼" data-code="+965" data-name="kuwait"><span class="cc-flag">🇰🇼</span><span class="cc-country">Kuwait</span><span class="cc-num">+965</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇲🇾" data-code="+60" data-name="malaysia"><span class="cc-flag">🇲🇾</span><span class="cc-country">Malaysia</span><span class="cc-num">+60</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇳🇱" data-code="+31" data-name="netherlands"><span class="cc-flag">🇳🇱</span><span class="cc-country">Netherlands</span><span class="cc-num">+31</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇳🇴" data-code="+47" data-name="norway"><span class="cc-flag">🇳🇴</span><span class="cc-country">Norway</span><span class="cc-num">+47</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇴🇲" data-code="+968" data-name="oman"><span class="cc-flag">🇴🇲</span><span class="cc-country">Oman</span><span class="cc-num">+968</span></div>
+                      <div class="cc-item active" tabindex="0" role="option" aria-selected="true" data-flag="🇵🇰" data-code="+92" data-name="pakistan"><span class="cc-flag">🇵🇰</span><span class="cc-country">Pakistan</span><span class="cc-num">+92</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇵🇱" data-code="+48" data-name="poland"><span class="cc-flag">🇵🇱</span><span class="cc-country">Poland</span><span class="cc-num">+48</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇵🇹" data-code="+351" data-name="portugal"><span class="cc-flag">🇵🇹</span><span class="cc-country">Portugal</span><span class="cc-num">+351</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇶🇦" data-code="+974" data-name="qatar"><span class="cc-flag">🇶🇦</span><span class="cc-country">Qatar</span><span class="cc-num">+974</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇸🇦" data-code="+966" data-name="saudi arabia"><span class="cc-flag">🇸🇦</span><span class="cc-country">Saudi Arabia</span><span class="cc-num">+966</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇸🇬" data-code="+65" data-name="singapore"><span class="cc-flag">🇸🇬</span><span class="cc-country">Singapore</span><span class="cc-num">+65</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇰🇷" data-code="+82" data-name="south korea"><span class="cc-flag">🇰🇷</span><span class="cc-country">South Korea</span><span class="cc-num">+82</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇪🇸" data-code="+34" data-name="spain"><span class="cc-flag">🇪🇸</span><span class="cc-country">Spain</span><span class="cc-num">+34</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇸🇪" data-code="+46" data-name="sweden"><span class="cc-flag">🇸🇪</span><span class="cc-country">Sweden</span><span class="cc-num">+46</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇨🇭" data-code="+41" data-name="switzerland"><span class="cc-flag">🇨🇭</span><span class="cc-country">Switzerland</span><span class="cc-num">+41</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇹🇼" data-code="+886" data-name="taiwan"><span class="cc-flag">🇹🇼</span><span class="cc-country">Taiwan</span><span class="cc-num">+886</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇹🇷" data-code="+90" data-name="turkey"><span class="cc-flag">🇹🇷</span><span class="cc-country">Turkey</span><span class="cc-num">+90</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇦🇪" data-code="+971" data-name="united arab emirates"><span class="cc-flag">🇦🇪</span><span class="cc-country">United Arab Emirates</span><span class="cc-num">+971</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇬🇧" data-code="+44" data-name="united kingdom"><span class="cc-flag">🇬🇧</span><span class="cc-country">United Kingdom</span><span class="cc-num">+44</span></div>
+                      <div class="cc-item" tabindex="0" role="option" aria-selected="false" data-flag="🇺🇸" data-code="+1" data-name="united states"><span class="cc-flag">🇺🇸</span><span class="cc-country">United States</span><span class="cc-num">+1</span></div>
+                    </div>
                   </div>
                 </div>
                 <div class="field phone-number">
                   <input type="tel" id="phone" name="phone" placeholder=" " inputmode="numeric" autocomplete="tel" required>
-                  <label for="phone">Enter WhatsApp number</label>
+                  <label for="phone">phone Number</label>
                 </div>
               </div>
               <p class="field-error-msg" id="phoneError"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid WhatsApp number</p>
@@ -703,34 +776,92 @@ document.addEventListener('click', (e) => {
   if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) navLinks.classList.remove('active');
 });
 
-/* Country Code Dropdown */
+/* Country Code Dropdown with Search */
 const ccSelect = document.getElementById('ccSelect');
 const ccButton = document.getElementById('ccButton');
+const ccDropdown = document.getElementById('ccDropdown');
 const ccList = document.getElementById('ccList');
+const ccSearch = document.getElementById('ccSearch');
+
+function closeCcDropdown() {
+  if (!ccSelect.classList.contains('open')) return;
+  ccSelect.classList.remove('open');
+  ccButton.setAttribute('aria-expanded', 'false');
+  ccSearch.value = '';
+  ccList.querySelectorAll('.cc-item').forEach(item => item.classList.remove('hidden'));
+  ccList.scrollTop = 0;
+}
+
+function openCcDropdown() {
+  ccSelect.classList.add('open');
+  ccButton.setAttribute('aria-expanded', 'true');
+  ccList.scrollTop = 0;
+  setTimeout(() => ccSearch.focus(), 50);
+}
 
 ccButton.addEventListener('click', (e) => {
   e.stopPropagation();
-  ccSelect.classList.toggle('open');
+  if (ccSelect.classList.contains('open')) {
+    closeCcDropdown();
+  } else {
+    openCcDropdown();
+  }
 });
+
 function selectCcItem(item) {
-  ccList.querySelectorAll('.cc-item').forEach(i => { i.classList.remove('active'); i.setAttribute('aria-selected', 'false'); });
+  ccList.querySelectorAll('.cc-item').forEach(i => {
+    i.classList.remove('active');
+    i.setAttribute('aria-selected', 'false');
+  });
   item.classList.add('active');
   item.setAttribute('aria-selected', 'true');
   document.getElementById('ccFlag').textContent = item.dataset.flag;
   document.getElementById('ccCode').textContent = item.dataset.code;
-  ccSelect.classList.remove('open');
+  closeCcDropdown();
   ccButton.focus();
 }
-ccList.querySelectorAll('.cc-item').forEach(item => {
-  item.addEventListener('click', () => selectCcItem(item));
-  item.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      selectCcItem(item);
-    }
-  });
+
+ccList.addEventListener('click', (e) => {
+  const item = e.target.closest('.cc-item');
+  if (item && !item.classList.contains('hidden')) {
+    selectCcItem(item);
+  }
 });
-document.addEventListener('click', () => ccSelect.classList.remove('open'));
+
+ccList.addEventListener('keydown', (e) => {
+  const item = e.target.closest('.cc-item');
+  if (item && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    selectCcItem(item);
+  }
+});
+
+ccSearch.addEventListener('input', () => {
+  const query = ccSearch.value.trim().toLowerCase();
+  ccList.querySelectorAll('.cc-item').forEach(item => {
+    const name = (item.dataset.name || '').toLowerCase();
+    const code = (item.dataset.code || '').toLowerCase();
+    const countryText = (item.querySelector('.cc-country')?.textContent || '').toLowerCase();
+    const match = !query || name.includes(query) || code.includes(query) || countryText.includes(query);
+    item.classList.toggle('hidden', !match);
+  });
+  ccList.scrollTop = 0;
+});
+
+ccDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+document.addEventListener('click', (e) => {
+  if (!ccSelect.contains(e.target)) {
+    closeCcDropdown();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && ccSelect.classList.contains('open')) {
+    closeCcDropdown();
+    ccButton.focus();
+  }
+});
 
 /* Chips Selection */
 const chipGroup = document.getElementById('chipGroup');
