@@ -1,0 +1,7 @@
+# robots.txt for global-vas.com
+# Allows all search engine crawlers full access to the site.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://global-vas.com/sitemap.xml
