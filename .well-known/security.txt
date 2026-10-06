@@ -1,2 +1,4 @@
 Contact: mailto:Globalvas65@gmail.com
 Preferred-Languages: en
+Canonical: https://global-vas.com/.well-known/security.txt
+Expires: 2027-10-06T12:00:00.000Z
